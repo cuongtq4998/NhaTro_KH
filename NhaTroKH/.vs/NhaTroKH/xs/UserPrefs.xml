@@ -1,0 +1,22 @@
+﻿<Properties StartupConfiguration="{3A7A8F16-BFA4-4AE6-982C-40443B725E32}|Default">
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="NhaTroKH" expanded="True">
+            <Node name="NhaTroKH" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.NhaTroKH.iOS FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.NhaTroKH.Android FirstBuild="True" PreferredExecutionTarget="Android.Pixel_3a_XL_API_25" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.NhaTroKH FirstBuild="True" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
