@@ -1,4 +1,5 @@
 ﻿using System;
+using NhaTroKH.viewUI;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace NhaTroKH
         {
             InitializeComponent();
 
-            MainPage = new MainPage(); 
+            MainPage = new NavigationPage(new LoginPageUI()); 
         }
 
         protected override void OnStart()

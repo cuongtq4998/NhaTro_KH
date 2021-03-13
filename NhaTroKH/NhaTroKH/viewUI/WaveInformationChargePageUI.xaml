@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NhaTroKH.viewUI.WaveInformationChargePageUI">
+    <NavigationPage.TitleView>
+        <Label Text="Thông tin điện nước"
+               FontAttributes="Bold"
+            FontSize="Large"
+            HorizontalTextAlignment="Center"
+               TextColor="Black"/>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical"
+                     Spacing="0"
+                     HorizontalOptions="Center" 
+                     Padding="0,20,0,0">
+            <ActivityIndicator x:Name="activityIndicator"  
+                               VerticalOptions="Center" 
+                               HorizontalOptions="Center" 
+                               Color="Black" 
+                               WidthRequest="20" 
+                             HeightRequest="20" />
+            <ScrollView>
+                <StackLayout Orientation="Vertical"
+                             WidthRequest="370">
+                    <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                        <Label  
+                            Text="Năm"
+                            FontSize="15"
+                            FontAttributes="Italic" 
+                            WidthRequest="70"
+                            VerticalOptions="Center"/>
+                        <Frame CornerRadius="8" 
+                               HorizontalOptions="Center"
+                               Padding="5"
+                               WidthRequest="220"
+                               BackgroundColor="White">
+                            <Entry 
+                                FontSize="14"
+                                Placeholder="Nhập năm..."
+                                WidthRequest="250"
+                                Keyboard="Numeric"
+                                x:Name="NAM"
+                                TextChanged="NAM_TextChanged"/>
+                        </Frame>
+
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                        <Label Text="Tháng:" 
+                       VerticalOptions="Center"
+                               WidthRequest="80"/>
+                        <Frame CornerRadius="8" 
+                               HorizontalOptions="Center"
+                               Padding="5"
+                               WidthRequest="220"
+                               BackgroundColor="White">
+                            <Entry Placeholder="Nhập tháng..." 
+                           WidthRequest="180"
+                                   FontSize="14"
+                           Keyboard="Numeric"
+                           x:Name="THANG"
+                           TextChanged="THANG_TextChanged"/>
+                        </Frame>
+
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center">
+                        <Label Text="Phòng:" 
+                               WidthRequest="80"
+                       VerticalOptions="Center"/>
+                        <Frame CornerRadius="8" 
+                               HorizontalOptions="Center"
+                               Padding="5"
+                               WidthRequest="220"
+                               BackgroundColor="White">
+                            <Entry Placeholder="Nhập số phòng..."
+                               WidthRequest="180"
+                                   FontSize="14"
+                               Keyboard="Numeric"
+                               x:Name="PHONG" 
+                               TextChanged="PHONG_TextChanged"/>
+                        </Frame>
+
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                HorizontalOptions="Center">
+                        <Label Text="Chỉ số điện mới:" 
+                       VerticalOptions="Center"
+                               WidthRequest="80"/>
+                        <Frame CornerRadius="8" 
+                               HorizontalOptions="Center"
+                               Padding="5"
+                               WidthRequest="220"
+                               BackgroundColor="White">
+                            <Entry Placeholder="Nhập vào đây..."
+                               WidthRequest="180"
+                                   FontSize="14"
+                               Keyboard="Numeric"
+                               x:Name="SODIEN" />
+                        </Frame>
+
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center">
+                        <Label Text="Chỉ số nước mới:" 
+                       VerticalOptions="Center"
+                               WidthRequest="80"/>
+                        <Frame CornerRadius="8" 
+                               HorizontalOptions="Center"
+                               Padding="5"
+                               WidthRequest="220"
+                               BackgroundColor="White">
+                            <Entry Placeholder="Nhập vào đây..."
+                                    WidthRequest="180"
+                                   FontSize="14"
+                                    x:Name="SONUOC"
+                                   Keyboard="Numeric"/>
+                        </Frame>
+
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center">
+                        <Label Text="SL xe số(nếu có):"
+                               WidthRequest="80"
+                       VerticalOptions="Center"/>
+                        <Frame CornerRadius="8" 
+                               HorizontalOptions="Center"
+                               Padding="5"
+                               WidthRequest="220"
+                               BackgroundColor="White">
+                            <Entry Placeholder="Nhập vào đây..."
+                                   FontSize="14"
+                                   WidthRequest="180" 
+                                   x:Name="XESO" 
+                                   Keyboard="Numeric"/>
+                        </Frame>
+
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center">
+                        <Label Text="SL xe tay ga(nếu có):" 
+                               WidthRequest="80"
+                                VerticalOptions="Center"/>
+                        <Frame CornerRadius="8" 
+                               HorizontalOptions="Center"
+                               Padding="5"
+                               WidthRequest="220"
+                               BackgroundColor="White">
+                            <Entry Placeholder="Nhập vào đây..."
+                                   FontSize="14"
+                                   WidthRequest="180" 
+                                   x:Name="XETAYGA" 
+                                   Keyboard="Numeric"/>
+                        </Frame>
+
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand"
+                                 HeightRequest="40"
+                                 Padding="10"
+                                 Margin="0,10,0,0">
+                        <Button Text="Trở về"
+                                x:Name="btnback"
+                                FontAttributes="Bold"
+                                BackgroundColor="Red"
+                                TextColor="White"
+                                FontSize="12"
+                                CornerRadius="10" 
+                                Clicked="btnback_Clicked" />
+                        <Button Text="Thêm"
+                                BackgroundColor="Orange"
+                                TextColor="White"
+                                CornerRadius="10"
+                                x:Name="btnThem"
+                                FontSize="12"
+                                FontAttributes="Bold"
+                                HorizontalOptions="FillAndExpand"
+                                Clicked="btnThem_Clicked" />
+                        
+                    </StackLayout>
+                    <Label Text="Ghi chú: Thông tin này nhập trước ngày 25 hàng tháng"
+                           TextColor="Red"
+                           FontSize="14"
+                           FontAttributes="Italic"
+                           HorizontalOptions="Center"
+                           Padding="10"/>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

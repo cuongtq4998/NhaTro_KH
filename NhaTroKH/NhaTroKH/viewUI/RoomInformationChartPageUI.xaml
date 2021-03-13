@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NhaTroKH.viewUI.RoomInformationChartPageUI">
+    <NavigationPage.TitleView>
+        <Label Text="THÔNG TIN TIỀN PHÒNG"
+               FontAttributes="Bold"
+            FontSize="Large"
+            HorizontalTextAlignment="Center"
+               TextColor="Black"/>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Spacing="0">
+            <ActivityIndicator x:Name="activityIndicator"   
+                               HeightRequest="20"
+                               WidthRequest="20"
+                               Color="Black"    
+                               />
+            <ScrollView>
+                <StackLayout Orientation="Vertical"
+                     HorizontalOptions="CenterAndExpand"
+                         Padding="14,0">
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center">
+                        <Label 
+                            Text="Năm:"
+                            FontAttributes="Italic"
+                            FontSize="14"
+                            HorizontalOptions="Start"
+                            WidthRequest="100"/>
+                        <Label    
+                            IsEnabled="False"
+                            FontSize="18"
+                            TextColor="Red"
+                            x:Name="NAM_" 
+                            WidthRequest="230"/>
+                    </StackLayout>
+                    <StackLayout 
+                        Orientation="Horizontal"
+                                 HorizontalOptions="Center">
+                        <Label Text="Tháng:"
+                               FontAttributes="Italic"
+                            FontSize="14"
+                               WidthRequest="100"
+                               HorizontalOptions="Start"/>
+                        <Label WidthRequest="230"
+                           IsEnabled="False"
+                           x:Name="THANG_"
+                           FontSize="18"
+                           TextColor="Red"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center"
+                                 HeightRequest="50">
+                        <Label Text="Phòng:"
+                               FontAttributes="Italic"
+                                FontSize="14"
+                               VerticalOptions="Center"
+                               WidthRequest="100"
+                               HorizontalOptions="Start"/>
+                        <Frame x:Name="toastFrame" 
+                               CornerRadius="8" 
+                               HorizontalOptions="Center"
+                               Padding="5"
+                               WidthRequest="220"
+                               BackgroundColor="White">
+                            <Entry Placeholder="Nhập số phòng..."
+                                    WidthRequest="230"
+                                    Keyboard="Numeric"
+                                    x:Name="PHONG_"
+                                   FontSize="14"/>
+                        </Frame>
+
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center">
+                        <Label Text="Tiền phòng:"
+                               FontAttributes="Italic"
+                            FontSize="14"
+                               WidthRequest="100"
+                               VerticalOptions="Center"/>
+                        <Label WidthRequest="230"
+                               IsEnabled="False"
+                               x:Name="TIENPHONG_"
+                               FontSize="18"
+                               TextColor="Red"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center">
+                        <Label Text="Tiền nước:"
+                               FontAttributes="Italic"
+                            FontSize="14"
+                               VerticalOptions="Center"
+                               WidthRequest="100"/>
+                        <Label WidthRequest="230"
+                           IsEnabled="False"
+                           x:Name="TIENNUOC_"
+                           FontSize="18"
+                           TextColor="Red"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center">
+                        <Label Text="Tiền điện:"
+                               FontAttributes="Italic"
+                               FontSize="14"
+                               VerticalOptions="Center"
+                               WidthRequest="100"/>
+                        <Label WidthRequest="230"
+                               IsEnabled="False"
+                               x:Name="TIENDIEN_"
+                               FontSize="18"
+                               TextColor="Red"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center">
+                        <Label Text="Tiền xe số: "
+                               FontAttributes="Italic"
+                               FontSize="14"
+                               VerticalOptions="Center"
+                               WidthRequest="100"/>
+                        <Label x:Name="xeSo"
+                               WidthRequest="230"
+                               IsEnabled="False"
+                               FontSize="18"
+                               TextColor="Red"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center">
+                        <Label Text="Tiền xe tay ga: "
+                               FontAttributes="Italic"
+                               FontSize="14"
+                               VerticalOptions="Center"
+                               WidthRequest="100"/>
+                        <Label x:Name="xeTayGa"
+                               WidthRequest="230"
+                               IsEnabled="False"
+                               FontSize="18"
+                               TextColor="Red"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center">
+                        <Label Text="Tiền dịch vụ:"
+                               FontAttributes="Italic"
+                            FontSize="13"
+                               WidthRequest="100"
+                               VerticalOptions="Center"/>
+                        <Label WidthRequest="230"
+                           IsEnabled="False"
+                           x:Name="TIENDICHVU_"
+                           FontSize="18"
+                           TextColor="Red"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Start">
+                        <Label Text="Chi tiết dịch vụ:"
+                               WidthRequest="100"
+                               FontAttributes="Italic"
+                               FontSize="10"
+                             HorizontalOptions="Fill"
+                               VerticalOptions="Center"/>
+                        <StackLayout  
+                            HeightRequest="50"
+                            WidthRequest="180"
+                            HorizontalOptions="End"
+                            Orientation="Vertical">
+                            <ListView x:Name="lstCTDV" 
+                                    VerticalOptions="End"  
+                                    BackgroundColor="White" 
+                                    HasUnevenRows = "true">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <ViewCell.View>
+                                                <Label Text="{Binding chitietdichvu}"
+                                                       TextColor="Red"
+                                                       FontSize="10"
+                                                       FontAttributes="Italic"/>
+                                            </ViewCell.View>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center">
+                        <Label Text="Tổng tiền:"
+                               FontAttributes="Italic"
+                            FontSize="14"
+                               WidthRequest="100"
+                               VerticalOptions="Center"/>
+                        <Label WidthRequest="230"
+                           IsEnabled="False"
+                           HorizontalOptions="End"
+                           x:Name="TONGTIEN_"
+                           FontSize="18"
+                           TextColor="Red"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand"
+                                 HeightRequest="40"
+                                 Spacing="10">
+                        <Button Text="Trở về"
+                                FontSize="12"
+                                x:Name="BACK_"
+                                FontAttributes="Bold"
+                                BackgroundColor="Red"
+                                TextColor="White"
+                                CornerRadius="10"
+                                Clicked="BACK__Clicked"/>
+                        <Button Text="Xem"
+                                x:Name="btnXem"
+                                FontSize="12"
+                                FontAttributes="Bold"
+                                BackgroundColor="Orange"
+                                TextColor="White"
+                                CornerRadius="10"
+                                HorizontalOptions="FillAndExpand"
+                                Clicked="btnXem_Clicked"/>
+                        
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

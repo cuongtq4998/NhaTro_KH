@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NhaTroKH.viewUI.FeedbackPageUI">
+    <NavigationPage.TitleView>
+        <Label
+            Text="THÔNG TIN PHẢN HỒI!"
+            FontAttributes="Bold"
+            FontSize="Large"
+            TextColor="Black"
+            HorizontalTextAlignment="Center"/>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <ScrollView>
+                <StackLayout Spacing="5"
+                             Margin="10,0">
+                    <ActivityIndicator x:Name="activityIndicator" 
+                                       Margin="0,0" 
+                                       VerticalOptions="Center" 
+                                       HorizontalOptions="Center" 
+                                       Color="Black" 
+                                       WidthRequest="20" 
+                                       HeightRequest="20" />
+                    <StackLayout Orientation="Horizontal"
+                                HorizontalOptions="FillAndExpand"
+                                 HeightRequest="50">
+                        <Label Text="Phòng: "
+                               FontAttributes="Italic"
+                               FontSize="14"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               WidthRequest="80"/>
+                        <Frame x:Name="toastFrame" 
+                               CornerRadius="8" 
+                               HorizontalOptions="FillAndExpand"
+                               Padding="0,2,0,0"
+                               WidthRequest="220"
+                               BackgroundColor="White">
+                            <Entry Keyboard="Numeric"
+                                   HorizontalOptions="FillAndExpand"
+                                   WidthRequest="210"
+                                   VerticalOptions="Center"
+                                   FontSize="14"
+                                    x:Name="phongfeedback"
+                                   Placeholder="Nhập số phòng..."/>
+                        </Frame>
+
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical"
+                                HorizontalOptions="FillAndExpand">
+                        <Label Text="Ý kiến phản hồi: "
+                               VerticalOptions="Center"
+                               HorizontalOptions="Start"
+                               WidthRequest="150"
+                               FontSize="14"
+                               FontAttributes="Italic"/>
+                        <Frame  
+                               CornerRadius="8" 
+                               HorizontalOptions="FillAndExpand"
+                               Padding="5"
+                               WidthRequest="300" 
+                               BackgroundColor="White">
+                            <Editor HorizontalOptions="FillAndExpand" 
+                                    FontSize="14" 
+                                    WidthRequest="300" 
+                                    HeightRequest="200"
+                                    VerticalOptions="Center"
+                                    x:Name="thongtinphanhoi"
+                                    Placeholder="Nhập ý kiến ở tại đây..."/>
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                HorizontalOptions="FillAndExpand"
+                                 HeightRequest="40"
+                                 Margin="0,5,0,0">
+                        <Button Text="Trở về"
+                                CornerRadius="10"
+                                BackgroundColor="Red"
+                                TextColor="White"
+                                x:Name="back"
+                                FontSize="12"
+                                FontAttributes="Bold"
+                                Clicked="back_Clicked"/>
+                        <Button Text="Thêm"
+                                CornerRadius="10"
+                                BackgroundColor="Orange"
+                                TextColor="White"
+                                FontSize="12"
+                                x:Name="btnfeedback"
+                                FontAttributes="Bold"  
+                                Clicked="btnfeedback_Clicked"
+                                HorizontalOptions="FillAndExpand"/> 
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

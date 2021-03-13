@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NhaTroKH.viewUI.CustomerPageUI">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Default" Priority="0" Text="Gia Đình"  x:Name="btnGD" Clicked="btnGD_Clicked" />
+        <ToolbarItem Order="Default" Priority="1" Text="Bản Thân" x:Name="btnQT" Clicked="btnQT_Clicked"/>
+        <ToolbarItem Order="Default" Priority="2" Text="Nhập Mới" x:Name="btnrefresh" Clicked="btnrefresh_Clicked"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="THÔNG TIN KHÁCH THUÊ"
+                       HorizontalOptions="Center"
+                       Margin="25,10,25,10"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="DarkBlue"
+                       MaxLines="1"/>
+
+            <ActivityIndicator x:Name="_Layout"   
+                                VerticalOptions="Center" 
+                                HorizontalOptions="Center" 
+                                Color="Black" 
+                                WidthRequest="20" 
+                                HeightRequest="20" />
+
+            <ScrollView VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <StackLayout Margin="10"
+                             Orientation="Vertical"
+                             Spacing="10"
+                             x:Name="layout_" >
+                    <!--CMND-->
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 IsEnabled="False"
+                                 Spacing="0">
+                        <Label Text="CMND"
+                               WidthRequest="100"
+                               VerticalOptions="Center"
+                               TextColor="Black"/>
+                        <Entry Keyboard="Numeric"
+                               x:Name="CMND"
+                               WidthRequest="250"
+                               VerticalOptions="Center"/>
+                    </StackLayout>
+
+                    <!--ten khach hang-->
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 Spacing="0">
+                        <Label Text="Tên Khách Hàng"
+                               WidthRequest="100"
+                               VerticalOptions="Center"
+                               TextColor="Black"/>
+                        <Entry x:Name="TENKH"
+                               WidthRequest="250"
+                               VerticalOptions="Center"/>
+                    </StackLayout>
+
+                    <!--ngay cap-->
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 Spacing="0">
+                        <Label Text="Ngày cấp"
+                                WidthRequest="100"
+                               VerticalOptions="Center"
+                               TextColor="Black"/>
+                        <DatePicker WidthRequest="250"
+                                    VerticalOptions="Center"
+                                    FontSize="Small"
+                                    x:Name="ngaycap"
+                                    Format="dd/MM/yyyy">
+                        </DatePicker>
+                    </StackLayout>
+
+                    <!--ngay sinh && gioi tinh-->
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="0">
+                        <StackLayout  
+                        Orientation="Horizontal"
+                        HorizontalOptions="FillAndExpand">
+                            <Label 
+                            Text="Ngày sinh"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start"
+                                TextColor="Black"/>
+                            <DatePicker HorizontalOptions="FillAndExpand"
+                                FontSize="Small"
+                                    x:Name="ngaysinh"
+                                    Format="dd/MM/yyyy"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" 
+                                    HorizontalOptions="FillAndExpand">
+                            <Label Text="Giới tính" 
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="Center"
+                                  TextColor="Black"/>
+                            <Picker x:Name="gioitinh_" 
+                                    Title="Chọn giới tính"
+                                    FontSize="15"
+                                    SelectedIndexChanged="UtilityPicker_SelectedIndexChanged"/>
+                        </StackLayout>
+                    </StackLayout>
+                     
+                    <!--dien thoai-->
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 Spacing="0">
+                        <Label Text="Điện thoại"
+                               WidthRequest="100"
+                               VerticalOptions="Center"
+                               TextColor="Black"/>
+                        <Entry Keyboard="Telephone"
+                               Placeholder="0331805884"
+                               x:Name="dienthoai"
+                               WidthRequest="250"
+                               VerticalOptions="Center"/>
+                    </StackLayout>
+
+                    <!--dan toc-->
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 Spacing="0">
+                        <Label Text="Dân tộc"
+                               WidthRequest="100"
+                               VerticalOptions="Center"
+                               TextColor="Black"/>
+                        <Entry x:Name="dantoc"
+                               WidthRequest="250"
+                               VerticalOptions="Center"/>
+                    </StackLayout>
+
+                    <!--ton giao-->
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 Spacing="0">
+                        <Label Text="Tôn giáo"
+                               WidthRequest="100"
+                               VerticalOptions="Center" 
+                               TextColor="Black"/>
+                        <Entry x:Name="tongiao"
+                               WidthRequest="250"
+                               VerticalOptions="Center"/>
+                    </StackLayout> 
+
+                    <!--nghe nghiep-->
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 Spacing="0">
+                        <Label Text="Nghề nghiệp"
+                               WidthRequest="100"
+                               VerticalOptions="Center"
+                               TextColor="Black"/>
+                        <Entry x:Name="nghenghiep"
+                               WidthRequest="250"
+                               VerticalOptions="Center"/>
+                    </StackLayout>
+
+                    <!--cong ty-->
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 Spacing="0">
+                        <Label Text="Công ty"
+                               WidthRequest="100"
+                               VerticalOptions="Center"
+                               TextColor="Black"/>
+                        <Entry x:Name="Congty"
+                               WidthRequest="250"
+                               VerticalOptions="Center"/>
+                    </StackLayout>
+
+                    <!--noi lam viec-->
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="0">
+                        <Label Text="Nơi làm việc"
+                               WidthRequest="100"
+                               VerticalOptions="Center"
+                               TextColor="Black"/>
+                        <Label TextColor="Black"
+                                FontAttributes="Bold"
+                                FontSize="13"
+                                HorizontalOptions="FillAndExpand"
+                                Padding="5"
+                                x:Name="PlaceJobLabelNavigatePage">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="PlaceJob"
+                                                      Tapped="PlaceJob_Tapped"/>
+                            </Label.GestureRecognizers>
+                        </Label> 
+                    </StackLayout>
+
+                    <!--que quan-->
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="0">
+                        <Label Text="Quê quán"
+                               WidthRequest="100"
+                               VerticalOptions="Center" 
+                               TextColor="Black"/>
+                        <Label TextColor="Black"
+                                FontAttributes="Bold"
+                                FontSize="13"
+                                HorizontalOptions="FillAndExpand"
+                                Padding="5"
+                                x:Name="HometownLabelNavigatePage">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="Hometown"
+                                                      Tapped="Hometown_Tapped"/>
+                            </Label.GestureRecognizers>
+                        </Label> 
+                    </StackLayout> 
+
+                    <!--cho o hien tai-->
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="0">
+                        <Label Text="Chỗ ở hiện nay"
+                               WidthRequest="100"
+                               VerticalOptions="Center"
+                               TextColor="Black"/>
+                        <Label TextColor="Black"
+                                FontAttributes="Bold"
+                                FontSize="13"
+                                HorizontalOptions="FillAndExpand"
+                                Padding="5"
+                                x:Name="SiteCurentLabelNavigatePage">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="SiteCurent"
+                                                      Tapped="SiteCurent_Tapped"/>
+                            </Label.GestureRecognizers>
+                        </Label> 
+                    </StackLayout>
+
+                    <!--thuong tru-->
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="0">
+                        <Label Text="Thường trú"
+                               WidthRequest="100"
+                               VerticalOptions="Center" 
+                               TextColor="Black"/>
+                        <Label TextColor="Black"
+                                FontAttributes="Bold"
+                                FontSize="13"
+                                HorizontalOptions="FillAndExpand"
+                                Padding="5"
+                                x:Name="AddressResidentLabelNavigatePage">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="AddressResident"
+                                                      Tapped="AddressResident_Tapped"/>
+                            </Label.GestureRecognizers>
+                        </Label> 
+                    </StackLayout> 
+                    <!--mail-->
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 Spacing="0">
+                        <Label Text="Email"
+                               WidthRequest="100"
+                               VerticalOptions="Center"
+                               TextColor="Black"/>
+                        <Entry x:Name="mail"
+                               Placeholder="email@gmail.com"
+                               FontSize="15"
+                               WidthRequest="250"
+                               VerticalOptions="Center"/>
+                    </StackLayout>
+
+                    <!--Edit bien so xe && loai xe -->
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="2">
+                        <StackLayout  
+                                    Orientation="Horizontal"
+                                    HorizontalOptions="FillAndExpand">
+                            <Label Text="Biển số xe"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalOptions="Center"
+                                   TextColor="Black"/>
+
+                            <Entry Placeholder="Nhập số xe..."
+                                   FontSize="15"
+                                   x:Name="bienso"
+                                   HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" 
+                                    HorizontalOptions="FillAndExpand">
+
+                            <Label Text="Loại xe"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="Center"
+                                   TextColor="Black"/>
+
+                            <Picker Title="Loại xe"
+                                    x:Name="loaixe_" 
+                                    FontSize="15"
+                                    HorizontalOptions="FillAndExpand"
+                                    SelectedIndexChanged="loaixe__SelectedIndexChanged"/>
+                        </StackLayout>
+                    </StackLayout>
+                    <!--end edit-->
+
+                    <!--học vấn-->
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="0">
+                        <Label Text="Học Vấn"
+                               WidthRequest="100"
+                               VerticalOptions="Center"
+                               TextColor="Black"/>
+                        <Picker Title="Chọn học vấn"
+                                WidthRequest="250"
+                                VerticalOptions="Center"
+                                HorizontalOptions="EndAndExpand"
+                                FontSize="Small"
+                                SelectedIndexChanged="picker_SelectedIndexChanged"
+                                x:Name="hocvan_"/>
+                    </StackLayout>
+
+                    <!--chuyên môn-->
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="0">
+                        <Label Text="Chuyên môn"
+                               WidthRequest="100"
+                               VerticalOptions="Center" 
+                               TextColor="Black"/>
+                        <Entry x:Name="Chuyenmon"
+                               WidthRequest="250"
+                               VerticalOptions="Center"
+                               HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="FillAndExpand"
+                         Padding="10">
+                <Button Text="Trở về"
+                        x:Name="CancelInputUser"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    FontSize="13"
+                    HeightRequest="45" 
+                    BackgroundColor="Red"
+                    CornerRadius="20"
+                        Clicked="CancelInputUser_Clicked"/>
+                 
+                <Button Text="Lưu"
+                    x:Name="btnsave" 
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    FontSize="13"
+                    HeightRequest="45" 
+                    BackgroundColor="Orange"
+                    CornerRadius="20"
+                    Clicked="btnsave_Clicked"
+                        HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

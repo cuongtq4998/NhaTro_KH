@@ -1,20 +1,22 @@
-﻿<Properties StartupConfiguration="{3A7A8F16-BFA4-4AE6-982C-40443B725E32}|Default">
+﻿<Properties StartupConfiguration="{2D9C54AA-7560-4D69-ACA4-1EC0B906F85C}|Default">
   <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="NhaTroKH" expanded="True">
-            <Node name="NhaTroKH" expanded="True" />
+            <Node name="NhaTroKH" expanded="True">
+              <Node name="viewUI" expanded="True" />
+              <Node name="App.xaml" selected="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.NhaTroKH.iOS FirstBuild="True" />
-  <MonoDevelop.Ide.ItemProperties.NhaTroKH.Android FirstBuild="True" PreferredExecutionTarget="Android.Pixel_3a_XL_API_25" />
+  <MonoDevelop.Ide.ItemProperties.NhaTroKH.iOS TriggeredFromHotReload="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.F266BFFC-3924-47B3-B6A3-F19C7A19DC46" />
+  <MonoDevelop.Ide.ItemProperties.NhaTroKH.Android TriggeredFromHotReload="False" PreferredExecutionTarget="Android.Pixel_3a_XL_API_25" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.NhaTroKH FirstBuild="True" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

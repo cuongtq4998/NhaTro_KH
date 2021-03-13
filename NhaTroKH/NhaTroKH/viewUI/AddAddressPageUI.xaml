@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NhaTroKH.viewUI.AddAddressPageUI">
+    <NavigationPage.TitleView>
+        <Label
+            Text="THÔNG TIN ĐỊA CHỈ"
+            FontAttributes="Bold"
+            FontSize="Large"
+            TextColor="Black"
+            HorizontalTextAlignment="Center"/>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical"> 
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center">
+                <CheckBox x:Name="CheckTypeInput"
+                          Color="Black"
+                      CheckedChanged="CheckTypeInput_CheckedChanged"
+                          VerticalOptions="Center"/>
+                <Label Text="Tôi không tìm thấy địa chỉ ?. Tôi muốn nhập."
+                       VerticalOptions="Center"
+                       TextColor="Black"/>
+            </StackLayout>
+            
+
+            <StackLayout Margin="20,10,20,0"
+                             Orientation="Horizontal"
+                             HorizontalOptions="FillAndExpand">
+                <Label Text="Địa chỉ: "
+                           TextColor="Black"
+                           FontAttributes="Italic"
+                           FontSize="13"/>
+                <Label HorizontalOptions="FillAndExpand"
+                           Text="Giá trị chọn..."
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           FontSize="13"
+                           x:Name="valueUser"/>
+            </StackLayout>
+
+            <!-- input user choose-->
+            <StackLayout Orientation="Vertical"
+                         BackgroundColor="WhiteSmoke"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 Padding="10,0"
+                         x:Name="ViewChooseAddress">
+                <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 Spacing="0">
+                    <Label Text="Tỉnh/Thành phố(*)" 
+                                   TextColor="Red"
+                                   FontAttributes="Italic"
+                                   FontSize="10"
+                                   WidthRequest="100"
+                                   VerticalOptions="Center" />
+                    <StackLayout Orientation="Vertical">
+                        <Picker x:Name="ProvincialPicker"
+                                    WidthRequest="250"
+                                Title="Provincial..."
+                                    FontSize="13"  
+                                    VerticalOptions="Center"
+                                SelectedIndexChanged="ProvincialPicker_SelectedIndexChanged"/>
+                    </StackLayout>
+
+                    <ActivityIndicator x:Name="LoadingProvincial"   
+                                               VerticalOptions="Center" 
+                                               HorizontalOptions="Center" 
+                                               Color="Black" 
+                                               WidthRequest="20" 
+                                               HeightRequest="20" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Center"
+                                     Spacing="0">
+                    <Label Text="Quận/huyện/thị xã(*)" 
+                                   TextColor="Red"
+                                   FontAttributes="Italic"
+                                   FontSize="10"
+                                   WidthRequest="100"
+                                   VerticalOptions="Center" />
+
+                    <StackLayout Orientation="Vertical">
+                        <Picker x:Name="DisttrictPicker"
+                                    WidthRequest="250"
+                                    VerticalOptions="Center"
+                                Title="District..."
+                                    FontSize="13"
+                                SelectedIndexChanged="DisttrictPicker_SelectedIndexChanged"/>
+                    </StackLayout>
+                    <ActivityIndicator x:Name="LoadingDistrict"   
+                                               VerticalOptions="Center" 
+                                               HorizontalOptions="Center"
+                                               Color="Black" 
+                                               WidthRequest="20" 
+                                               HeightRequest="20" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Center"
+                                     Spacing="0">
+                    <Label Text="Phường/xã(*)" 
+                                   TextColor="Red"
+                                   FontAttributes="Italic"
+                                   FontSize="10"
+                                   WidthRequest="100"
+                                   VerticalOptions="Center" />
+                    <StackLayout Orientation="Vertical">
+                        <Picker x:Name="WardPicker"
+                                    WidthRequest="250"
+                                    VerticalOptions="Center"
+                                    FontSize="13"
+                                Title="Ward..."
+                                SelectedIndexChanged="WardPicker_SelectedIndexChanged"
+                                />
+                    </StackLayout>
+                    <ActivityIndicator x:Name="LoadingWard"   
+                                               VerticalOptions="Center" 
+                                               HorizontalOptions="Center" 
+                                               Color="Black" 
+                                               WidthRequest="20" 
+                                               HeightRequest="20" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="FillAndExpand"
+                                     Spacing="0">
+                    <Label Text="Số nhà/đường/thôn/ấp(*)" 
+                                   TextColor="Red"
+                                   FontAttributes="Italic"
+                                   FontSize="10"
+                                   WidthRequest="100"
+                                   VerticalOptions="Center" />
+                    <Entry WidthRequest="250"
+                                    VerticalOptions="Center"
+                                   x:Name="StreesEntry"
+                                   FontSize="13"
+                           TextChanged="StreesEntry_TextChanged"
+                           Placeholder="Strees..."/>
+                </StackLayout>
+            </StackLayout>
+
+            <!--input user nhập-->
+            <StackLayout Orientation="Vertical"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Padding="10,0"
+                x:Name="ViewInputFromKeyboard">
+                <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 Spacing="0">
+                    <Label Text="Tỉnh/Thành phố(*)" 
+                                   TextColor="Red"
+                                   FontAttributes="Italic"
+                                   FontSize="10"
+                                   WidthRequest="100"
+                                   VerticalOptions="Center" />
+                    <StackLayout Orientation="Vertical">
+                        <Entry Placeholder="Provincial..."
+                                      x:Name="ProvincialEntry"
+                                       WidthRequest="250"
+                                       FontSize="13"
+                               TextChanged="ProvincialEntry_TextChanged"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Center"
+                                     Spacing="0">
+                    <Label Text="Quận/huyện/thị xã(*)" 
+                                   TextColor="Red"
+                                   FontAttributes="Italic"
+                                   FontSize="10"
+                                   WidthRequest="100"
+                                   VerticalOptions="Center" />
+
+                    <StackLayout Orientation="Vertical">
+                        <Entry Placeholder="District..."
+                                       IsEnabled="True"
+                                      x:Name="DistrictEntry"
+                                       WidthRequest="250"
+                                       FontSize="13"
+                               TextChanged="DistrictEntry_TextChanged"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Center"
+                                     Spacing="0">
+                    <Label Text="Phường/xã(*)" 
+                                   TextColor="Red"
+                                   FontAttributes="Italic"
+                                   FontSize="10"
+                                   WidthRequest="100"
+                                   VerticalOptions="Center" />
+                    <StackLayout Orientation="Vertical">
+                        <Entry Placeholder="Ward..."
+                                       IsEnabled="True"
+                                      x:Name="WardEntry"
+                                       WidthRequest="250"
+                                       FontSize="13"
+                               TextChanged="WardEntry_TextChanged"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="FillAndExpand"
+                                     Spacing="0">
+                    <Label Text="Số nhà/đường/thôn/ấp(*)" 
+                                   TextColor="Red"
+                                   FontAttributes="Italic"
+                                   FontSize="10"
+                                   WidthRequest="100"
+                                   VerticalOptions="Center" />
+                    <Entry WidthRequest="250"
+                                    VerticalOptions="Center"
+                                   x:Name="StreesEntryUser"
+                                   FontSize="13"
+                           Placeholder="Strees..."
+                           TextChanged="StreesEntryUser_TextChanged"/>
+                </StackLayout>
+            </StackLayout>
+
+            <Button HorizontalOptions="FillAndExpand"
+                        TextColor="Black"
+                        Text="Thêm địa chỉ"
+                        x:Name="AddAddressButton"
+                        Clicked="AddAddressButton_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

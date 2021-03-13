@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
+             x:Class="NhaTroKH.viewUI.CustomerFamilyPageUI">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Default" Priority="0" Text="làm mới"  x:Name="btnlammoi" Clicked="btnlammoi_Clicked" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <StackLayout HorizontalOptions="Center"
+                         VerticalOptions="Center" 
+                         Spacing="0">
+                <Label Text="THÔNG TIN KHÁCH THUÊ - GIA ĐÌNH"
+                       HorizontalOptions="Center"
+                       Margin="25,5,25,5"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       TextColor="DarkBlue"
+                       MaxLines="2"/>
+                <Label Text="Tóm tắt về gia đình (Bố, mẹ; vợ/chồng; con; anh, chị, em ruột) Ghi cả cha, mẹ, con nuôi;người nuôi dưỡng; người giám hộ theo quy định của pháp luật (nếu có)."
+                       TextColor="Red"
+                       FontSize="14"
+                       FontAttributes="Italic"
+                       HorizontalTextAlignment="Center"/>
+                <ActivityIndicator x:Name="_LOADTINH"   
+                                    VerticalOptions="Center" 
+                                    HorizontalOptions="Center" 
+                                    Color="Black" 
+                                    WidthRequest="20" 
+                                    HeightRequest="20" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical">
+                <telerikPrimitives:RadTabView x:Name="tabView">
+                    <telerikPrimitives:RadTabView.Items>
+                        <telerikPrimitives:TabViewItem HeaderText="Phần nhập thông tin">
+                            <telerikPrimitives:TabViewItem.Content>
+                                <ScrollView VerticalOptions="Start">
+                                    <Frame  
+                                        BackgroundColor="White"
+                                       CornerRadius="8" 
+                                       HorizontalOptions="Center"
+                                       Padding="5"
+                                       WidthRequest="420">
+                                        <StackLayout Margin="10">
+
+                                            <!--ho ten-->
+                                            <StackLayout Orientation="Horizontal"
+                                                        HorizontalOptions="Fill"
+                                                         VerticalOptions="Center">
+                                                <Label Text="Họ tên: "
+                                                       TextColor="Black"
+                                                       VerticalOptions="CenterAndExpand"
+                                                        HorizontalOptions="Start"/>
+                                                <Entry HorizontalOptions="FillAndExpand"
+                                                       VerticalOptions="FillAndExpand"
+                                                       x:Name="NAME_"/>
+                                            </StackLayout>
+
+                                            <!--ngay sinh-->
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Ngày sinh: "
+                                                       TextColor="Black"
+                                                       VerticalOptions="Center"
+                                                        HorizontalOptions="Start"/>
+                                                <DatePicker HorizontalOptions="FillAndExpand"
+                                                            FontSize="Small"
+                                                            x:Name="BIRTDATE_" />
+                                            </StackLayout>
+
+                                            <!--gioi tinh-->
+                                            <StackLayout Orientation="Horizontal"
+                                                        VerticalOptions="Center">
+                                                <Label Text="Giới tính: "
+                                                       TextColor="Black"
+                                                       VerticalOptions="CenterAndExpand"
+                                                        HorizontalOptions="Start"/>
+                                                <Picker x:Name="Sex_" 
+                                                        Title="Chọn giới tính"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        SelectedIndexChanged="Sex__SelectedIndexChanged"
+                                                        FontSize="Small">
+                                                    <Picker.ItemsSource>
+                                                        <x:Array Type="{x:Type x:String}">
+                                                            <x:String>Nam</x:String>
+                                                            <x:String>Nữ</x:String>
+                                                        </x:Array>
+                                                    </Picker.ItemsSource>
+                                                </Picker>
+                                            </StackLayout>
+
+                                            <!--quan he-->
+                                            <StackLayout Orientation="Horizontal"
+                                                        HorizontalOptions="Fill"
+                                                         VerticalOptions="Center">
+                                                <Label Text="Quan hệ: "
+                                                       TextColor="Black"
+                                                       VerticalOptions="CenterAndExpand"
+                                                        HorizontalOptions="Start"/>
+                                                <Picker x:Name="QUANHE_" 
+                                                        Title="Chọn quan hệ"
+                                                        SelectedIndexChanged="QUANHE__SelectedIndexChanged"
+                                                        HorizontalOptions="FillAndExpand" 
+                                                        FontSize="Small">
+                                                    <Picker.ItemsSource>
+                                                        <x:Array Type="{x:Type x:String}">
+                                                            <x:String>Cha</x:String>
+                                                            <x:String>Mẹ</x:String>
+                                                            <x:String>Anh</x:String>
+                                                            <x:String>Chị</x:String>
+                                                            <x:String>Em</x:String>
+                                                            <x:String>Vợ</x:String>
+                                                            <x:String>Chồng</x:String>
+                                                            <x:String>Con</x:String>
+                                                        </x:Array>
+                                                    </Picker.ItemsSource>
+                                                </Picker>
+                                            </StackLayout>
+
+                                            <!--nghe nghiep-->
+                                            <StackLayout Orientation="Horizontal"
+                                                        HorizontalOptions="Fill"
+                                                        VerticalOptions="Center">
+                                                <Label Text="Nghề Nghiệp: "
+                                                       TextColor="Black"
+                                                       VerticalOptions="CenterAndExpand"
+                                                        HorizontalOptions="Start"/>
+                                                <Entry HorizontalOptions="FillAndExpand"
+                                                       VerticalOptions="FillAndExpand"
+                                                       x:Name="NGHENGHIEP_"/>
+                                            </StackLayout>
+
+                                            <!--cho o-->
+                                            <StackLayout Orientation="Horizontal"
+                                                        HorizontalOptions="Fill"
+                                                         VerticalOptions="Center">
+                                                <Label Text="Chỗ ở: "
+                                                        TextColor="Black"
+                                                        VerticalOptions="CenterAndExpand"
+                                                        HorizontalOptions="Start"/>
+                                                <Label TextColor="Black"
+                                                       FontAttributes="Bold"
+                                                       FontSize="13"
+                                                       HorizontalOptions="FillAndExpand"
+                                                       Padding="5"
+                                                       x:Name="CLICKNAVIGATEPAGEADDADDRESS"
+                                                       >
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                                    </Label.GestureRecognizers>
+                                                </Label> 
+                                            </StackLayout>
+
+                                            <!--button them moi--> 
+
+                                            <StackLayout Orientation="Horizontal"
+                                                         HorizontalOptions="FillAndExpand"
+                                                         Margin="25,0"
+                                                         Spacing="5">
+                                                <Button 
+                                                    BackgroundColor="Red" 
+                                                    CornerRadius="20"
+                                                    FontAttributes="Bold"
+                                                    FontSize="13"
+                                                    HeightRequest="45"
+                                                    Text="Trang chủ"
+                                                    x:Name="HomeFamily"
+                                                    TextColor="White"
+                                                    Clicked="HomeFamily_Clicked"
+                                                    HorizontalOptions="Fill"/>
+                                                <Button
+                                                    x:Name="Themmoi"
+                                                    Clicked="Themmoi_Clicked"
+                                                    Text="Thêm" 
+                                                    FontAttributes="Bold"
+                                                    TextColor="White"
+                                                    FontSize="13"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    HeightRequest="45" 
+                                                    BackgroundColor="Orange"
+                                                    CornerRadius="20"/>
+                                            </StackLayout> 
+                                        </StackLayout>
+                                    </Frame>
+                                </ScrollView>
+                            </telerikPrimitives:TabViewItem.Content>
+                        </telerikPrimitives:TabViewItem>
+                        <telerikPrimitives:TabViewItem HeaderText="Thông tin đã lưu">
+                            <telerikPrimitives:TabViewItem.Content>
+                                <StackLayout>
+                                    <Label Text="Click bên dưới để xóa thông tin!!"
+                                           HorizontalOptions="Center"
+                                           FontAttributes="Italic"
+                                           TextColor="Red"
+                                           FontSize="13"
+                                           Margin="0,5,0,0"/>
+                                    <Frame BackgroundColor="LightGray"
+                                            CornerRadius="8" 
+                                            HorizontalOptions="Center"
+                                            Padding="5"
+                                            WidthRequest="420">
+                                        <ListView x:Name="lst" 
+                                                VerticalOptions="End"  
+                                                BackgroundColor="WhiteSmoke" 
+                                                HasUnevenRows = "true">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ViewCell>
+                                                        <ViewCell.View>
+                                                            <StackLayout Orientation="Vertical"
+                                                                 Padding="10,10"
+                                                                 Margin="0,10"
+                                                                 BackgroundColor="LightYellow">
+                                                                <StackLayout Orientation="Horizontal" >
+                                                                    <Label Text="Họ tên:"
+                                                                   FontSize="Micro"
+                                                                   FontAttributes="Bold"
+                                                                   VerticalOptions="Center"/>
+                                                                    <Label Text="{Binding hoten}"
+                                                                    VerticalOptions="Center"/>
+                                                                </StackLayout>
+                                                                <StackLayout Orientation="Horizontal" >
+                                                                    <Label Text="Ngày sinh:"
+                                                               FontSize="Micro"
+                                                               FontAttributes="Bold"
+                                                               VerticalOptions="Center"/>
+                                                                    <Label Text="{Binding ngaysinh}"
+                                                                VerticalOptions="Center"/>
+                                                                </StackLayout>
+                                                                <StackLayout Orientation="Horizontal" >
+                                                                    <Label Text="Giới tính:"
+                                                               FontSize="Micro"
+                                                               FontAttributes="Bold"
+                                                               VerticalOptions="Center"/>
+                                                                    <Label Text="{Binding gioitinh}"
+                                                                VerticalOptions="Center"/>
+                                                                </StackLayout>
+                                                                <StackLayout Orientation="Horizontal" >
+                                                                    <Label Text="Quan hệ:"
+                                                               FontSize="Micro"
+                                                               FontAttributes="Bold"
+                                                               VerticalOptions="Center"/>
+                                                                    <Label Text="{Binding quanhe}"
+                                                                VerticalOptions="Center"/>
+                                                                </StackLayout>
+                                                                <StackLayout Orientation="Horizontal" >
+                                                                    <Label Text="Nghê nghiệp:"
+                                                               FontSize="Micro"
+                                                               FontAttributes="Bold"
+                                                               VerticalOptions="Center"/>
+                                                                    <Label Text="{Binding nghenghiep}"
+                                                                VerticalOptions="Center"/>
+                                                                </StackLayout>
+                                                                <StackLayout Orientation="Horizontal" >
+                                                                    <Label Text="Chỗ ở hiện nay:"
+                                                               FontSize="Micro"
+                                                               FontAttributes="Bold"
+                                                               VerticalOptions="Center"/>
+                                                                    <Label Text="{Binding choo}"
+                                                                VerticalOptions="Center"/>
+                                                                </StackLayout>
+                                                            </StackLayout>
+                                                        </ViewCell.View>
+                                                    </ViewCell>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </Frame>
+                                </StackLayout>
+                            </telerikPrimitives:TabViewItem.Content>
+                        </telerikPrimitives:TabViewItem>
+                    </telerikPrimitives:RadTabView.Items>
+                </telerikPrimitives:RadTabView>
+
+
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

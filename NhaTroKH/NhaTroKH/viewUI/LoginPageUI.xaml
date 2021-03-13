@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NhaTroKH.viewUI.LoginPageUI"
+             BackgroundColor="White">
+    <NavigationPage.TitleView>
+        <Label
+            FontAttributes="Bold"
+            FontSize="Large"
+            HorizontalTextAlignment="Center"
+            Text="ĐĂNG NHẬP NHÀ TRỌ"
+            TextColor="Black" />
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout
+            Padding="5,20,5,0"
+            HorizontalOptions="FillAndExpand"
+            Orientation="Vertical"
+            VerticalOptions="Start">
+            <ActivityIndicator
+                x:Name="activityIndicator"
+                HeightRequest="25"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                WidthRequest="20"
+                Color="Black" />
+            <StackLayout
+                Margin="10,0,10,0"
+                Orientation="Vertical"
+                Spacing="20">
+                <StackLayout Orientation="Horizontal" Spacing="15">
+                    <Label
+                        FontAttributes="Italic"
+                        FontSize="13"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Text="CMND :"
+                        TextColor="Black"
+                        VerticalOptions="Center" />
+                    <!--<Frame
+                        x:Name="toastFrame"
+                        Padding="5"
+                        BackgroundColor="White"
+                        CornerRadius="8"
+                        HeightRequest="40"
+                        HorizontalOptions="FillAndExpand">
+                        
+                    </Frame>-->
+                    <Entry
+                            x:Name="CMND_login"
+                            FontAttributes="Italic"
+                            FontSize="14"
+                            HorizontalOptions="FillAndExpand"
+                            Keyboard="Numeric"
+                            Placeholder="Nhập CMND..."
+                        TextChanged="CMND_login_TextChanged"/>
+
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Spacing="2">
+                    <Label
+                        FontAttributes="Italic"
+                        FontSize="13"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Text="Mật khẩu:"
+                        TextColor="Black"
+                        VerticalOptions="Center" />
+                    <!--<Frame
+                        Padding="5"
+                        BackgroundColor="White"
+                        CornerRadius="8"
+                        HeightRequest="40"
+                        HorizontalOptions="FillAndExpand">
+                        
+                    </Frame>-->
+                    <Entry
+                            x:Name="MATKHAU_login"
+                            FontAttributes="Italic"
+                            FontSize="14"
+                            HorizontalOptions="FillAndExpand"
+                            IsPassword="True"
+                            Placeholder="Nhập mật khẩu..." />
+
+                </StackLayout>
+                <Button
+                    x:Name="dangnhap"
+                    BackgroundColor="Orange" 
+                    CornerRadius="20"
+                    FontAttributes="Bold"
+                    FontSize="13"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Đăng nhập"
+                    TextColor="White"
+                    WidthRequest="200"
+                    Clicked="dangnhap_Clicked"/>
+            </StackLayout>
+            <StackLayout
+                Margin="10,10"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal">
+                <Button
+                    x:Name="CreateAcount"
+                    BackgroundColor="Orange"
+                    Clicked="CreateAcount_Clicked"
+                    CornerRadius="20"
+                    FontAttributes="Bold"
+                    FontSize="13"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Tạo tài khoản"
+                    TextColor="White"
+                    VerticalOptions="End" />
+
+                <Button
+                    x:Name="Exit"
+                    BackgroundColor="Orange"
+                    Clicked="Exit_Clicked"
+                    CornerRadius="20"
+                    FontAttributes="Bold"
+                    FontSize="13"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Thoát"
+                    TextColor="White" />
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

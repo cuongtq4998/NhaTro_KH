@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NhaTroKH.viewUI.HomePageUI"
+             BackgroundColor="White">
+     <NavigationPage.TitleView>
+        <Label
+            FontAttributes="Bold"
+            FontSize="Large"
+            HorizontalTextAlignment="Center"
+            Text="TRANG CHỦ"
+            TextColor="Black" />
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout
+                HorizontalOptions="Center"
+                Orientation="Vertical"
+                VerticalOptions="Center">
+                <!--<Label
+                    Margin="0,5"
+                    FontAttributes="Bold"
+                    FontSize="25"
+                    HorizontalOptions="Center"
+                    Text="" />-->
+                <StackLayout
+                    HorizontalOptions="Center"
+                    Orientation="Vertical"
+                    Spacing="20"
+                    VerticalOptions="Center">
+                    <Button
+                        x:Name="btnTTKT"
+                        Clicked="btnTTKT_Clicked"
+                        CornerRadius="10"
+                        FontAttributes="Italic"
+                        FontSize="15"
+                        Text="Nhập thông tin khách thuê" />
+                    <Button
+                        x:Name="btnDIENNUOC"
+                        Clicked="btnDIENNUOC_Clicked"
+                        CornerRadius="10"
+                        FontAttributes="Italic"
+                        FontSize="15"
+                        Text="Nhập điện nước" />
+                    <Button
+                        x:Name="btnTTTP"
+                        Clicked="btnTTTP_Clicked"
+                        CornerRadius="10"
+                        FontAttributes="Italic"
+                        FontSize="15"
+                        Text="Xem thông tin tiền phòng" />
+                    <Button
+                        x:Name="btnphanhoi"
+                        Clicked="btnphanhoi_Clicked"
+                        CornerRadius="10"
+                        FontAttributes="Italic"
+                        FontSize="15"
+                        Text="Thông tin phản hồi" />
+                    <Button
+                        x:Name="btnSetting"
+                        Clicked="btnSetting_Clicked"
+                        CornerRadius="10"
+                        FontAttributes="Italic"
+                        FontSize="15"
+                        Text="Thiết lập thông tin" />
+                    <Button
+                        x:Name="btnThoat"
+                        Clicked="btnThoat_Clicked"
+                        CornerRadius="10"
+                        FontAttributes="Italic"
+                        FontSize="15"
+                        Text="Thoát" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
