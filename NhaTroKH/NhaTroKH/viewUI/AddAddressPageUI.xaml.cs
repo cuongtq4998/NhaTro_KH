@@ -15,7 +15,7 @@ namespace NhaTroKH.viewUI
         public AddAddressPageUI(ETypePageAddAddress eTypePage, int inforPositon)
         {
             InitializeComponent();
-            //khoi tao fire client
+            //khoi tao fire client hhh
             firebaseClient = new FireSharp.FirebaseClient(config);
             //khoi tao picker thanh pho
             ProvincialPicker.ItemsSource = provincialList;
