@@ -137,17 +137,21 @@
                                                         TextColor="Black"
                                                         VerticalOptions="CenterAndExpand"
                                                         HorizontalOptions="Start"/>
-                                                <Label TextColor="Black"
+                                                <Frame Margin="1"
+                                                        CornerRadius="2"
+                                                         BorderColor="AliceBlue"
+                                                        HorizontalOptions="FillAndExpand">
+                                                      <Label TextColor="Black"
                                                        FontAttributes="Bold"
                                                        FontSize="13"
-                                                       HorizontalOptions="FillAndExpand"
-                                                       Padding="5"
+                                                       HorizontalOptions="FillAndExpand" 
                                                        x:Name="CLICKNAVIGATEPAGEADDADDRESS"
                                                        >
-                                                    <Label.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                                                    </Label.GestureRecognizers>
-                                                </Label> 
+                                                        <Label.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                                        </Label.GestureRecognizers>
+                                                     </Label> 
+                                                 </Frame>   
                                             </StackLayout>
 
                                             <!--button them moi--> 

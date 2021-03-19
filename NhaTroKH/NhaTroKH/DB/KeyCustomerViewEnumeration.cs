@@ -61,5 +61,9 @@ namespace NhaTroKH.DB
         public const string CustomerFamilyPlaceholder_Current = "Nhập chỗ ở...->";
 
         public const string DefaultAddress = "DefaultAddress";
+
+        // ## Key check đã load data địa chỉ
+        public const string CheckLoadData = "CheckLoadData";
+
     }
 }

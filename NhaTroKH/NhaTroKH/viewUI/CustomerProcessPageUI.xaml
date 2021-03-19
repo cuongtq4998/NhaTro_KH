@@ -99,18 +99,22 @@
                                             TextColor="Black"
                                             VerticalOptions="Center"
                                             WidthRequest="80" />
-                                            <Label 
+                                            <Frame Margin="1"
+                                                        CornerRadius="2"
+                                                         BorderColor="AliceBlue"
+                                                        HorizontalOptions="FillAndExpand">
+                                                      <Label 
                                                     TextColor="Black"
                                                     FontAttributes="Bold"
                                                     FontSize="13"
-                                                    HorizontalOptions="FillAndExpand"
-                                                    Padding="5"
+                                                    HorizontalOptions="FillAndExpand" 
                                                     x:Name="AddressSiteLabelNavigatePage">
                                                 <Label.GestureRecognizers>
                                                     <TapGestureRecognizer x:Name="AddressSite"
                                                                           Tapped="AddressSite_Tapped"/>
                                                 </Label.GestureRecognizers>
                                             </Label>
+                                            </Frame>
                                         </StackLayout>
 
                                         <!--nghe nghiep-->
@@ -143,18 +147,22 @@
                                             TextColor="Black"
                                             VerticalOptions="Center"
                                             WidthRequest="80" />
-                                            <Label
+                                             <Frame Margin="1"
+                                                        CornerRadius="2"
+                                                         BorderColor="AliceBlue"
+                                                        HorizontalOptions="FillAndExpand">
+                                                     <Label
                                                     TextColor="Black"
                                                     FontAttributes="Bold"
                                                     FontSize="13"
-                                                    HorizontalOptions="FillAndExpand"
-                                                    Padding="5"
+                                                    HorizontalOptions="FillAndExpand" 
                                                     x:Name="JobSiteLabelNavigatePage">
                                                 <Label.GestureRecognizers>
                                                     <TapGestureRecognizer x:Name="JobSite"
                                                                           Tapped="JobSite_Tapped"/>
                                                 </Label.GestureRecognizers>
                                             </Label>
+                                            </Frame> 
                                         </StackLayout>
 
                                     </StackLayout>

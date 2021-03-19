@@ -63,7 +63,7 @@
                                 Title="Provincial..."
                                     FontSize="13"  
                                     VerticalOptions="Center"
-                                SelectedIndexChanged="ProvincialPicker_SelectedIndexChanged"/>
+                                ItemDisplayBinding="{Binding name_with_type}"/>
                     </StackLayout>
 
                     <ActivityIndicator x:Name="LoadingProvincial"   
@@ -90,7 +90,7 @@
                                     VerticalOptions="Center"
                                 Title="District..."
                                     FontSize="13"
-                                SelectedIndexChanged="DisttrictPicker_SelectedIndexChanged"/>
+                                ItemDisplayBinding="{Binding name_with_type}"/>
                     </StackLayout>
                     <ActivityIndicator x:Name="LoadingDistrict"   
                                                VerticalOptions="Center" 
@@ -115,8 +115,7 @@
                                     VerticalOptions="Center"
                                     FontSize="13"
                                 Title="Ward..."
-                                SelectedIndexChanged="WardPicker_SelectedIndexChanged"
-                                />
+                                ItemDisplayBinding="{Binding name_with_type}"/>
                     </StackLayout>
                     <ActivityIndicator x:Name="LoadingWard"   
                                                VerticalOptions="Center" 
@@ -139,7 +138,6 @@
                                     VerticalOptions="Center"
                                    x:Name="StreesEntry"
                                    FontSize="13"
-                           TextChanged="StreesEntry_TextChanged"
                            Placeholder="Strees..."/>
                 </StackLayout>
             </StackLayout>

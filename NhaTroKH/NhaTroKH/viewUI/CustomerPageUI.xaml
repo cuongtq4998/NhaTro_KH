@@ -189,17 +189,27 @@
                                WidthRequest="100"
                                VerticalOptions="Center"
                                TextColor="Black"/>
-                        <Label TextColor="Black"
+                         <StackLayout Orientation="Horizontal"
+                                      Spacing="5">
+                             <Frame Margin="1"
+                                CornerRadius="2"
+                                BorderColor="AliceBlue"
+                                HorizontalOptions="FillAndExpand">
+                             <Label TextColor="Black"
                                 FontAttributes="Bold"
                                 FontSize="13"
-                                HorizontalOptions="FillAndExpand"
-                                Padding="5"
+                                HorizontalOptions="FillAndExpand" 
                                 x:Name="PlaceJobLabelNavigatePage">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer x:Name="PlaceJob"
-                                                      Tapped="PlaceJob_Tapped"/>
+                                <TapGestureRecognizer x:Name="PlaceJob" Tapped="PlaceJob_Tapped"/>
                             </Label.GestureRecognizers>
                         </Label> 
+                         </Frame>
+                        <Button Text="Chọn"
+                                    HeightRequest="40"
+                                    FontSize="13"
+                                    WidthRequest="70"/>
+                         </StackLayout>
                     </StackLayout>
 
                     <!--que quan-->
@@ -211,17 +221,27 @@
                                WidthRequest="100"
                                VerticalOptions="Center" 
                                TextColor="Black"/>
-                        <Label TextColor="Black"
+                         <StackLayout Orientation="Horizontal"
+                                      Spacing="5">
+                             <Frame Margin="1"
+                                CornerRadius="2"
+                                BorderColor="AliceBlue"
+                                HorizontalOptions="FillAndExpand">
+                             <Label TextColor="Black"
                                 FontAttributes="Bold"
                                 FontSize="13"
-                                HorizontalOptions="FillAndExpand"
-                                Padding="5"
+                                HorizontalOptions="FillAndExpand" 
                                 x:Name="HometownLabelNavigatePage">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer x:Name="Hometown"
-                                                      Tapped="Hometown_Tapped"/>
+                                <TapGestureRecognizer x:Name="Hometown" Tapped="Hometown_Tapped"/>
                             </Label.GestureRecognizers>
-                        </Label> 
+                            </Label>  
+                         </Frame>
+                        <Button Text="Chọn"
+                                    HeightRequest="40"
+                                    FontSize="13"
+                                    WidthRequest="70"/>
+                         </StackLayout>
                     </StackLayout> 
 
                     <!--cho o hien tai-->
@@ -233,17 +253,27 @@
                                WidthRequest="100"
                                VerticalOptions="Center"
                                TextColor="Black"/>
-                        <Label TextColor="Black"
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="5">
+                            <Frame Margin="1"
+                                CornerRadius="2"
+                                 BorderColor="AliceBlue"
+                                HorizontalOptions="FillAndExpand">
+                             <Label TextColor="Black"
                                 FontAttributes="Bold"
                                 FontSize="13"
-                                HorizontalOptions="FillAndExpand"
-                                Padding="5"
+                                HorizontalOptions="FillAndExpand" 
                                 x:Name="SiteCurentLabelNavigatePage">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer x:Name="SiteCurent"
-                                                      Tapped="SiteCurent_Tapped"/>
+                                <TapGestureRecognizer x:Name="SiteCurent" Tapped="SiteCurent_Tapped"/>
                             </Label.GestureRecognizers>
                         </Label> 
+                         </Frame>
+                         <Button Text="Chọn"
+                                    HeightRequest="40"
+                                    FontSize="13"
+                                    WidthRequest="70"/>
+                        </StackLayout>
                     </StackLayout>
 
                     <!--thuong tru-->
@@ -255,17 +285,29 @@
                                WidthRequest="100"
                                VerticalOptions="Center" 
                                TextColor="Black"/>
-                        <Label TextColor="Black"
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="5">
+                             <Frame Margin="1"
+                                CornerRadius="2"
+                                BorderColor="AliceBlue"
+                                HorizontalOptions="FillAndExpand">
+                             <Label TextColor="Black"
                                 FontAttributes="Bold"
                                 FontSize="13"
                                 HorizontalOptions="FillAndExpand"
-                                Padding="5"
                                 x:Name="AddressResidentLabelNavigatePage">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer x:Name="AddressResident"
                                                       Tapped="AddressResident_Tapped"/>
                             </Label.GestureRecognizers>
-                        </Label> 
+                            </Label> 
+                         </Frame>
+
+                            <Button Text="Chọn"
+                                    HeightRequest="40"
+                                    FontSize="13"
+                                    WidthRequest="70"/>
+                        </StackLayout>  
                     </StackLayout> 
                     <!--mail-->
                     <StackLayout Orientation="Horizontal"

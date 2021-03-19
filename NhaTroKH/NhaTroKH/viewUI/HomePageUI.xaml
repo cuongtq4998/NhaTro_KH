@@ -62,7 +62,7 @@
                         CornerRadius="10"
                         FontAttributes="Italic"
                         FontSize="15"
-                        Text="Thiết lập thông tin" />
+                        Text="Thông tin địa chỉ" />
                     <Button
                         x:Name="btnThoat"
                         Clicked="btnThoat_Clicked"

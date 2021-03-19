@@ -18,10 +18,21 @@
     <PackageReference Include="FireSharp" Version="2.0.4" />
     <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete" Version="18.4.0.47" />
     <PackageReference Include="Telerik.UI.for.Xamarin" Version="2020.3.1022.1" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.481" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DB\" />
     <Folder Include="DB\SqlLite\" />
     <Folder Include="viewUI\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="tinhthanhpho.json" />
+    <None Remove="quanhuyen.json" />
+    <None Remove="xaphuong.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="tinhthanhpho.json" />
+    <EmbeddedResource Include="quanhuyen.json" />
+    <EmbeddedResource Include="xaphuong.json" />
   </ItemGroup>
 </Project>

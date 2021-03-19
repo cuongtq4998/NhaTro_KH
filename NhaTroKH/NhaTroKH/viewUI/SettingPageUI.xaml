@@ -2,8 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NhaTroKH.viewUI.SettingPageUI">
+    <NavigationPage.TitleView>
+        <Label
+            FontAttributes="Bold"
+            FontSize="Large"
+            HorizontalTextAlignment="Center"
+            Text="THÔNG TIN ĐỊA CHỈ"
+            TextColor="Black" />
+    </NavigationPage.TitleView>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Orientation="Vertical"
+                     Spacing="5">
             <Frame 
                    Margin="5">
                 <StackLayout Orientation="Vertical">
@@ -19,6 +28,44 @@
                         BorderWidth="1"
                         Clicked="buttonSetAddress_Clicked"
                         CornerRadius="10"
+                        FontAttributes="Bold"
+                        FontSize="12"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame 
+                   Margin="5">
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Thông tin Quê quán"/>
+                    <Label Text="Nhấn bên dưới thay đổi địa chỉ."
+                           FontAttributes="Italic"
+                           TextColor="Orange"
+                           HorizontalOptions="CenterAndExpand"/>
+                    <Button 
+                        BackgroundColor="White"
+                        BorderColor="WhiteSmoke"
+                        BorderWidth="1" 
+                        CornerRadius="10"
+                        Text="Nhập địa chỉ"
+                        FontAttributes="Bold"
+                        FontSize="12"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame 
+                   Margin="5">
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Thông tin Thường trú"/>
+                    <Label Text="Nhấn bên dưới thay đổi địa chỉ."
+                           FontAttributes="Italic"
+                           TextColor="Orange"
+                           HorizontalOptions="CenterAndExpand"/>
+                    <Button 
+                        BackgroundColor="White"
+                        BorderColor="WhiteSmoke"
+                        BorderWidth="1" 
+                        CornerRadius="10"
+                        Text="Nhập địa chỉ"
                         FontAttributes="Bold"
                         FontSize="12"/>
                 </StackLayout>

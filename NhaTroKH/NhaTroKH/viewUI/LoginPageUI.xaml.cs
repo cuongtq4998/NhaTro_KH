@@ -1,10 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
+using Acr.UserDialogs;
 using FireSharp.Interfaces;
 using FireSharp.Response;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NhaTroKH.Common;
+using NhaTroKH.Database;
+using NhaTroKH.DB.SqlLite;
+using NhaTroKH.Model;
 using NhaTroKH.Models;
 using NhaTroKH.Service;
+using NhaTroKH.viewmodel;
+using NhaTroKH.viewUI;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace NhaTroKH.viewUI
@@ -24,12 +37,13 @@ namespace NhaTroKH.viewUI
         private FirebaseResponse response;
 
         public static string SOCMND;
-         
+
 
         private void CreateAcount_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new CreateAccountPageUI());
         }
+
 
         private async void dangnhap_Clicked(object sender, EventArgs e)
         {
@@ -81,6 +95,7 @@ namespace NhaTroKH.viewUI
         private void CMND_login_TextChanged(object sender, TextChangedEventArgs e)
         {
             Validate.validateCMND(sender);
-        }
+        } 
     }
-}
+
+} 
