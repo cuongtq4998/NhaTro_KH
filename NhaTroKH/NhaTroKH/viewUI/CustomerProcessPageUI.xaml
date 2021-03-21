@@ -95,7 +95,7 @@
                                             HorizontalOptions="FillAndExpand"
                                         VerticalOptions="Center">
                                             <Label
-                                            Text="Chỗ ở"
+                                            Text="Chỗ ở hiện nay; "
                                             TextColor="Black"
                                             VerticalOptions="Center"
                                             WidthRequest="80" />
@@ -115,6 +115,18 @@
                                                 </Label.GestureRecognizers>
                                             </Label>
                                             </Frame>
+                                            <Button Text="Chọn"
+                                                    HeightRequest="20"
+                                                    FontSize="11"
+                                                    BorderColor="Green"
+                                                    BackgroundColor="White"
+                                                    FontAttributes="Bold"
+                                                    TextColor="Green"
+                                                    CornerRadius="10"
+                                                    BorderWidth="2"
+                                                    WidthRequest="50"
+                                                    TextTransform="None"
+                                                    x:Name="SiteCurentProcessButton"/>
                                         </StackLayout>
 
                                         <!--nghe nghiep-->

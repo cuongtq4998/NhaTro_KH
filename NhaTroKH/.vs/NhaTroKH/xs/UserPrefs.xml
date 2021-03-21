@@ -1,25 +1,25 @@
 ﻿<Properties StartupConfiguration="{3A7A8F16-BFA4-4AE6-982C-40443B725E32}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="NhaTroKH/viewUI/SettingPageUI.xaml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="NhaTroKH.Android/MainActivity.cs">
     <Files>
-      <File FileName="NhaTroKH/viewUI/SettingPageUI.xaml" Line="44" Column="29" />
-      <File FileName="NhaTroKH/viewUI/CustomerPageUI.xaml" Line="211" Column="56" />
+      <File FileName="NhaTroKH.Android/MainActivity.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="NhaTroKH" expanded="True" selected="True">
-            <Node name="NhaTroKH" expanded="True">
-              <Node name="viewUI" expanded="True" />
+          <Node name="NhaTroKH" expanded="True">
+            <Node name="NhaTroKH" expanded="True" />
+            <Node name="NhaTroKH.Android" expanded="True">
+              <Node name="MainActivity.cs" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.NhaTroKH.iOS Xamarin.HotReload.DebuggerTimeoutException.NhaTroKH.iOS.HideInfoBar="True" TriggeredFromHotReload="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.F266BFFC-3924-47B3-B6A3-F19C7A19DC46" />
-  <MonoDevelop.Ide.ItemProperties.NhaTroKH.Android TriggeredFromHotReload="False" PreferredExecutionTarget="Android.Pixel_3a_XL_API_25" Xamarin.HotReload.DebuggerTimeoutException.NhaTroKH.Android.HideInfoBar="True" />
+  <MonoDevelop.Ide.ItemProperties.NhaTroKH.iOS Xamarin.HotReload.DebuggerTimeoutException.NhaTroKH.iOS.HideInfoBar="True" TriggeredFromHotReload="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.08459DAE-0BBA-4331-860B-CAF5967C0B71" />
+  <MonoDevelop.Ide.ItemProperties.NhaTroKH.Android TriggeredFromHotReload="False" PreferredExecutionTarget="Android.WCY4C18716000470" Xamarin.HotReload.DebuggerTimeoutException.NhaTroKH.Android.HideInfoBar="True" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <Debugger.DebugSourceFolders>
     <String>/Users/macbookpro/Library/Caches/VisualStudio/8.0/Symbols/xamarin/Xamarin.Forms/df202a3054a7e2e1763744c4dc518f076e855755</String>
     <String>/Users/macbookpro/Library/Caches/VisualStudio/8.0/Symbols/mono/mono/5e9cb6d1c1de430965312927d5aed7fcb27bfa73</String>

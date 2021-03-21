@@ -1,45 +1,46 @@
 ﻿using System;
-using System.Collections.Generic;
-
+using NhaTroKH.DB;
+using NhaTroKH.viewmodel;
 using Xamarin.Forms;
 
 namespace NhaTroKH.viewUI
 {
     public partial class HomePageUI : ContentPage
     {
+        private bool cancelInputSetting = true;
+
         public HomePageUI()
         {
             InitializeComponent();
+            BindingContext = new HomePageVM(Navigation);
         }
 
-        private void btnTTKT_Clicked(object sender, EventArgs e)
+        protected override async void OnAppearing()
         {
-            Navigation.PushAsync(new CustomerPageUI());
-        }
+            base.OnAppearing();
 
-        private void btnDIENNUOC_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new WaveInformationChargePageUI());
+            if (!Application.Current.Properties.ContainsKey(KeyCustomerViewEnumeration.DefaultAddress) ||
+                !Application.Current.Properties.ContainsKey(KeyCustomerViewEnumeration.HometownSiteSetting) ||
+                !Application.Current.Properties.ContainsKey(KeyCustomerViewEnumeration.ResidentSiteSetting) 
+                )
+            {
+                if (cancelInputSetting)
+                {
+                    bool notify = await DisplayAlert(
+                        "Thông báo", // title
+                        "Thành công, Bạn có muốn thiết lập thông tin địa chỉ? ", // message
+                        "Thiết lập", // true
+                        "Không, Tiếp tục"); // false
+                    
+                    if (notify)
+                    {
+                        await Navigation.PushAsync(new SettingPageUI());
+                        cancelInputSetting = false;
+                    }
+                    else { cancelInputSetting = false; }
+                }
+            }
         }
-
-        private void btnTTTP_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new RoomInformationChartPageUI());
-        }
-
-        private void btnThoat_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PopAsync();
-        }
-
-        private void btnphanhoi_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new FeedbackPageUI());
-        }
-
-        void btnSetting_Clicked(System.Object sender, System.EventArgs e)
-        {
-            Navigation.PushAsync(new SettingPageUI());
-        }
-    }
+         
+    } 
 }

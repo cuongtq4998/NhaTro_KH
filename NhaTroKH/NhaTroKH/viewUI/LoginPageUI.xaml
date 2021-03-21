@@ -1,8 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              x:Class="NhaTroKH.viewUI.LoginPageUI"
-             BackgroundColor="White">
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:renderers="clr-namespace:NhaTroKH.Renderers"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             BackgroundColor="#791AE5"
+             mc:Ignorable="d">
     <NavigationPage.TitleView>
         <Label
             FontAttributes="Bold"
@@ -11,116 +18,186 @@
             Text="ĐĂNG NHẬP NHÀ TRỌ"
             TextColor="Black" />
     </NavigationPage.TitleView>
+
     <ContentPage.Content>
-        <StackLayout
-            Padding="5,20,5,0"
-            HorizontalOptions="FillAndExpand"
-            Orientation="Vertical"
-            VerticalOptions="Start">
-            <ActivityIndicator
-                x:Name="activityIndicator"
-                HeightRequest="25"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                WidthRequest="20"
-                Color="Black" /> 
-            <StackLayout
-                Margin="10,0,10,0"
-                Orientation="Vertical"
-                Spacing="20">
-                <StackLayout Orientation="Horizontal" Spacing="15">
-                    <Label
-                        FontAttributes="Italic"
-                        FontSize="13"
-                        HorizontalOptions="Start"
-                        HorizontalTextAlignment="Start"
-                        Text="CMND :"
-                        TextColor="Black"
-                        VerticalOptions="Center" />
-                    <!--<Frame
-                        x:Name="toastFrame"
-                        Padding="5"
-                        BackgroundColor="White"
-                        CornerRadius="8"
-                        HeightRequest="40"
-                        HorizontalOptions="FillAndExpand">
-                        
-                    </Frame>-->
-                    <Entry
-                            x:Name="CMND_login"
-                            FontAttributes="Italic"
-                            FontSize="14" 
-                            HorizontalOptions="FillAndExpand"
-                            Keyboard="Numeric"
-                            Placeholder="Nhập CMND..."
-                        TextChanged="CMND_login_TextChanged"/>
+         <StackLayout Padding="5,20,5,0"
+                         HorizontalOptions="FillAndExpand"
+                        Orientation="Vertical"
+                        VerticalOptions="Start">  
+                    <ScrollView
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                        <StackLayout >
+                            <StackLayout  Margin="0,0,0,0"  Orientation="Horizontal">
+                                <StackLayout Margin="20,10,20,0" Spacing="20">
+                                    <Image
+                                        HeightRequest="30"
+                                        HorizontalOptions="Start"
+                                        Source="close"
+                                        VerticalOptions="Start"
+                                        WidthRequest="30" />
+                                    <Label 
+                                        FontAttributes="Bold"
+                                        FontSize="30"
+                                        HorizontalOptions="CenterAndExpand"
+                                        TextColor="Orange"
+                                        VerticalOptions="CenterAndExpand" >
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Đăng Nhập " ></Span>
+                                                <Span TextColor="White"
+                                                      Text="Nhà Trọ"
+                                                      FontSize="40"
+                                                      FontAttributes="Bold"></Span>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label> 
+                                </StackLayout>
+                                <Image Source="bgImage" WidthRequest="200" />
+                            </StackLayout>
 
+                            <yummy:PancakeView
+                                Margin="0,0,0,0"
+                                Padding="20,10,20,10"
+                                BackgroundColor="White"
+                                CornerRadius="40,40,0,0"
+                                VerticalOptions="FillAndExpand">
+                                <StackLayout Spacing="20">
+                                    <ActivityIndicator
+                                        x:Name="activityIndicator"
+                                        HeightRequest="25"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        WidthRequest="20" 
+                                        Color="Black" />
+                                    <StackLayout Spacing="5">
+                                        <Label
+                                            Margin="5,0,0,0"
+                                            FontSize="20"
+                                             Text="CMND :"
+                                            TextColor="#99A1B3" />
+                                        <yummy:PancakeView
+                                            Padding="10,0,0,0"
+                                            BackgroundColor="White"
+                                            BorderThickness="1"
+                                            CornerRadius="15"
+                                            Elevation="3"
+                                            HeightRequest="50">
+                                            <renderers:BorderlessEntry
+                                                x:Name="CMND_login"
+                                                FontAttributes="Italic"
+                                                HorizontalOptions="FillAndExpand"
+                                                Keyboard="Numeric" 
+                                                Placeholder="Nhập CMND..." 
+                                                TextChanged="CMND_login_TextChanged"
+                                                FontSize="17"
+                                                ClearButtonVisibility="WhileEditing" 
+                                                TextColor="#484848" />
+                                        </yummy:PancakeView>
+                                    </StackLayout>
+                                    <StackLayout Spacing="5">
+                                        <Label
+                                            Margin="5,0,0,0"
+                                            FontSize="20"
+                                             Text="Mật khẩu:"
+                                            TextColor="#99A1B3" />
+                                        <yummy:PancakeView
+                                            Padding="10,0,0,0"
+                                            BackgroundColor="White"
+                                            BorderThickness="1"
+                                            CornerRadius="15"
+                                            Elevation="3"
+                                            HeightRequest="50">
+                                            <renderers:BorderlessEntry
+                                                 x:Name="MATKHAU_login"
+                                                FontAttributes="Italic" 
+                                                HorizontalOptions="FillAndExpand" 
+                                                Placeholder="Nhập mật khẩu..." 
+                                                FontSize="17"
+                                                 ClearButtonVisibility="WhileEditing"
+                                                IsPassword="True"
+                                                TextColor="#484848" />
+                                        </yummy:PancakeView>
+                                    </StackLayout>
+                                    <Label
+                                        IsVisible="False"
+                                        FontAttributes="None"
+                                        FontSize="15"
+                                        HorizontalOptions="EndAndExpand"
+                                        Text="Forget Password?"
+                                        TextColor="#99A1B3" />
+                                    <yummy:PancakeView
+                                        BackgroundColor="#791AE5"
+                                        BorderThickness="1"
+                                        CornerRadius="25"
+                                        Elevation="3"
+                                        HeightRequest="50"
+                                        HorizontalOptions="CenterAndExpand"
+                                        WidthRequest="150">
+                                        <Label
+                                            x:Name="dangnhap"
+                                            FontAttributes="Italic"
+                                            FontSize="20"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Text="Đăng nhập"
+                                            TextColor="White"
+                                            VerticalOptions="CenterAndExpand">
+                                            <Label.GestureRecognizers> 
+                                                <TapGestureRecognizer x:Name="LoginPage" Tapped="LoginPage_Tapped" ></TapGestureRecognizer>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </yummy:PancakeView>
+
+                                    <StackLayout Orientation="Horizontal"
+                                                 HorizontalOptions="FillAndExpand"
+                                                 Spacing="5">
+                                         <yummy:PancakeView
+                                        BackgroundColor="#791AE5"
+                                        BorderThickness="1"
+                                        CornerRadius="25"
+                                        Elevation="3"
+                                        HeightRequest="50"
+                                        HorizontalOptions="CenterAndExpand"
+                                        WidthRequest="150">
+                                        <Label 
+                                            FontAttributes="Italic"
+                                            FontSize="20"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Text="Tạo tài khoản"
+                                            TextColor="White"
+                                            VerticalOptions="CenterAndExpand">
+                                            <Label.GestureRecognizers> 
+                                                <TapGestureRecognizer x:Name="CreateAccount" Tapped="CreateAccount_Tapped" ></TapGestureRecognizer>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </yummy:PancakeView>
+
+                                     <yummy:PancakeView
+                                        BackgroundColor="#791AE5"
+                                        BorderThickness="1"
+                                        CornerRadius="25"
+                                        Elevation="3"
+                                        HeightRequest="50"
+                                        HorizontalOptions="CenterAndExpand"
+                                        WidthRequest="150">
+                                        <Label
+
+                                            FontAttributes="Italic"
+                                            FontSize="20"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Text="Thoát"
+                                            TextColor="White"
+                                            VerticalOptions="CenterAndExpand">
+                                            <Label.GestureRecognizers> 
+                                                <TapGestureRecognizer x:Name="ExitApp" Tapped="ExitApp_Tapped" ></TapGestureRecognizer>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </yummy:PancakeView>
+                                    </StackLayout> 
+                                </StackLayout>
+                            </yummy:PancakeView>
+                        </StackLayout>
+                    </ScrollView>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal" Spacing="2">
-                    <Label
-                        FontAttributes="Italic"
-                        FontSize="13"
-                        HorizontalOptions="Start"
-                        HorizontalTextAlignment="Start"
-                        Text="Mật khẩu:"
-                        TextColor="Black"
-                        VerticalOptions="Center" />
-                    <!--<Frame
-                        Padding="5"
-                        BackgroundColor="White"
-                        CornerRadius="8"
-                        HeightRequest="40"
-                        HorizontalOptions="FillAndExpand">
-                        
-                    </Frame>-->
-                    <Entry
-                            x:Name="MATKHAU_login"
-                            FontAttributes="Italic"
-                            FontSize="14" 
-                            HorizontalOptions="FillAndExpand"
-                            IsPassword="True"
-                            Placeholder="Nhập mật khẩu..." /> 
-                </StackLayout>
-                <Button
-                    x:Name="dangnhap"
-                    BackgroundColor="Orange" 
-                    CornerRadius="20"
-                    FontAttributes="Bold"
-                    FontSize="13"
-                    HorizontalOptions="CenterAndExpand"
-                    Text="Đăng nhập"
-                    TextColor="White"
-                    WidthRequest="200"
-                    Clicked="dangnhap_Clicked"/>
-            </StackLayout>
-            <StackLayout
-                Margin="10,10"
-                HorizontalOptions="FillAndExpand"
-                Orientation="Horizontal">
-                <Button
-                    x:Name="CreateAcount"
-                    BackgroundColor="Orange"
-                    Clicked="CreateAcount_Clicked"
-                    CornerRadius="20"
-                    FontAttributes="Bold"
-                    FontSize="13"
-                    HorizontalOptions="FillAndExpand"
-                    Text="Tạo tài khoản"
-                    TextColor="White"
-                    VerticalOptions="End" />
-
-                <Button
-                    x:Name="Exit"
-                    BackgroundColor="Orange"
-                    Clicked="Exit_Clicked"
-                    CornerRadius="20"
-                    FontAttributes="Bold"
-                    FontSize="13"
-                    HorizontalOptions="FillAndExpand"
-                    Text="Thoát"
-                    TextColor="White" />
-            </StackLayout>
-
-        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

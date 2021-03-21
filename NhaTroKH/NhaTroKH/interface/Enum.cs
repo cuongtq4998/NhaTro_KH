@@ -23,13 +23,23 @@ namespace NhaTroKH.@interface
             JobSite = 1
         }
 
+
+        // enum setting
+        public enum ESetting: int
+        {
+            ResidentSetting = 0, // Địa chỉ thường trú
+            HometownSetting = 1, // Địa chỉ quê quán
+            DefaultAddress = 2 //  Địa chỉ nhà trọ
+        }
+
+
         // Enum type Page
         public enum ETypePageAddAddress
         {
             EInforCustomer,
             EFamilyRelative,
             EProcessUser,
-            EDefaultAddress
+            EDefaultAddress, // Phần Setting Địa chỉ nhà trọ 
         }
     }
 }

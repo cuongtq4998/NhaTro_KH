@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using FireSharp.Interfaces;
-using FireSharp.Response;
-using NhaTroKH.Database;
-using NhaTroKH.DB;
-using NhaTroKH.DB.SqlLite;
-using NhaTroKH.Model;
+using System.ComponentModel; 
+using NhaTroKH.DB; 
 using Xamarin.Forms;
 using static NhaTroKH.@interface.Enum;
 
@@ -17,6 +11,16 @@ namespace NhaTroKH.viewUI
     {
         List<Distrist> quanHuyen = new List<Distrist>();
         List<Ward> phuongXa = new List<Ward>();
+        //property  
+        private string provincialSelect = "";
+        private string districtValue = "";
+        private string wardValue = "";
+        private string streesSelect = "";
+        private bool flagCheckHidden = true;
+        private ETypePageAddAddress eTypePage;
+        private int inforPositon;
+        private string[] listInforAddress = { "", "", "", "" };
+
 
         public AddAddressPageUI(ETypePageAddAddress eTypePage, int inforPositon)
         {
@@ -50,11 +54,11 @@ namespace NhaTroKH.viewUI
                             quanHuyen.Add(provinces2);
                         }
                     }
-                    
+
                 }
                 DisttrictPicker.ItemsSource = null;
                 WardPicker.ItemsSource = null;
-                DisttrictPicker.ItemsSource = quanHuyen; 
+                DisttrictPicker.ItemsSource = quanHuyen;
             };
 
             DisttrictPicker.SelectedIndexChanged += (sender, e) =>
@@ -65,8 +69,8 @@ namespace NhaTroKH.viewUI
                     var selectedItem = pickerValue.SelectedItem as Distrist;
 
                     districtValue = selectedItem.name_with_type;
-                    valueUser.Text = " , " + districtValue + "," + provincialSelect; 
-                    WardPicker.IsEnabled = true; 
+                    valueUser.Text = " , " + districtValue + "," + provincialSelect;
+                    WardPicker.IsEnabled = true;
                     phuongXa.Clear();
                     foreach (var provinces3 in LoadingPageUI.provinces3)
                     {
@@ -87,7 +91,7 @@ namespace NhaTroKH.viewUI
                     Picker pickerValue = sender as Picker;
                     var selectedItem = pickerValue.SelectedItem as Ward;
 
-                    wardValue = selectedItem.name_with_type; 
+                    wardValue = selectedItem.name_with_type;
                     valueUser.Text = " , " + wardValue + " , " + districtValue + " , " + provincialSelect;
                     StreesEntry.IsEnabled = true;
                 }
@@ -100,49 +104,59 @@ namespace NhaTroKH.viewUI
                 valueUser.Text = streesSelect + " , " + wardValue + " , " + districtValue + " , " + provincialSelect;
                 AddAddressButton.IsEnabled = true;
             };
-        }  
 
-        
-        public List<Distrist> getListHuyenIDAsync(string parent_code)
-        {
-            quanHuyen.Clear();
-            foreach (var item in LoadingPageUI.provinces2)
+            ProvincialEntry.TextChanged += (sender, e) =>
             {
-                if(item.parent_code == parent_code)
-                {
-                    quanHuyen.Add(item);
-                } 
-            }
-            return quanHuyen; 
+                var provincialEntry = (Entry)sender;
+                string value = provincialEntry.Text;
+                Console.WriteLine(value);
+                listInforAddress[3] = value;
+                valueUser.Text = String.Join(", ", listInforAddress);
+
+                // check hiden button
+                AddAddressButton.IsEnabled = (listInforAddress[0] != string.Empty ? true : false)
+                    && (listInforAddress[2] != string.Empty ? true : false)
+                    && (listInforAddress[3] != string.Empty ? true : false);
+            };
+
+            DistrictEntry.TextChanged += (sender, e) => {
+                var districtEntry = (Entry)sender;
+                string value = districtEntry.Text;
+                listInforAddress[2] = value;
+                valueUser.Text = String.Join(", ", listInforAddress);
+
+                // check hiden button
+                AddAddressButton.IsEnabled = (listInforAddress[0] != string.Empty ? true : false)
+                    && (listInforAddress[2] != string.Empty ? true : false)
+                    && (listInforAddress[3] != string.Empty ? true : false);
+            };
+
+            WardEntry.TextChanged += (sender, e) => {
+                var wardEntry = (Entry)sender;
+                string value = wardEntry.Text;
+                listInforAddress[1] = value;
+                valueUser.Text = String.Join(", ", listInforAddress);
+
+                // check hiden button
+                AddAddressButton.IsEnabled = (listInforAddress[0] != string.Empty ? true : false)
+                    && (listInforAddress[2] != string.Empty ? true : false)
+                    && (listInforAddress[3] != string.Empty ? true : false);
+            };
+
+            StreesEntryUser.TextChanged += (sender, e) =>
+            {
+                var streesEntry = (Entry)sender;
+                string value = streesEntry.Text;
+                listInforAddress[0] = value;
+                valueUser.Text = String.Join(", ", listInforAddress);
+
+                // check hiden button
+                AddAddressButton.IsEnabled = (listInforAddress[0] != string.Empty ? true : false)
+                    && (listInforAddress[2] != string.Empty ? true : false)
+                    && (listInforAddress[3] != string.Empty ? true : false);
+            };
         }
-
-
-        
-        public List<Ward> getListXaIDAsync(string index)
-        {
-            phuongXa.Clear();
-            foreach(var item in LoadingPageUI.provinces3)
-            {
-                if (item.parent_code == index)
-                {
-                    phuongXa.Add(item);
-                }  
-            }
-            return phuongXa; 
-        } 
          
-        //property  
-        private string provincialSelect = "";
-        private string districtValue = "";
-        private string wardValue = "";
-        private string streesSelect = "";
-        private bool flagCheckHidden = true;
-        private ETypePageAddAddress eTypePage;
-        private int inforPositon;
-        private string[] listInforAddress = { "", "", "", "" };
-
-         
-
         void AddAddressButton_Clicked(System.Object sender, System.EventArgs e)
         {
             // Một số vấn đề có thể xảy ra -----:
@@ -155,8 +169,8 @@ namespace NhaTroKH.viewUI
 
             // 3.Hiện thị thông tin địa chỉ đã chọn vào view picker và view nhập( Có thể làm sau.)
             var getTextAddressFromUI = (valueUser.Text != null) ? valueUser.Text : "Chưa có dữ liệu địa chỉ!";
-
-            // check neu la page thong tin gia dinh
+            
+            // check neu la page thong tin gia dinh 
             if (this.eTypePage == ETypePageAddAddress.EFamilyRelative)
             {
                 Application.Current.Properties[KeyCustomerViewEnumeration.CustomerFamilyCustomerFamily] = getTextAddressFromUI;
@@ -202,9 +216,21 @@ namespace NhaTroKH.viewUI
                 Navigation.PopAsync();
             }
 
+            // check nếu là page setting
             if (this.eTypePage == ETypePageAddAddress.EDefaultAddress)
-            {
-                Application.Current.Properties[KeyCustomerViewEnumeration.DefaultAddress] = getTextAddressFromUI;
+            { 
+                switch (this.inforPositon)
+                {
+                    case (int)ESetting.DefaultAddress:
+                        Application.Current.Properties[KeyCustomerViewEnumeration.DefaultAddress] = getTextAddressFromUI;
+                        break;
+                    case (int)ESetting.HometownSetting:
+                        Application.Current.Properties[KeyCustomerViewEnumeration.HometownSiteSetting] = getTextAddressFromUI;
+                        break;
+                    case (int)ESetting.ResidentSetting:
+                        Application.Current.Properties[KeyCustomerViewEnumeration.ResidentSiteSetting] = getTextAddressFromUI;
+                        break; 
+                }
                 Application.Current.SavePropertiesAsync();
                 Navigation.PopAsync();
             }
@@ -232,81 +258,6 @@ namespace NhaTroKH.viewUI
             _ = wardValue != string.Empty ? (WardEntry.Text = wardValue) : (WardEntry.Text = string.Empty);
             _ = StreesEntry.Text != string.Empty ? (StreesEntryUser.Text = StreesEntry.Text) : (StreesEntryUser.Text = string.Empty);
 
-        }
-
-        void ProvincialEntry_TextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
-        {
-            var provincialEntry = (Entry)sender;
-            string value = provincialEntry.Text;
-            Console.WriteLine(value);
-            listInforAddress[3] = value;
-            valueUser.Text = String.Join(", ", listInforAddress);
-
-            // check hiden button
-            AddAddressButton.IsEnabled = (listInforAddress[0] != string.Empty ? true : false)
-                && (listInforAddress[2] != string.Empty ? true : false)
-                && (listInforAddress[3] != string.Empty ? true : false);
-        }
-
-        void DistrictEntry_TextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
-        {
-            var districtEntry = (Entry)sender;
-            string value = districtEntry.Text;
-            listInforAddress[2] = value;
-            valueUser.Text = String.Join(", ", listInforAddress);
-
-            // check hiden button
-            AddAddressButton.IsEnabled = (listInforAddress[0] != string.Empty ? true : false)
-                && (listInforAddress[2] != string.Empty ? true : false)
-                && (listInforAddress[3] != string.Empty ? true : false);
-        }
-
-        void WardEntry_TextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
-        {
-            var wardEntry = (Entry)sender;
-            string value = wardEntry.Text;
-            listInforAddress[1] = value;
-            valueUser.Text = String.Join(", ", listInforAddress);
-
-            // check hiden button
-            AddAddressButton.IsEnabled = (listInforAddress[0] != string.Empty ? true : false)
-                && (listInforAddress[2] != string.Empty ? true : false)
-                && (listInforAddress[3] != string.Empty ? true : false);
-        }
-
-        void StreesEntryUser_TextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
-        {
-            var streesEntry = (Entry)sender;
-            string value = streesEntry.Text;
-            listInforAddress[0] = value;
-            valueUser.Text = String.Join(", ", listInforAddress);
-
-            // check hiden button
-            AddAddressButton.IsEnabled = (listInforAddress[0] != string.Empty ? true : false)
-                && (listInforAddress[2] != string.Empty ? true : false)
-                && (listInforAddress[3] != string.Empty ? true : false);
-        }
+        } 
     }
-}
-
-
-/// <summary>
-///  ViewMode Binding Data
-/// </summary>
-public class DataTinhViewModel
-{
-    /// <summary>
-    /// get list Data
-    /// </summary>
-    public List<DataTinhModel> AllDataTinh { get; set; }
-    public List<DataHuyenModel> AllDataHuyen { get; set; }
-    public List<DataXaModel> AllDataXa { get; set; }
-
-
-    /// <summary>
-    /// select Item
-    /// </summary>
-    public DataTinhModel SelectedDataTinh { get; set; }
-    public DataHuyenModel SelectedDataHuyen { get; set; }
-    public DataXaModel SelectedDataXa { get; set; } 
 } 

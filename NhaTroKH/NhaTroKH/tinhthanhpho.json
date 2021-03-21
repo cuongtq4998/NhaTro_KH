@@ -1,4 +1,18 @@
 ﻿{
+  "79": {
+    "name": "Hồ Chí Minh",
+    "slug": "ho-chi-minh",
+    "type": "thanh-pho",
+    "name_with_type": "Thành phố Hồ Chí Minh",
+    "code": "79"
+  },
+  "01": {
+    "name": "Hà Nội",
+    "slug": "ha-noi",
+    "type": "thanh-pho",
+    "name_with_type": "Thủ Đô Hà Nội",
+    "code": "01"
+  },
   "92": {
     "name": "Cần Thơ",
     "slug": "can-tho",
@@ -153,13 +167,6 @@
     "name_with_type": "Tỉnh Hậu Giang",
     "code": "93"
   },
-  "01": {
-    "name": "Hà Nội",
-    "slug": "ha-noi",
-    "type": "thanh-pho",
-    "name_with_type": "Thành phố Hà Nội",
-    "code": "01"
-  },
   "17": {
     "name": "Hoà Bình",
     "slug": "hoa-binh",
@@ -306,13 +313,6 @@
     "type": "tinh",
     "name_with_type": "Tỉnh Quảng Ninh",
     "code": "22"
-  },
-  "79": {
-    "name": "Hồ Chí Minh",
-    "slug": "ho-chi-minh",
-    "type": "thanh-pho",
-    "name_with_type": "Thành phố Hồ Chí Minh",
-    "code": "79"
   },
   "45": {
     "name": "Quảng Trị",

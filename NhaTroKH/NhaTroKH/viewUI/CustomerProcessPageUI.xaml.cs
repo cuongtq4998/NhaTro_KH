@@ -33,6 +33,21 @@ namespace NhaTroKH.viewUI
 
             JobSiteLabelNavigatePage.Text = this.jobSiteLabelNavigatePage;
             AddressSiteLabelNavigatePage.Text = this.addressSiteLabelNavigatePage;
+
+            SiteCurentProcessButton.Clicked += async (sender, e) =>
+            {
+
+                if (Application.Current.Properties.ContainsKey(KeyCustomerViewEnumeration.DefaultAddress))
+                {
+                    string address = Application.Current.Properties[KeyCustomerViewEnumeration.DefaultAddress].ToString();
+                    bool dialog = await DisplayAlert("Thông báo", "Bạn sẽ chọn địa chỉ: " + address, "OK", "Không");
+                    if (dialog)
+                    {
+                        AddressSiteLabelNavigatePage.Text = Application.Current.Properties[KeyCustomerViewEnumeration.DefaultAddress].ToString();
+                    }
+                }
+                else { this.navigatePageSetting(); }
+            };
         }
 
         private int IDThongTinKhachHangGD = 0;
@@ -55,7 +70,15 @@ namespace NhaTroKH.viewUI
         ObservableCollection<listquatrinh> employees = new ObservableCollection<listquatrinh>();
         public ObservableCollection<listquatrinh> Employees { get { return employees; } }
         IFirebaseClient client;
-         
+
+        private async void navigatePageSetting()
+        {
+            bool dialog = await DisplayAlert("Thông báo", "Bạn chưa có địa chỉ mặc định. Vào thiết lập thông tin ngay! ", "OK", "Không");
+            if (dialog)
+            {
+                _ = Navigation.PushAsync(new SettingPageUI());
+            }
+        }
 
         private void Lst_ItemSelected1(object sender, SelectedItemChangedEventArgs e)
         {

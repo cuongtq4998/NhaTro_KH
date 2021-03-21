@@ -25,11 +25,11 @@
                         x:Name="buttonSetAddress"
                         BackgroundColor="White"
                         BorderColor="WhiteSmoke"
-                        BorderWidth="1"
-                        Clicked="buttonSetAddress_Clicked"
+                        BorderWidth="1" 
                         CornerRadius="10"
                         FontAttributes="Bold"
-                        FontSize="12"/>
+                        FontSize="12"
+                        Command="{ Binding DefaultAddressButton}"/>
                 </StackLayout>
             </Frame>
 
@@ -41,14 +41,15 @@
                            FontAttributes="Italic"
                            TextColor="Orange"
                            HorizontalOptions="CenterAndExpand"/>
-                    <Button 
+                    <Button
+                        x:Name="HometownButton"
                         BackgroundColor="White"
                         BorderColor="WhiteSmoke"
                         BorderWidth="1" 
-                        CornerRadius="10"
-                        Text="Nhập địa chỉ"
+                        CornerRadius="10" 
                         FontAttributes="Bold"
-                        FontSize="12"/>
+                        FontSize="12"
+                        Command="{ Binding HometownButton}"/>
                 </StackLayout>
             </Frame>
 
@@ -60,14 +61,15 @@
                            FontAttributes="Italic"
                            TextColor="Orange"
                            HorizontalOptions="CenterAndExpand"/>
-                    <Button 
+                    <Button
+                        x:Name="ResidentButton"
                         BackgroundColor="White"
                         BorderColor="WhiteSmoke"
                         BorderWidth="1" 
-                        CornerRadius="10"
-                        Text="Nhập địa chỉ"
+                        CornerRadius="10" 
                         FontAttributes="Bold"
-                        FontSize="12"/>
+                        FontSize="12"
+                       Command="{ Binding ResidentButton}"/>
                 </StackLayout>
             </Frame>
         </StackLayout>

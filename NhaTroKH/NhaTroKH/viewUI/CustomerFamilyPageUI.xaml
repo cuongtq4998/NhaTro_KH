@@ -133,7 +133,7 @@
                                             <StackLayout Orientation="Horizontal"
                                                         HorizontalOptions="Fill"
                                                          VerticalOptions="Center">
-                                                <Label Text="Chỗ ở: "
+                                                <Label Text="Chỗ ở hiện nay: "
                                                         TextColor="Black"
                                                         VerticalOptions="CenterAndExpand"
                                                         HorizontalOptions="Start"/>
@@ -151,7 +151,19 @@
                                                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                                                         </Label.GestureRecognizers>
                                                      </Label> 
-                                                 </Frame>   
+                                                 </Frame>
+                                                <Button Text="Chọn"
+                                                        HeightRequest="20"
+                                                        FontSize="11"
+                                                        BorderColor="Green"
+                                                        BackgroundColor="White"
+                                                        FontAttributes="Bold"
+                                                        TextColor="Green"
+                                                        CornerRadius="10"
+                                                        BorderWidth="2"
+                                                        WidthRequest="50"
+                                                        TextTransform="None"
+                                                        x:Name="SiteCurentFamilyButton"/>
                                             </StackLayout>
 
                                             <!--button them moi--> 

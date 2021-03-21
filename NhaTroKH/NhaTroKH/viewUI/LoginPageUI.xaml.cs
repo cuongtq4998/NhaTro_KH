@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -22,6 +23,7 @@ using Xamarin.Forms;
 
 namespace NhaTroKH.viewUI
 {
+    [DesignTimeVisible(false)]
     public partial class LoginPageUI : ContentPage
     {
         public LoginPageUI()
@@ -38,14 +40,12 @@ namespace NhaTroKH.viewUI
 
         public static string SOCMND;
 
-
-        private void CreateAcount_Clicked(object sender, EventArgs e)
+        private void CMND_login_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Navigation.PushAsync(new CreateAccountPageUI());
+            Validate.validateCMND(sender);
         }
 
-
-        private async void dangnhap_Clicked(object sender, EventArgs e)
+        async Task LoginPage_Tapped()
         {
             try
             {
@@ -60,10 +60,8 @@ namespace NhaTroKH.viewUI
                         if (MATKHAU_login.Text == login.MATKHAU_TK)
                         {
                             activityIndicator.IsRunning = false;
-                            _ = DisplayAlert("Thông báo", "Đăng nhập thành công", "OK");
-                            //CMND_login.Text = string.Empty;
-                            MATKHAU_login.Text = string.Empty;
                             _ = Navigation.PushAsync(new HomePageUI());
+                            MATKHAU_login.Text = string.Empty;
                             SOCMND = CMND_login.Text;
                         }
                         else
@@ -85,17 +83,20 @@ namespace NhaTroKH.viewUI
                 }
             }
             catch (Exception ex) { }
+        } 
+        void CreateAccount_Tapped(System.Object sender, System.EventArgs e)
+        {
+            Navigation.PushAsync(new CreateAccountPageUI());
         }
 
-        private void Exit_Clicked(object sender, EventArgs e)
+        void ExitApp_Tapped(System.Object sender, System.EventArgs e)
         {
             System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
         }
 
-        private void CMND_login_TextChanged(object sender, TextChangedEventArgs e)
+        void LoginPage_Tapped(System.Object sender, System.EventArgs e)
         {
-            Validate.validateCMND(sender);
-        } 
-    }
-
+            _ = LoginPage_Tapped();
+        }
+    } 
 } 

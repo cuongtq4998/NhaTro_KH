@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NhaTroKH.viewUI.CustomerPageUI">
+             x:Class="NhaTroKH.viewUI.CustomerPageUI" >
     <ContentPage.ToolbarItems>
         <ToolbarItem Order="Default" Priority="0" Text="Gia Đình"  x:Name="btnGD" Clicked="btnGD_Clicked" />
         <ToolbarItem Order="Default" Priority="1" Text="Bản Thân" x:Name="btnQT" Clicked="btnQT_Clicked"/>
@@ -190,7 +190,8 @@
                                VerticalOptions="Center"
                                TextColor="Black"/>
                          <StackLayout Orientation="Horizontal"
-                                      Spacing="5">
+                                      Spacing="5"
+                                       HorizontalOptions="FillAndExpand">
                              <Frame Margin="1"
                                 CornerRadius="2"
                                 BorderColor="AliceBlue"
@@ -204,11 +205,7 @@
                                 <TapGestureRecognizer x:Name="PlaceJob" Tapped="PlaceJob_Tapped"/>
                             </Label.GestureRecognizers>
                         </Label> 
-                         </Frame>
-                        <Button Text="Chọn"
-                                    HeightRequest="40"
-                                    FontSize="13"
-                                    WidthRequest="70"/>
+                         </Frame> 
                          </StackLayout>
                     </StackLayout>
 
@@ -216,12 +213,13 @@
                     <StackLayout Orientation="Horizontal"
                                  VerticalOptions="Center"
                                  HorizontalOptions="FillAndExpand"
-                                 Spacing="0">
-                        <Label Text="Quê quán"
-                               WidthRequest="100"
-                               VerticalOptions="Center" 
+                                 Spacing="5">
+                        <Label Text="Quê quán" 
+                               VerticalOptions="Center"
+                               HorizontalOptions="Fill"
                                TextColor="Black"/>
                          <StackLayout Orientation="Horizontal"
+                                       HorizontalOptions="FillAndExpand"
                                       Spacing="5">
                              <Frame Margin="1"
                                 CornerRadius="2"
@@ -237,10 +235,18 @@
                             </Label.GestureRecognizers>
                             </Label>  
                          </Frame>
-                        <Button Text="Chọn"
-                                    HeightRequest="40"
-                                    FontSize="13"
-                                    WidthRequest="70"/>
+                        <Button Text="Chọn" 
+                                HeightRequest="20"
+                                FontSize="11"
+                                BorderColor="Green"
+                                BackgroundColor="White"
+                                FontAttributes="Bold"
+                                TextColor="Green"
+                                CornerRadius="10"
+                                BorderWidth="2"
+                                WidthRequest="50"
+                                TextTransform="None"
+                                x:Name="HometownButton"/>
                          </StackLayout>
                     </StackLayout> 
 
@@ -261,7 +267,7 @@
                                 HorizontalOptions="FillAndExpand">
                              <Label TextColor="Black"
                                 FontAttributes="Bold"
-                                FontSize="13"
+                                FontSize="13" 
                                 HorizontalOptions="FillAndExpand" 
                                 x:Name="SiteCurentLabelNavigatePage">
                             <Label.GestureRecognizers>
@@ -269,10 +275,18 @@
                             </Label.GestureRecognizers>
                         </Label> 
                          </Frame>
-                         <Button Text="Chọn"
-                                    HeightRequest="40"
-                                    FontSize="13"
-                                    WidthRequest="70"/>
+                         <Button Text="Chọn" 
+                                HeightRequest="20"
+                                FontSize="11"
+                                BorderColor="Green"
+                                BackgroundColor="White"
+                                FontAttributes="Bold"
+                                TextColor="Green"
+                                CornerRadius="10"
+                                BorderWidth="2"
+                                 WidthRequest="50"
+                                TextTransform="None"
+                                 x:Name="SiteCurentButton"/>
                         </StackLayout>
                     </StackLayout>
 
@@ -280,20 +294,21 @@
                     <StackLayout Orientation="Horizontal"
                                  VerticalOptions="Center"
                                  HorizontalOptions="FillAndExpand"
-                                 Spacing="0">
-                        <Label Text="Thường trú"
-                               WidthRequest="100"
+                                 Spacing="5">
+                        <Label Text="Thường trú" 
                                VerticalOptions="Center" 
-                               TextColor="Black"/>
+                               TextColor="Black"
+                                HorizontalOptions="Fill"/>
                         <StackLayout Orientation="Horizontal"
-                                     Spacing="5">
+                                     Spacing="5" 
+                                      HorizontalOptions="FillAndExpand">
                              <Frame Margin="1"
                                 CornerRadius="2"
                                 BorderColor="AliceBlue"
                                 HorizontalOptions="FillAndExpand">
                              <Label TextColor="Black"
                                 FontAttributes="Bold"
-                                FontSize="13"
+                                FontSize="13" 
                                 HorizontalOptions="FillAndExpand"
                                 x:Name="AddressResidentLabelNavigatePage">
                             <Label.GestureRecognizers>
@@ -303,10 +318,18 @@
                             </Label> 
                          </Frame>
 
-                            <Button Text="Chọn"
-                                    HeightRequest="40"
-                                    FontSize="13"
-                                    WidthRequest="70"/>
+                            <Button Text="Chọn" 
+                                    HeightRequest="20"
+                                    FontSize="11"
+                                    BorderColor="Green"
+                                    BackgroundColor="White"
+                                    FontAttributes="Bold"
+                                    TextColor="Green"
+                                    CornerRadius="10"
+                                    BorderWidth="2"
+                                    WidthRequest="50"
+                                    TextTransform="None"
+                                    x:Name="chooseResidentButton"/>
                         </StackLayout>  
                     </StackLayout> 
                     <!--mail-->

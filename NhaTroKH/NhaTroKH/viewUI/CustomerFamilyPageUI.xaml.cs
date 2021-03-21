@@ -27,6 +27,21 @@ namespace NhaTroKH.viewUI
             };
 
             CLICKNAVIGATEPAGEADDADDRESS.Text = KeyCustomerViewEnumeration.CustomerFamilyPlaceholder_Current;
+
+            SiteCurentFamilyButton.Clicked += async (sender, e) =>
+            {
+
+                if (Application.Current.Properties.ContainsKey(KeyCustomerViewEnumeration.DefaultAddress))
+                {
+                    string address = Application.Current.Properties[KeyCustomerViewEnumeration.DefaultAddress].ToString();
+                    bool dialog = await DisplayAlert("Thông báo", "Bạn sẽ chọn địa chỉ: " + address, "OK", "Không");
+                    if (dialog)
+                    {
+                        CLICKNAVIGATEPAGEADDADDRESS.Text = Application.Current.Properties[KeyCustomerViewEnumeration.DefaultAddress].ToString();
+                    }
+                }
+                else { this.navigatePageSetting(); }
+            };
         }
 
 
@@ -49,7 +64,7 @@ namespace NhaTroKH.viewUI
         public string huyen = "";
         public string xa = "";
         public string quanhe;
-         
+
 
         #region DELETELISTVIEW
         //[0]   LIST1
@@ -62,6 +77,16 @@ namespace NhaTroKH.viewUI
         //Lấy vị trí phần tử vừa xóa                                    ==> 
         //Add thông tin luu ở class lưu trữ  vào trí trí vừa xóa        ==>  
         //Get thông tin về                                              ==> 
+
+
+        private async void navigatePageSetting()
+        {
+            bool dialog = await DisplayAlert("Thông báo", "Bạn chưa có địa chỉ mặc định. Vào thiết lập thông tin ngay! ", "OK", "Không");
+            if (dialog)
+            {
+                _ = Navigation.PushAsync(new SettingPageUI());
+            }
+        }
 
         private void Lst_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {

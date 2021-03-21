@@ -4,6 +4,7 @@ using FireSharp.Interfaces;
 using FireSharp.Response;
 using NhaTroKH.DB;
 using NhaTroKH.Models;
+using NhaTroKH.viewmodel;
 using Xamarin.Forms;
 using static NhaTroKH.@interface.Enum;
 
@@ -11,28 +12,6 @@ namespace NhaTroKH.viewUI
 {
     public partial class CustomerPageUI : ContentPage
     {
-        public CustomerPageUI()
-        {
-            InitializeComponent();
-            client = new FireSharp.FirebaseClient(config);
-
-            CMND.Text = LoginPageUI.SOCMND;
-            CMND_ = CMND.Text;
-            dantoc.Text = _dantoc;
-            tongiao.Text = _tongiao;
-            addpickerhocvan();
-            addgioitinh();
-            addloaixe();
-            getkhachthue();
-
-            PlaceJobLabelNavigatePage.Text = KeyCustomerViewEnumeration.CustomerInforPlaceholder_JobSite;
-            AddressResidentLabelNavigatePage.Text = KeyCustomerViewEnumeration.CustomerInforPlaceholder_Resident;
-            HometownLabelNavigatePage.Text = KeyCustomerViewEnumeration.CustomerInforPlaceholder_Hometown;
-            if (Application.Current.Properties.ContainsKey(KeyCustomerViewEnumeration.DefaultAddress))
-            {
-                SiteCurentLabelNavigatePage.Text = Application.Current.Properties[KeyCustomerViewEnumeration.DefaultAddress].ToString();
-            }
-        }
         IFirebaseConfig config = new FireSharp.Config.FirebaseConfig
         {
             AuthSecret = "mJh3ttHegM5JEw4I8KKbreCWxcmVjIrcM5I9fhjx",
@@ -48,6 +27,93 @@ namespace NhaTroKH.viewUI
         // default dân tộc "Kinh" và tôn giáo "Không"
         private string _dantoc = "Kinh";
         private string _tongiao = "Không";
+
+
+        private string _customerInforPlaceholder_JobSite = KeyCustomerViewEnumeration.CustomerInforPlaceholder_JobSite;
+        private string _customerInforPlaceholder_CurentSite = KeyCustomerViewEnumeration.CustomerInforPlaceholder_CurentSite;
+        private string _customerInforPlaceholder_Resident = KeyCustomerViewEnumeration.CustomerInforPlaceholder_Resident;
+        private string _customerInforPlaceholder_Hometown = KeyCustomerViewEnumeration.CustomerInforPlaceholder_Hometown;
+
+
+        public CustomerPageUI()
+        {
+            InitializeComponent();
+            BindingContext = new CustomerPageVM(Navigation);
+             
+            client = new FireSharp.FirebaseClient(config);
+
+            CMND.Text = LoginPageUI.SOCMND;
+            CMND_ = CMND.Text;
+            dantoc.Text = _dantoc;
+            tongiao.Text = _tongiao;
+            addpickerhocvan();
+            addgioitinh();
+            addloaixe();
+            getkhachthue();
+
+            //PlaceJobLabelNavigatePage.Text = _customerInforPlaceholder_JobSite;
+            //SiteCurentLabelNavigatePage.Text = _customerInforPlaceholder_CurentSite;
+            //AddressResidentLabelNavigatePage.Text = _customerInforPlaceholder_Resident;
+            //HometownLabelNavigatePage.Text = _customerInforPlaceholder_Hometown;
+
+
+            this.handleEven();
+
+        }
+
+        private void handleEven()
+        {
+            chooseResidentButton.Clicked += async (sender, e) =>
+            {
+
+                if (Application.Current.Properties.ContainsKey(KeyCustomerViewEnumeration.ResidentSiteSetting))
+                {
+                    string address = Application.Current.Properties[KeyCustomerViewEnumeration.ResidentSiteSetting].ToString();
+                    bool dialog = await DisplayAlert("Thông báo", "Bạn sẽ chọn địa chỉ: " + address, "OK", "Không");
+                    if (dialog)
+                    {
+                        AddressResidentLabelNavigatePage.Text = Application.Current.Properties[KeyCustomerViewEnumeration.ResidentSiteSetting].ToString();
+                    } 
+                }
+                else { this.navigatePageSetting(); }
+            };
+
+            HometownButton.Clicked += async (sender, e) =>
+            {
+                if (Application.Current.Properties.ContainsKey(KeyCustomerViewEnumeration.HometownSiteSetting))
+                {
+                    string address = Application.Current.Properties[KeyCustomerViewEnumeration.HometownSiteSetting].ToString();
+                    bool dialog = await DisplayAlert("Thông báo", "Bạn sẽ chọn địa chỉ: " + address, "OK", "Không");
+                    if (dialog)
+                    {
+                        HometownLabelNavigatePage.Text = Application.Current.Properties[KeyCustomerViewEnumeration.HometownSiteSetting].ToString();
+                    } 
+                }
+                else { this.navigatePageSetting(); }
+            };
+
+            SiteCurentButton.Clicked += async (sender, e) => {
+                if (Application.Current.Properties.ContainsKey(KeyCustomerViewEnumeration.DefaultAddress))
+                {
+                    string address = Application.Current.Properties[KeyCustomerViewEnumeration.DefaultAddress].ToString();
+                    bool dialog = await DisplayAlert("Thông báo", "Bạn sẽ chọn địa chỉ: " + address, "OK", "Không");
+                    if (dialog)
+                    {
+                        SiteCurentLabelNavigatePage.Text = Application.Current.Properties[KeyCustomerViewEnumeration.DefaultAddress].ToString();
+                    } 
+                }
+                else { this.navigatePageSetting(); }
+            };
+        }
+
+        private async void navigatePageSetting()
+        {
+            bool dialog = await DisplayAlert("Thông báo", "Bạn chưa có địa chỉ mặc định. Vào thiết lập thông tin ngay! ", "OK", "Không");
+            if (dialog)
+            {
+                _ = Navigation.PushAsync(new SettingPageUI());
+            }
+        }
          
 
         protected override void OnAppearing()
@@ -124,13 +190,7 @@ namespace NhaTroKH.viewUI
             if (Application.Current.Properties.ContainsKey(KeyCustomerViewEnumeration.CustomerInforProfection))
             {
                 Chuyenmon.Text = Application.Current.Properties[KeyCustomerViewEnumeration.CustomerInforProfection] == null ? "" : Application.Current.Properties[KeyCustomerViewEnumeration.CustomerInforProfection].ToString();
-            }
-            if (Application.Current.Properties.ContainsKey(KeyCustomerViewEnumeration.DefaultAddress))
-            {
-                SiteCurentLabelNavigatePage.Text = Application.Current.Properties[KeyCustomerViewEnumeration.DefaultAddress].ToString();
-            }
-
-
+            } 
         }
 
         protected override void OnDisappearing()
@@ -196,12 +256,10 @@ namespace NhaTroKH.viewUI
                 ngaycap.Date = Convert.ToDateTime(thongtinkhachthue.NGAY_CAP);
                 Congty.Text = thongtinkhachthue.CongTy;
 
-                PlaceJobLabelNavigatePage.Text = thongtinkhachthue.NOILAMVIEC;
-                SiteCurentLabelNavigatePage.Text = (thongtinkhachthue.DIACHIHIENNAY == "") ? Application.Current.Properties[KeyCustomerViewEnumeration.DefaultAddress].ToString() : thongtinkhachthue.DIACHIHIENNAY;
-
-
-                AddressResidentLabelNavigatePage.Text = thongtinkhachthue.NOITHUONGTHU;
-                HometownLabelNavigatePage.Text = thongtinkhachthue.QUE_QUAN;
+                PlaceJobLabelNavigatePage.Text = (thongtinkhachthue.NOILAMVIEC == "") ? _customerInforPlaceholder_JobSite : thongtinkhachthue.NOILAMVIEC;
+                SiteCurentLabelNavigatePage.Text = (thongtinkhachthue.DIACHIHIENNAY == "") ? _customerInforPlaceholder_CurentSite : thongtinkhachthue.DIACHIHIENNAY;
+                AddressResidentLabelNavigatePage.Text = (thongtinkhachthue.NOITHUONGTHU == "") ? _customerInforPlaceholder_Resident : thongtinkhachthue.NOITHUONGTHU;
+                HometownLabelNavigatePage.Text = (thongtinkhachthue.QUE_QUAN == "") ? _customerInforPlaceholder_Hometown : thongtinkhachthue.QUE_QUAN;
 
                 //check hiện thị
                 for (int i = 0; i < gioitinh_.Items.Count; i++)
@@ -242,10 +300,10 @@ namespace NhaTroKH.viewUI
             }
             catch
             {
-                if (!Application.Current.Properties.ContainsKey(KeyCustomerViewEnumeration.DefaultAddress))
-                {
-                    _ = Navigation.PushAsync(new SettingPageUI());
-                }
+                //if (!Application.Current.Properties.ContainsKey(KeyCustomerViewEnumeration.DefaultAddress))
+                //{
+                //    _ = Navigation.PushAsync(new SettingPageUI());
+                //}
                 this.gioitinh_.SelectedIndex = 0;
                 this.loaixe_.SelectedIndex = 0;
                 this.hocvan_.SelectedIndex = 0;

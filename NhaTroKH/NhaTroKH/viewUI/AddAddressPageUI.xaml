@@ -160,10 +160,9 @@
                                    VerticalOptions="Center" />
                     <StackLayout Orientation="Vertical">
                         <Entry Placeholder="Provincial..."
-                                      x:Name="ProvincialEntry"
-                                       WidthRequest="250"
-                                       FontSize="13"
-                               TextChanged="ProvincialEntry_TextChanged"/>
+                                x:Name="ProvincialEntry"
+                                WidthRequest="250"
+                                FontSize="13"/>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal"
@@ -179,11 +178,10 @@
 
                     <StackLayout Orientation="Vertical">
                         <Entry Placeholder="District..."
-                                       IsEnabled="True"
-                                      x:Name="DistrictEntry"
-                                       WidthRequest="250"
-                                       FontSize="13"
-                               TextChanged="DistrictEntry_TextChanged"/>
+                                IsEnabled="True"
+                                x:Name="DistrictEntry"
+                                WidthRequest="250"
+                                FontSize="13" />
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal"
@@ -198,11 +196,10 @@
                                    VerticalOptions="Center" />
                     <StackLayout Orientation="Vertical">
                         <Entry Placeholder="Ward..."
-                                       IsEnabled="True"
-                                      x:Name="WardEntry"
-                                       WidthRequest="250"
-                                       FontSize="13"
-                               TextChanged="WardEntry_TextChanged"/>
+                                IsEnabled="True"
+                                x:Name="WardEntry"
+                                WidthRequest="250"
+                                FontSize="13" />
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal"
@@ -216,11 +213,10 @@
                                    WidthRequest="100"
                                    VerticalOptions="Center" />
                     <Entry WidthRequest="250"
-                                    VerticalOptions="Center"
-                                   x:Name="StreesEntryUser"
-                                   FontSize="13"
-                           Placeholder="Strees..."
-                           TextChanged="StreesEntryUser_TextChanged"/>
+                            VerticalOptions="Center"
+                            x:Name="StreesEntryUser"
+                            FontSize="13"
+                           Placeholder="Strees..."/>
                 </StackLayout>
             </StackLayout>
 

@@ -2,13 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
+using System.Reflection; 
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using NhaTroKH.Database;
-using NhaTroKH.DB;
-using NhaTroKH.DB.SqlLite;
+using Newtonsoft.Json.Linq; 
 using Xamarin.Forms;
 
 namespace NhaTroKH.viewUI
@@ -34,7 +30,7 @@ namespace NhaTroKH.viewUI
             string jsonDistristFileName = "quanhuyen.json";
             string jsonWardFileName = "xaphuong.json";
 
-            var assembly = typeof(LoginPageUI).GetTypeInfo().Assembly;
+            var assembly = typeof(LoadingPageUI).GetTypeInfo().Assembly;
             Stream streamProvince = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{jsonProvinceFileName}");
             Stream streamDistrist = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{jsonDistristFileName}");
             Stream streamward = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{jsonWardFileName}");

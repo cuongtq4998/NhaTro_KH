@@ -60,7 +60,15 @@ namespace NhaTroKH.DB
         // Chỗ ở
         public const string CustomerFamilyPlaceholder_Current = "Nhập chỗ ở...->";
 
+        /// <summary>
+        /// Key Save Site Setting: Nhà trọ, Quê quán, Thường trú
+        /// </summary>
         public const string DefaultAddress = "DefaultAddress";
+        /// Địa chỉ quê quán setting
+        public const string ResidentSiteSetting = "ResidentSiteSetting";
+        /// Địa chỉ thường trú setting
+        public const string HometownSiteSetting = "HometownSiteSetting";
+
 
         // ## Key check đã load data địa chỉ
         public const string CheckLoadData = "CheckLoadData";
