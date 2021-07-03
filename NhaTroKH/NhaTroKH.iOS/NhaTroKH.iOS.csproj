@@ -61,6 +61,8 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <BuildIpa>true</BuildIpa>
+    <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -72,46 +74,74 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <ImageAsset Include="Assets.xcassets\location.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\location.imageset\location.jpeg" />
+    <ImageAsset Include="Assets.xcassets\im4.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\im4.imageset\im4.png" />
+    <ImageAsset Include="Assets.xcassets\im4.imageset\im4-1.png" />
+    <ImageAsset Include="Assets.xcassets\location.imageset\location-1.jpeg" />
+    <ImageAsset Include="Assets.xcassets\location.imageset\location-2.jpeg" />
+    <ImageAsset Include="Assets.xcassets\icapphome.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\icapphome.imageset\icapphome.jpg" />
+    <ImageAsset Include="Assets.xcassets\icapphome.imageset\icapphome-1.jpg" />
+    <ImageAsset Include="Assets.xcassets\download.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\download.imageset\download.png" />
+    <ImageAsset Include="Assets.xcassets\download.imageset\download-1.png" />
+    <ImageAsset Include="Assets.xcassets\costwater.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\costwater.imageset\costwater.png" />
+    <ImageAsset Include="Assets.xcassets\costwater.imageset\costwater-1.png" />
+    <ImageAsset Include="Assets.xcassets\costroom.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\costroom.imageset\costroom.png" />
+    <ImageAsset Include="Assets.xcassets\costroom.imageset\costroom-1.png" />
+    <ImageAsset Include="Assets.xcassets\bgImage.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\bgImage.imageset\bgImage.png" />
+    <ImageAsset Include="Assets.xcassets\bgImage.imageset\bgImage-1.png" />
+    <ImageAsset Include="Assets.xcassets\im4.imageset\im4-2.png" />
+    <ImageAsset Include="Assets.xcassets\icapphome.imageset\icapphome-2.jpg" />
+    <ImageAsset Include="Assets.xcassets\download.imageset\download-2.png" />
+    <ImageAsset Include="Assets.xcassets\costwater.imageset\costwater-2.png" />
+    <ImageAsset Include="Assets.xcassets\costroom.imageset\costroom-2.png" />
+    <ImageAsset Include="Assets.xcassets\bgImage.imageset\bgImage-2.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1024.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon180.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon167.png">
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon152.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120.png">
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon167.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon87.png">
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon180.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon80.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon76.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40.png">
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon29.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon76.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon80.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon87.png">
       <Visible>false</Visible>
     </ImageAsset>
   </ItemGroup>
@@ -124,7 +154,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -136,5 +166,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Renderers\" />
+    <Folder Include="Assets.xcassets\location.imageset\" />
+    <Folder Include="Assets.xcassets\im4.imageset\" />
+    <Folder Include="Assets.xcassets\icapphome.imageset\" />
+    <Folder Include="Assets.xcassets\download.imageset\" />
+    <Folder Include="Assets.xcassets\costwater.imageset\" />
+    <Folder Include="Assets.xcassets\costroom.imageset\" />
+    <Folder Include="Assets.xcassets\bgImage.imageset\" />
+    <Folder Include="Assets.xcassets\AppIcon.appiconset\" />
   </ItemGroup>
 </Project>

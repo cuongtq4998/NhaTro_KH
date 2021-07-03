@@ -1,57 +1,64 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NhaTroKH.viewUI.HomePageUI" 
-             xmlns:renderers="clr-namespace:NhaTroKH.Renderers"
+             x:Class="NhaTroKH.viewUI.HomePageUI"  
             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-            Padding="0,40,0,0"
             BackgroundColor="#791AE5"
             NavigationPage.HasNavigationBar="False"> 
 
-    <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <StackLayout>
+    <ScrollView HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+        <StackLayout HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand">
             <StackLayout Orientation="Horizontal"
+                         VerticalOptions="FillAndExpand"
+                         HorizontalOptions="FillAndExpand"
                          Spacing="5">
-                <StackLayout Margin="20,0,20,0" Spacing="20">
+                <StackLayout Margin="20,10,20,0" 
+                             Spacing="20"
+                             Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand">
                     <Label 
                         HorizontalOptions="Start"
                         Text="TRANG CHỦ"
                         FontAttributes="Bold"
-                        FontSize="30"
+                        FontSize="Medium"
                         VerticalOptions="Start"
                         TextColor="Orange"/>
                     <Label
                         FontAttributes="Bold"
-                        FontSize="28"
-                        HorizontalOptions="StartAndExpand"
-                        Text="Hãy trãi nghiệm cùng chúng tôi"
+                        FontSize="Medium"
+                        HorizontalOptions="FillAndExpand"
+                        Text="Hãy trải nghiệm cùng chúng tôi"
                         TextColor="White"
-                        VerticalOptions="StartAndExpand"
-                        WidthRequest="200" />
+                        VerticalOptions="StartAndExpand"  />
                 </StackLayout>
                 <Image
                     HorizontalOptions="EndAndExpand"
                     Source="bgImage"
-                    WidthRequest="200" />
+                    WidthRequest="150" />
             </StackLayout>
             <yummy:PancakeView
-                Padding="30,0,30,30"
+                Padding="20,0,20,30"
                 BackgroundColor="White"
                 CornerRadius="40,40,0,0"
-                VerticalOptions="FillAndExpand">
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand">
                 <StackLayout>
                     <StackLayout Orientation="Horizontal"
-                                 Spacing="5"
+                                 HorizontalOptions="FillAndExpand"
                                  HeightRequest="40"
+                                 Spacing="5"  
                                  Margin="0,5,0,0">
                         <Label 
                         FontAttributes="Bold"
-                        FontSize="20"
-                        HorizontalOptions="CenterAndExpand"
+                        FontSize="Small"
+                        HorizontalOptions="CenterAndExpand" 
                         HorizontalTextAlignment="Center"
                         Text="Tiện ích"
                         TextColor="#791AE5" 
-                        VerticalOptions="Center" />
+                        VerticalOptions="CenterAndExpand" />
                         <Button
                             x:Name="btnThoat"
                              Command="{Binding ExitButton}"
@@ -59,16 +66,19 @@
                             TextTransform="None" 
                             BackgroundColor="Red"
                             FontAttributes="Italic"
+                            Padding="5"
+                            Margin="5"
                             TextColor="White"
-                            FontSize="15"
+                            FontSize="15" 
+                            HorizontalOptions="EndAndExpand"
                             Text="Thoát" />
                     </StackLayout>
 
-                    <Grid Margin="5" ColumnSpacing="20" RowSpacing="30">
+                    <Grid Margin="1" ColumnSpacing="10" RowSpacing="20">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="230" />
-                            <RowDefinition Height="230" />
-                            <RowDefinition Height="230" />
+                            <RowDefinition Height="170" />
+                            <RowDefinition Height="170" />
+                            <RowDefinition Height="170" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -83,10 +93,11 @@
                             CornerRadius="15"
                             Elevation="3">
                             <StackLayout>
-                                <Image Source="bgImage" />
+                                <Image Source="bgImage"
+                                       HeightRequest="80"/>
                                 <Label
                                     FontAttributes="Bold"
-                                    FontSize="20"
+                                    FontSize="Small"
                                     HorizontalOptions="CenterAndExpand"
                                     HorizontalTextAlignment="Center"
                                     Text="Thông tin khách thuê"
@@ -107,10 +118,10 @@
                             Elevation="3">
                             <StackLayout>
                                 <Image Source="costwater"
-                                       HeightRequest="120"/>
+                                       HeightRequest="100"/>
                                 <Label
                                     FontAttributes="Bold"
-                                    FontSize="20"
+                                    FontSize="Small"
                                     HorizontalOptions="CenterAndExpand"
                                     HorizontalTextAlignment="Center"
                                     Text="Thông tin điện nước"
@@ -130,10 +141,11 @@
                             CornerRadius="15"
                             Elevation="3">
                             <StackLayout>
-                                <Image Source="costroom" />
+                                <Image Source="costroom"
+                                       HeightRequest="100"/>
                                 <Label
                                     FontAttributes="Bold"
-                                    FontSize="20"
+                                    FontSize="Small"
                                     HorizontalOptions="CenterAndExpand"
                                     HorizontalTextAlignment="Center"
                                     Text="Thông tin phòng"
@@ -153,10 +165,11 @@
                             CornerRadius="15"
                             Elevation="3">
                             <StackLayout>
-                                <Image Source="download" />
+                                <Image Source="download"
+                                       HeightRequest="100"/>
                                 <Label
                                     FontAttributes="Bold"
-                                    FontSize="20"
+                                    FontSize="Small"
                                     HorizontalOptions="CenterAndExpand"
                                     HorizontalTextAlignment="Center"
                                     Text="Thông tin phản hồi"
@@ -176,10 +189,11 @@
                             CornerRadius="15"
                             Elevation="3">
                             <StackLayout>
-                                <Image Source="location" />
+                                <Image Source="location"
+                                       HeightRequest="100"/>
                                 <Label
                                     FontAttributes="Bold"
-                                    FontSize="20"
+                                    FontSize="Small"
                                     HorizontalOptions="CenterAndExpand"
                                     HorizontalTextAlignment="Center"
                                     Text="Thiết lập địa chỉ"

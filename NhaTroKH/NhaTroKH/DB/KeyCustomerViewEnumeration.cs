@@ -71,7 +71,7 @@ namespace NhaTroKH.DB
 
 
         // ## Key check đã load data địa chỉ
-        public const string CheckLoadData = "CheckLoadData";
+        public const string CheckLoadData = "CheckLoadData"; 
 
     }
 }

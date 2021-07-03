@@ -3,45 +3,64 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
              x:Class="NhaTroKH.viewUI.CustomerFamilyPageUI">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Default" Priority="0" Text="làm mới"  x:Name="btnlammoi" Clicked="btnlammoi_Clicked" />
+        <ToolbarItem Order="Default" Priority="0" Text="Làm mới"  x:Name="btnlammoi" Clicked="btnlammoi_Clicked" />
     </ContentPage.ToolbarItems>
+
+    <!--Set style-->
+    <ContentPage.Resources>
+        <Style TargetType="Button" x:Key="NoDefaultAllCap">
+            <Setter Property="TextTransform" Value="None"/>
+        </Style>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
-            <StackLayout HorizontalOptions="Center"
-                         VerticalOptions="Center" 
-                         Spacing="0">
-                <Label Text="THÔNG TIN KHÁCH THUÊ - GIA ĐÌNH"
-                       HorizontalOptions="Center"
-                       Margin="25,5,25,5"
-                       FontSize="14"
-                       FontAttributes="Bold"
-                       TextColor="DarkBlue"
-                       MaxLines="2"/>
-                <Label Text="Tóm tắt về gia đình (Bố, mẹ; vợ/chồng; con; anh, chị, em ruột) Ghi cả cha, mẹ, con nuôi;người nuôi dưỡng; người giám hộ theo quy định của pháp luật (nếu có)."
-                       TextColor="Red"
-                       FontSize="14"
-                       FontAttributes="Italic"
-                       HorizontalTextAlignment="Center"/>
-                <ActivityIndicator x:Name="_LOADTINH"   
-                                    VerticalOptions="Center" 
-                                    HorizontalOptions="Center" 
-                                    Color="Black" 
-                                    WidthRequest="20" 
-                                    HeightRequest="20" />
-            </StackLayout>
-            <StackLayout Orientation="Vertical">
-                <telerikPrimitives:RadTabView x:Name="tabView">
+        <AbsoluteLayout>
+            <StackLayout Orientation="Vertical"
+                         AbsoluteLayout.LayoutBounds="0,0,1,1"
+                         AbsoluteLayout.LayoutFlags="All">
+                <StackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center" 
+                             Spacing="0">
+                    <Label Text="THÔNG TIN KHÁCH THUÊ - GIA ĐÌNH"
+                           HorizontalOptions="Center"
+                           Margin="25,5,25,5"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="DarkBlue"
+                           MaxLines="2"/>
+                    <Label Text="Tóm tắt về gia đình (Bố, mẹ; vợ/chồng; con; anh, chị, em ruột) Ghi cả cha, mẹ, con nuôi;người nuôi dưỡng; người giám hộ theo quy định của pháp luật (nếu có)."
+                           TextColor="Red"
+                           FontSize="14"
+                           FontAttributes="Italic"
+                           HorizontalTextAlignment="Center"/>
+                    <ActivityIndicator x:Name="_LOADTINH"   
+                                        VerticalOptions="Center" 
+                                        HorizontalOptions="Center"
+                                       IsVisible="false"
+                                        Color="Black" 
+                                        WidthRequest="20" 
+                                        HeightRequest="20" />
+                </StackLayout>
+                <StackLayout Orientation="Vertical"
+                         VerticalOptions="FillAndExpand">
+                <telerikPrimitives:RadTabView x:Name="tabView"
+                                              BackgroundColor="WhiteSmoke"
+                                              VerticalOptions="FillAndExpand"
+                                              HorizontalOptions="FillAndExpand">
                     <telerikPrimitives:RadTabView.Items>
-                        <telerikPrimitives:TabViewItem HeaderText="Phần nhập thông tin">
+                        <telerikPrimitives:TabViewItem HeaderText="Nhập thông tin">
                             <telerikPrimitives:TabViewItem.Content>
                                 <ScrollView VerticalOptions="Start">
                                     <Frame  
-                                        BackgroundColor="White"
+                                        BackgroundColor="WhiteSmoke"
                                        CornerRadius="8" 
-                                       HorizontalOptions="Center"
+                                       HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand"
                                        Padding="5"
                                        WidthRequest="420">
-                                        <StackLayout Margin="10">
+                                        <StackLayout Margin="10"
+                                                     HorizontalOptions="FillAndExpand"
+                                                     VerticalOptions="FillAndExpand">
 
                                             <!--ho ten-->
                                             <StackLayout Orientation="Horizontal"
@@ -131,13 +150,15 @@
 
                                             <!--cho o-->
                                             <StackLayout Orientation="Horizontal"
-                                                        HorizontalOptions="Fill"
+                                                        HorizontalOptions="FillAndExpand"
+                                                         Margin="5,0"
                                                          VerticalOptions="Center">
                                                 <Label Text="Chỗ ở hiện nay: "
                                                         TextColor="Black"
                                                         VerticalOptions="CenterAndExpand"
                                                         HorizontalOptions="Start"/>
                                                 <Frame Margin="1"
+                                                       HasShadow="False" 
                                                         CornerRadius="2"
                                                          BorderColor="AliceBlue"
                                                         HorizontalOptions="FillAndExpand">
@@ -153,16 +174,18 @@
                                                      </Label> 
                                                  </Frame>
                                                 <Button Text="Chọn"
-                                                        HeightRequest="20"
+                                                        HeightRequest="35"
                                                         FontSize="11"
                                                         BorderColor="Green"
                                                         BackgroundColor="White"
                                                         FontAttributes="Bold"
                                                         TextColor="Green"
                                                         CornerRadius="10"
-                                                        BorderWidth="2"
+                                                        BorderWidth="0.5"
                                                         WidthRequest="50"
                                                         TextTransform="None"
+                                                        VerticalOptions="Center"
+                                                        HorizontalOptions="Center"
                                                         x:Name="SiteCurentFamilyButton"/>
                                             </StackLayout>
 
@@ -170,18 +193,20 @@
 
                                             <StackLayout Orientation="Horizontal"
                                                          HorizontalOptions="FillAndExpand"
-                                                         Margin="25,0"
-                                                         Spacing="5">
+                                                         Spacing="5"
+                                                         Margin="0,10"
+                                                         HeightRequest="40">
                                                 <Button 
                                                     BackgroundColor="Red" 
-                                                    CornerRadius="20"
+                                                    CornerRadius="10"
                                                     FontAttributes="Bold"
                                                     FontSize="13"
-                                                    HeightRequest="45"
+                                                    Padding="5"
                                                     Text="Trang chủ"
                                                     x:Name="HomeFamily"
-                                                    TextColor="White"
-                                                    Clicked="HomeFamily_Clicked"
+                                                    TextColor="White" 
+                                                    Style="{StaticResource NoDefaultAllCap}"
+                                                    Command="{Binding backHome}"
                                                     HorizontalOptions="Fill"/>
                                                 <Button
                                                     x:Name="Themmoi"
@@ -190,10 +215,10 @@
                                                     FontAttributes="Bold"
                                                     TextColor="White"
                                                     FontSize="13"
-                                                    HorizontalOptions="FillAndExpand"
-                                                    HeightRequest="45" 
+                                                    Style="{StaticResource NoDefaultAllCap}"
+                                                    HorizontalOptions="FillAndExpand" 
                                                     BackgroundColor="Orange"
-                                                    CornerRadius="20"/>
+                                                    CornerRadius="10"/>
                                             </StackLayout> 
                                         </StackLayout>
                                     </Frame>
@@ -210,7 +235,8 @@
                                            FontSize="13"
                                            Margin="0,5,0,0"/>
                                     <Frame BackgroundColor="LightGray"
-                                            CornerRadius="8" 
+                                            CornerRadius="8"
+                                           HasShadow="False"
                                             HorizontalOptions="Center"
                                             Padding="5"
                                             WidthRequest="420">
@@ -285,12 +311,100 @@
                             </telerikPrimitives:TabViewItem.Content>
                         </telerikPrimitives:TabViewItem>
                     </telerikPrimitives:RadTabView.Items>
-                </telerikPrimitives:RadTabView>
-
-
-
+                </telerikPrimitives:RadTabView> 
+            </StackLayout> 
             </StackLayout>
 
-        </StackLayout>
+            <ContentView  BackgroundColor="#C0808080"
+                         AbsoluteLayout.LayoutBounds="0,0,1,1"
+                         AbsoluteLayout.LayoutFlags="All"
+                          x:Name="viewListChooseCusFamily"
+                          IsVisible="false">
+                <StackLayout
+                    HeightRequest="350" 
+                    Margin="10,50"
+                    Padding="10,0"
+                    Spacing="0"
+                    Orientation="Vertical"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand">
+                    <Label Text="Danh sách địa chỉ"
+                           BackgroundColor="White"
+                           HorizontalTextAlignment="Center"
+                           FontSize="Title"
+                           Padding="10"/>
+                    <StackLayout HeightRequest="0.5"
+                                 BackgroundColor="Gray"
+                                 HorizontalOptions="FillAndExpand"/>
+                    <Label Text="Không có dữ liệu, Hãy thiết lập ở phần thông tin."
+                           BackgroundColor="White"
+                           TextColor="Orange"
+                           HorizontalTextAlignment="Center"
+                           FontSize="Small"
+                           Padding="5"
+                           x:Name="titleNoDataCusFam"
+                           IsVisible="false"/>
+                    <ListView ItemsSource="{Binding Items}"  
+                          BackgroundColor="White" 
+                          VerticalOptions="Center" 
+                          HorizontalOptions="Center"
+                              HasUnevenRows="True"
+                              SelectionMode="None"
+                              SeparatorColor="White"
+                              x:Name="listDataFam">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame Padding="2"
+                                       CornerRadius="10" 
+                                       BackgroundColor="White"
+                                       HasShadow="True"
+                                       Margin="20,5">
+                                        <StackLayout Orientation="Horizontal"
+                                             HorizontalOptions="FillAndExpand"
+                                             VerticalOptions="CenterAndExpand" >
+                                            <CheckBox HorizontalOptions="Start"
+                                              IsChecked="{Binding IsSelected}"
+                                              CheckedChanged="CheckBox_CheckedChanged"/>
+                                            <Label Text="{Binding TitleAddress}"
+                                           TextColor="Black"
+                                                   HorizontalTextAlignment="Center" 
+                                               HorizontalOptions="FillAndExpand"
+                                               VerticalOptions="Center"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <StackLayout HeightRequest="0.5"
+                                 BackgroundColor="Gray"
+                                 HorizontalOptions="FillAndExpand"/>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand"
+                                 BackgroundColor="White"
+                                 Padding="10,10">
+                        <Button Text="Huỷ"
+                                 x:Name="cancelPopupCusFamButton"
+                                FontAttributes="Bold"
+                                TextColor="White"
+                                FontSize="13"
+                                HeightRequest="40" 
+                                BackgroundColor="#C0808080"
+                                CornerRadius="20"
+                                 HorizontalOptions="FillAndExpand"/>
+                        <Button Text="Xác nhận"
+                                x:Name="confirmPopupCusFamButton"
+                                FontAttributes="Bold"
+                                TextColor="White"
+                                FontSize="13"
+                                HeightRequest="40" 
+                                BackgroundColor="Orange"
+                                CornerRadius="20"
+                                HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
+        </AbsoluteLayout> 
     </ContentPage.Content>
 </ContentPage>

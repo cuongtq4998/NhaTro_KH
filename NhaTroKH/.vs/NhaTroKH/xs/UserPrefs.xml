@@ -1,31 +1,36 @@
-﻿<Properties StartupConfiguration="{3A7A8F16-BFA4-4AE6-982C-40443B725E32}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="NhaTroKH.Android/MainActivity.cs">
-    <Files>
-      <File FileName="NhaTroKH.Android/MainActivity.cs" Line="1" Column="1" />
-    </Files>
+﻿<Properties StartupConfiguration="{2D9C54AA-7560-4D69-ACA4-1EC0B906F85C}|Default">
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="NhaTroKH" expanded="True">
             <Node name="NhaTroKH" expanded="True" />
-            <Node name="NhaTroKH.Android" expanded="True">
-              <Node name="MainActivity.cs" selected="True" />
-            </Node>
           </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>setResponse</Value>
+          <Value>listSort</Value>
+          <Value>itemLast</Value>
+          <Value>numIndexLast</Value>
+          <Value>response</Value>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.NhaTroKH.iOS Xamarin.HotReload.DebuggerTimeoutException.NhaTroKH.iOS.HideInfoBar="True" TriggeredFromHotReload="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.08459DAE-0BBA-4331-860B-CAF5967C0B71" />
-  <MonoDevelop.Ide.ItemProperties.NhaTroKH.Android TriggeredFromHotReload="False" PreferredExecutionTarget="Android.WCY4C18716000470" Xamarin.HotReload.DebuggerTimeoutException.NhaTroKH.Android.HideInfoBar="True" />
+  <MonoDevelop.Ide.ItemProperties.NhaTroKH.iOS Xamarin.HotReload.DebuggerTimeoutException.NhaTroKH.iOS.HideInfoBar="True" TriggeredFromHotReload="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.102D3C72-FDA4-4B4C-854F-C3CB2138751E" />
+  <MonoDevelop.Ide.ItemProperties.NhaTroKH.Android PreferredExecutionTarget="Android.pixel_2_pie_9_0_-_api_28" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <Debugger.DebugSourceFolders>
     <String>/Users/macbookpro/Library/Caches/VisualStudio/8.0/Symbols/xamarin/Xamarin.Forms/df202a3054a7e2e1763744c4dc518f076e855755</String>
     <String>/Users/macbookpro/Library/Caches/VisualStudio/8.0/Symbols/mono/mono/5e9cb6d1c1de430965312927d5aed7fcb27bfa73</String>
   </Debugger.DebugSourceFolders>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/macbookpro/Documents/SourceTree/NhaTro_KH/NhaTroKH/NhaTroKH/service/restAPI.cs" relfile="NhaTroKH/service/restAPI.cs" line="34" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

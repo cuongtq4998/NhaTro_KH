@@ -1,193 +1,248 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:NhaTroKH.viewmodel"
+             xmlns:behavors="clr-namespace:NhaTroKH.extension"
              x:Class="NhaTroKH.viewUI.WaveInformationChargePageUI">
+
+    <ContentPage.BindingContext>
+        <viewModel:WaveInformationChargePageVM/>
+    </ContentPage.BindingContext>
+
     <NavigationPage.TitleView>
-        <Label Text="Thông tin điện nước"
+        <Label Text="THÔNG TIN ĐIỆN NƯỚC"
                FontAttributes="Bold"
-            FontSize="Large"
-            HorizontalTextAlignment="Center"
-               TextColor="Black"/>
+               FontSize="Medium"
+               Margin="0,0,50,0"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center"
+               TextColor="White"/>
     </NavigationPage.TitleView>
+
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical"
-                     Spacing="0"
-                     HorizontalOptions="Center" 
-                     Padding="0,20,0,0">
-            <ActivityIndicator x:Name="activityIndicator"  
-                               VerticalOptions="Center" 
-                               HorizontalOptions="Center" 
-                               Color="Black" 
-                               WidthRequest="20" 
-                             HeightRequest="20" />
-            <ScrollView>
-                <StackLayout Orientation="Vertical"
-                             WidthRequest="370">
-                    <StackLayout Orientation="Horizontal"
-                             HorizontalOptions="Center">
-                        <Label  
-                            Text="Năm"
-                            FontSize="15"
-                            FontAttributes="Italic" 
-                            WidthRequest="70"
-                            VerticalOptions="Center"/>
-                        <Frame CornerRadius="8" 
-                               HorizontalOptions="Center"
-                               Padding="5"
-                               WidthRequest="220"
-                               BackgroundColor="White">
-                            <Entry 
-                                FontSize="14"
-                                Placeholder="Nhập năm..."
-                                WidthRequest="250"
-                                Keyboard="Numeric"
-                                x:Name="NAM"
-                                TextChanged="NAM_TextChanged"/>
-                        </Frame>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical"
+                         Spacing="0" 
+                         IsVisible="{Binding LayerBaseLoginIsHidden, Mode=TwoWay}"
+                         HorizontalOptions="FillAndExpand"
+                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                         AbsoluteLayout.LayoutFlags="All">
+                <ActivityIndicator x:Name="activityIndicator"  
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="FillAndExpand" 
+                                   Color="Black" 
+                                   WidthRequest="20"
+                                   HeightRequest="20" />
+                <ScrollView>
+                    <StackLayout Orientation="Vertical"
+                                 HorizontalOptions="FillAndExpand"
+                                 Margin="10">
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="FillAndExpand">
+                            <Label Text="Năm"
+                                   FontSize="15"
+                                   FontAttributes="Italic"
+                                   VerticalOptions="Center"/>
+                            <Frame CornerRadius="8" 
+                                   HorizontalOptions="FillAndExpand"
+                                   Padding="5"
+                                   HasShadow="False" 
+                                   BackgroundColor="White">
+                                <Entry FontSize="14"
+                                       Placeholder="Nhập năm..."
+                                       Keyboard="Numeric"
+                                       x:Name="NAM"
+                                       Text="{Binding EntryYear}">
+                                    <Entry.Behaviors>
+                                        <behavors:EventToCommandBehavior
+                                            EventName="TextChanged"
+                                            Command="{Binding TextChangedCommand}"/>
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </Frame>
 
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                             HorizontalOptions="Center">
-                        <Label Text="Tháng:" 
-                       VerticalOptions="Center"
-                               WidthRequest="80"/>
-                        <Frame CornerRadius="8" 
-                               HorizontalOptions="Center"
-                               Padding="5"
-                               WidthRequest="220"
-                               BackgroundColor="White">
-                            <Entry Placeholder="Nhập tháng..." 
-                           WidthRequest="180"
-                                   FontSize="14"
-                           Keyboard="Numeric"
-                           x:Name="THANG"
-                           TextChanged="THANG_TextChanged"/>
-                        </Frame>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="FillAndExpand">
+                            <Label Text="Tháng:"
+                                   VerticalOptions="Center"/>
+                            <Frame CornerRadius="8" 
+                                   HorizontalOptions="FillAndExpand"
+                                   Padding="5"
+                                   HasShadow="False"
+                                   BackgroundColor="White">
+                                <Entry Placeholder="Nhập tháng..."
+                                       FontSize="14"
+                                       Keyboard="Numeric"
+                                       x:Name="THANG"
+                                       Text="{Binding EntryMonth}">
+                                    <Entry.Behaviors>
+                                        <behavors:EventToCommandBehavior
+                                            EventName="TextChanged"
+                                            Command="{Binding MonthTextChangedCommand}"/>
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </Frame>
+                        </StackLayout>
 
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                 HorizontalOptions="Center">
-                        <Label Text="Phòng:" 
-                               WidthRequest="80"
-                       VerticalOptions="Center"/>
-                        <Frame CornerRadius="8" 
-                               HorizontalOptions="Center"
-                               Padding="5"
-                               WidthRequest="220"
-                               BackgroundColor="White">
-                            <Entry Placeholder="Nhập số phòng..."
-                               WidthRequest="180"
-                                   FontSize="14"
-                               Keyboard="Numeric"
-                               x:Name="PHONG" 
-                               TextChanged="PHONG_TextChanged"/>
-                        </Frame>
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="FillAndExpand">
+                            <Label Text="Phòng:"
+                                   VerticalOptions="Center"/>
+                            <Frame CornerRadius="8"
+                                   HorizontalOptions="FillAndExpand"
+                                   Padding="5"
+                                   HasShadow="False"
+                                   BackgroundColor="White">
+                                <Entry Placeholder="Nhập số phòng..."
+                                       FontSize="14"
+                                       Keyboard="Numeric"
+                                       x:Name="PHONG"
+                                       Text="{Binding EntryRoom}">
+                                    <Entry.Behaviors>
+                                        <behavors:EventToCommandBehavior
+                                            EventName="TextChanged"
+                                            Command="{Binding RoomTextChangedCommand}"/>
+                                    </Entry.Behaviors>
+                                </Entry>
+                            </Frame>
 
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                HorizontalOptions="Center">
-                        <Label Text="Chỉ số điện mới:" 
-                       VerticalOptions="Center"
-                               WidthRequest="80"/>
-                        <Frame CornerRadius="8" 
-                               HorizontalOptions="Center"
-                               Padding="5"
-                               WidthRequest="220"
-                               BackgroundColor="White">
-                            <Entry Placeholder="Nhập vào đây..."
-                               WidthRequest="180"
-                                   FontSize="14"
-                               Keyboard="Numeric"
-                               x:Name="SODIEN" />
-                        </Frame>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="FillAndExpand">
+                            <Label Text="Chỉ số điện mới:" 
+                                    VerticalOptions="Center"/>
+                            <Frame CornerRadius="8" 
+                                   HorizontalOptions="FillAndExpand"
+                                   Padding="5"
+                                   HasShadow="False"
+                                   BackgroundColor="White">
+                                <Entry Placeholder="Nhập vào đây..."
+                                       FontSize="14"
+                                       Keyboard="Numeric"
+                                       x:Name="SODIEN"
+                                       Text="{Binding PagramElectric}"/>
+                            </Frame>
 
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                 HorizontalOptions="Center">
-                        <Label Text="Chỉ số nước mới:" 
-                       VerticalOptions="Center"
-                               WidthRequest="80"/>
-                        <Frame CornerRadius="8" 
-                               HorizontalOptions="Center"
-                               Padding="5"
-                               WidthRequest="220"
-                               BackgroundColor="White">
-                            <Entry Placeholder="Nhập vào đây..."
-                                    WidthRequest="180"
-                                   FontSize="14"
-                                    x:Name="SONUOC"
-                                   Keyboard="Numeric"/>
-                        </Frame>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="FillAndExpand">
+                            <Label Text="Chỉ số nước mới:"
+                                   VerticalOptions="Center"/>
+                            <Frame CornerRadius="8"
+                                   HorizontalOptions="FillAndExpand"
+                                   Padding="5"
+                                   HasShadow="False"
+                                   BackgroundColor="White">
+                                <Entry Placeholder="Nhập vào đây..."
+                                       FontSize="14"
+                                       x:Name="SONUOC"
+                                       Keyboard="Numeric"
+                                       Text="{Binding PagramWater}"/>
+                            </Frame>
 
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                 HorizontalOptions="Center">
-                        <Label Text="SL xe số(nếu có):"
-                               WidthRequest="80"
-                       VerticalOptions="Center"/>
-                        <Frame CornerRadius="8" 
-                               HorizontalOptions="Center"
-                               Padding="5"
-                               WidthRequest="220"
-                               BackgroundColor="White">
-                            <Entry Placeholder="Nhập vào đây..."
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="FillAndExpand">
+                            <Label Text="SL xe số(nếu có):"
+                                   VerticalOptions="Center"/>
+                            <Frame CornerRadius="8"
+                                   HorizontalOptions="FillAndExpand"
+                                   Padding="5"
+                                   HasShadow="False" 
+                                   BackgroundColor="White">
+                                <Entry Placeholder="Nhập vào đây..."
                                    FontSize="14"
-                                   WidthRequest="180" 
                                    x:Name="XESO" 
-                                   Keyboard="Numeric"/>
-                        </Frame>
+                                   Keyboard="Numeric"
+                                   Text="{Binding PagramMotobikeNumber}"/>
+                            </Frame>
 
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                 HorizontalOptions="Center">
-                        <Label Text="SL xe tay ga(nếu có):" 
-                               WidthRequest="80"
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand">
+                            <Label Text="SL xe tay ga(nếu có):" 
                                 VerticalOptions="Center"/>
-                        <Frame CornerRadius="8" 
-                               HorizontalOptions="Center"
+                            <Frame CornerRadius="8" 
+                               HorizontalOptions="FillAndExpand"
                                Padding="5"
-                               WidthRequest="220"
+                               HasShadow="False"
                                BackgroundColor="White">
-                            <Entry Placeholder="Nhập vào đây..."
+                                <Entry Placeholder="Nhập vào đây..."
                                    FontSize="14"
-                                   WidthRequest="180" 
                                    x:Name="XETAYGA" 
-                                   Keyboard="Numeric"/>
-                        </Frame>
+                                   Keyboard="Numeric"
+                                   Text="{Binding PagramMotobike}"/>
+                            </Frame>
 
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
                                  HorizontalOptions="FillAndExpand"
                                  HeightRequest="40"
                                  Padding="10"
                                  Margin="0,10,0,0">
-                        <Button Text="Trở về"
+                            <Button Text="Trở về"
                                 x:Name="btnback"
                                 FontAttributes="Bold"
                                 BackgroundColor="Red"
+                                Padding="5"
                                 TextColor="White"
                                 FontSize="12"
                                 CornerRadius="10" 
-                                Clicked="btnback_Clicked" />
-                        <Button Text="Thêm"
+                                Command="{Binding BackCommand}"/>
+                            <Button Text="Thêm"
                                 BackgroundColor="Orange"
                                 TextColor="White"
                                 CornerRadius="10"
                                 x:Name="btnThem"
                                 FontSize="12"
                                 FontAttributes="Bold"
-                                HorizontalOptions="FillAndExpand"
-                                Clicked="btnThem_Clicked" />
-                        
-                    </StackLayout>
-                    <Label Text="Ghi chú: Thông tin này nhập trước ngày 25 hàng tháng"
+                                HorizontalOptions="FillAndExpand" 
+                                Command="{Binding AddAndLookInforCommand}"/>
+
+                        </StackLayout>
+                        <Label Text="Ghi chú: Thông tin này nhập trước ngày 25 hàng tháng"
                            TextColor="Red"
                            FontSize="14"
+                               HorizontalTextAlignment="Center"
                            FontAttributes="Italic"
                            HorizontalOptions="Center"
                            Padding="10"/>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+
+            <ContentView AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                         AbsoluteLayout.LayoutFlags="All"
+                         BackgroundColor="#C0808080"
+                         Padding="10, 0"
+                         x:Name="layerLoadLogin"
+                         IsVisible="{Binding LayerLoadLoginIsHidden, Mode=TwoWay}">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout Orientation="Vertical"
+                                 HeightRequest="150"
+                                 WidthRequest="250"
+                                 BackgroundColor="White" >
+                        <ActivityIndicator
+                            x:Name="activityIndicatorLoadingPage"
+                            HeightRequest="55"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            WidthRequest="55"
+                            Color="GreenYellow"
+                            IsRunning="True" 
+                            IsEnabled="False"/> 
+                        <Label Margin="20,0,20,0"
+                               Text="Hãy chờ tí..."
+                               TextColor="Black"
+                               FontAttributes="Italic"
+                               HorizontalTextAlignment="Center"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="FillAndExpand"/>
+                    </StackLayout>
                 </StackLayout>
-            </ScrollView>
-        </StackLayout>
+            </ContentView>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

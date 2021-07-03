@@ -1,14 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NhaTroKH.viewUI.RoomInformationChartPageUI">
+             x:Class="NhaTroKH.viewUI.RoomInformationChartPageUI" >
+
     <NavigationPage.TitleView>
         <Label Text="THÔNG TIN TIỀN PHÒNG"
                FontAttributes="Bold"
-            FontSize="Large"
+            FontSize="Medium"
+               Margin="0,0,50,0"
+               VerticalTextAlignment="Center"
             HorizontalTextAlignment="Center"
-               TextColor="Black"/>
+               TextColor="White"/>
     </NavigationPage.TitleView>
+
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Spacing="0">
             <ActivityIndicator x:Name="activityIndicator"   
@@ -59,8 +63,9 @@
                                WidthRequest="100"
                                HorizontalOptions="Start"/>
                         <Frame x:Name="toastFrame" 
-                               CornerRadius="8" 
-                               HorizontalOptions="Center"
+                               CornerRadius="8"
+                               HasShadow="False"
+                               HorizontalOptions="FillAndExpand"
                                Padding="5"
                                WidthRequest="220"
                                BackgroundColor="White">
@@ -203,6 +208,7 @@
                         <Button Text="Trở về"
                                 FontSize="12"
                                 x:Name="BACK_"
+                                Padding="5"
                                 FontAttributes="Bold"
                                 BackgroundColor="Red"
                                 TextColor="White"

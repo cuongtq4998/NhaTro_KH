@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
     <PackageReference Include="FirebaseDatabase.net" Version="4.0.4" />
@@ -20,10 +20,10 @@
     <PackageReference Include="Telerik.UI.for.Xamarin" Version="2020.3.1022.1" />
     <PackageReference Include="Acr.UserDialogs" Version="7.1.0.481" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.3.7" />
+    <PackageReference Include="SQLite.Net-PCL" Version="3.1.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DB\" />
-    <Folder Include="DB\SqlLite\" />
     <Folder Include="viewUI\" />
     <Folder Include="Renderers\" />
   </ItemGroup>

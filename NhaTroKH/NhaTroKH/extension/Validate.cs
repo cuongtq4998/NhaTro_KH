@@ -7,11 +7,11 @@ namespace NhaTroKH.Common
 {
     class Validate
     {
-        //validate CMND digit 9 number
+        //validate CMND out of digit 12 number
         public static void validateCMND(object sender)
         {
             var textChange = (Entry)sender;
-            if (textChange.Text.Length > 9)
+            if (textChange.Text.Length > 12)
             {
                 string entryMax = textChange.Text;
 
@@ -20,5 +20,6 @@ namespace NhaTroKH.Common
                 textChange.Text = entryMax;
             }
         }
+         
     }
 }

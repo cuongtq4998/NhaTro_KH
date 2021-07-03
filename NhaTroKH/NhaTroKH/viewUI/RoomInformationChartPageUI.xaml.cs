@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using FireSharp.Interfaces;
 using FireSharp.Response;
+using NhaTroKH.model;
 using NhaTroKH.Models;
 using Xamarin.Forms;
 
@@ -83,11 +84,11 @@ namespace NhaTroKH.viewUI
                     FirebaseResponse res;
                     if (now.Month < 10)
                     {
-                        res = await client.GetAsync("ThongTinTienPhong/" + NAM_.Text + "/" + Convert.ToString(now.Month).PadLeft(2, '0') + "/" + LoginPageUI.SOCMND + "/" + PHONG_.Text + "/");
+                        res = await client.GetAsync("ThongTinTienPhong/" + NAM_.Text + "/" + Convert.ToString(now.Month).PadLeft(2, '0') + "/" + UserData.shared.IDCard + "/" + PHONG_.Text + "/");
                     }
                     else
                     {
-                        res = await client.GetAsync("ThongTinTienPhong/" + NAM_.Text + "/" + Convert.ToString(now.Month) + "/" + LoginPageUI.SOCMND + "/" + PHONG_.Text + "/");
+                        res = await client.GetAsync("ThongTinTienPhong/" + NAM_.Text + "/" + Convert.ToString(now.Month) + "/" + UserData.shared.IDCard + "/" + PHONG_.Text + "/");
                     }
                     THONGTINTIENPHONG tienphong = res.ResultAs<THONGTINTIENPHONG>();
                     if (res.Body == "null")

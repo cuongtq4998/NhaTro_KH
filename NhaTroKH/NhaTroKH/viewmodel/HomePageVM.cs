@@ -30,8 +30,6 @@ namespace NhaTroKH.viewmodel
             ExitButton = new Command(async () => await eventExit());
         }
 
-
-
         private async Task goToPageCustomer()
         {
             var view = new CustomerPageUI();
@@ -63,8 +61,17 @@ namespace NhaTroKH.viewmodel
         }
 
         private async Task eventExit()
-        {
-            await navigation.PopAsync();
+        { 
+            bool notify = await App.Current.MainPage.DisplayAlert(
+                        "Thông báo", // title
+                        "Bạn có muốn thoát không?", // message
+                        "Có", // true
+                        "Không"); // false
+
+            if (notify)
+            {
+                await navigation.PopAsync();
+            } 
         }
 
     }

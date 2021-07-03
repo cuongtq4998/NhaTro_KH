@@ -1,34 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using NhaTroKH.Database;
 using NhaTroKH.DB;
 using NhaTroKH.viewUI;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+using Xamarin.Forms; 
 
 namespace NhaTroKH
 {
     public partial class App : Application
     {
 
-        static AccommodationDBsqlLite database;
-        // Create the database connection as a singleton.
-        public static AccommodationDBsqlLite Database
+        /// <summary>
+        /// create DB
+        /// </summary>
+        static DatabaseSQLite database;
+
+        public static DatabaseSQLite Database
         {
             get
             {
                 if (database == null)
                 {
-                    database = new AccommodationDBsqlLite(
-                        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                        "DataTinhModel.db3"
-                        ));
+                    database = new DatabaseSQLite(
+                        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "account.db3"));
                 }
                 return database;
             }
         }
-
 
         public App()
         {
@@ -38,7 +35,10 @@ namespace NhaTroKH
         protected override void OnStart()
         {
             Console.WriteLine("Start");
-            MainPage = new NavigationPage(new LoadingPageUI());
+            var navigationPage = new NavigationPage(new LoadingPageUI());
+            navigationPage.BarBackgroundColor = Color.SlateBlue;
+            navigationPage.BarTextColor = Color.White;
+            MainPage = navigationPage;
         }
 
         protected override void OnSleep()

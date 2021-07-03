@@ -4,11 +4,13 @@
              x:Class="NhaTroKH.viewUI.CreateAccountPageUI">
     <NavigationPage.TitleView>
         <Label
+            Margin="0,0,50,0"
             FontAttributes="Bold"
-            FontSize="Large"
+            FontSize="Medium"
             HorizontalTextAlignment="Center"
+            VerticalTextAlignment="Center"
             Text="TẠO TÀI KHOẢN"
-            TextColor="Black" />
+            TextColor="White" />
     </NavigationPage.TitleView>
     <ContentPage.Content>
         <StackLayout

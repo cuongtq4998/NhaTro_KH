@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 using FireSharp.Interfaces;
 using FireSharp.Response;
 using NhaTroKH.DB;
+using NhaTroKH.model;
 using NhaTroKH.Model;
 using NhaTroKH.Models;
+using NhaTroKH.Service;
+using NhaTroKH.viewmodel;
 using Xamarin.Forms;
 using static NhaTroKH.@interface.Enum;
 
@@ -15,70 +18,153 @@ namespace NhaTroKH.viewUI
 {
     public partial class CustomerProcessPageUI : ContentPage
     {
+        private Iconfig iconfig = new Iconfig();
+        IFirebaseClient client;
+        private int IDThongTinKhachHangGD = 0;
+        public static bool flagEdit = false;
+        private DateTime dateLastIndex = new DateTime();
+
+        private DateTime dateTuNgay = DateTime.Now;
+        private DateTime dateDenNgay = DateTime.Now;
+
+        string CMND_ = UserData.shared.IDCard;
+        private string jobSiteLabelNavigatePage = KeyCustomerViewEnumeration.CustomerProcessPlaceholder_JobSite;
+        private string addressSiteLabelNavigatePage = KeyCustomerViewEnumeration.CustomerProcessPlaceholder_Current;
+
+        ObservableCollection<listquatrinh> employees = new ObservableCollection<listquatrinh>();
+        public ObservableCollection<listquatrinh> Employees { get { return employees; } }
+
+        private bool isJobSite, isAccomodation = false;
+        AddressSettingModel addressSetting;
+
         public CustomerProcessPageUI()
         {
-            InitializeComponent();
-            client = new FireSharp.FirebaseClient(config);
-            getquatrinh(LoginPageUI.SOCMND);
+            InitializeComponent(); 
+            client = new FireSharp.FirebaseClient(iconfig.config); 
+            getquatrinh(UserData.shared.IDCard);
+            BindingContext = new CustomerProgessPageVM(Navigation);
+            this.handleActionView();
+            JobSiteLabelNavigatePage.Text = this.jobSiteLabelNavigatePage;
+            AddressSiteLabelNavigatePage.Text = this.addressSiteLabelNavigatePage;
+        }
+
+        private void handleActionView()
+        {
             lst.ItemSelected += Lst_ItemSelected1;
 
             DENNGAY_.DateSelected += (senderr, er) =>
             {
                 dateDenNgay = DENNGAY_.Date;
             };
+
             TUNGAY_.DateSelected += (senderr, er) =>
             {
                 dateTuNgay = TUNGAY_.Date;
             };
 
-            JobSiteLabelNavigatePage.Text = this.jobSiteLabelNavigatePage;
-            AddressSiteLabelNavigatePage.Text = this.addressSiteLabelNavigatePage;
+            SiteCurentProcessButton.Clicked += (sender, e) =>
+            { 
+                this.showList(ValueIsAddress.isAccomodation);
+            };
 
-            SiteCurentProcessButton.Clicked += async (sender, e) =>
+            AddressJobProcessButton.Clicked += (sender, e) =>
             {
+                this.showList(ValueIsAddress.isJobSite);
+            };
 
-                if (Application.Current.Properties.ContainsKey(KeyCustomerViewEnumeration.DefaultAddress))
+            cancelPopupCusProgessButton.Clicked += (sender, e) =>
+            {
+                var viewModel = BindingContext as CustomerProgessPageVM;
+                for (int i = 0; i < viewModel.Items.Count; i++)
                 {
-                    string address = Application.Current.Properties[KeyCustomerViewEnumeration.DefaultAddress].ToString();
-                    bool dialog = await DisplayAlert("Thông báo", "Bạn sẽ chọn địa chỉ: " + address, "OK", "Không");
-                    if (dialog)
+                    if (viewModel.Items[i].IsSelected)
                     {
-                        AddressSiteLabelNavigatePage.Text = Application.Current.Properties[KeyCustomerViewEnumeration.DefaultAddress].ToString();
+                        viewModel.Items[i].IsSelected = false;
                     }
                 }
-                else { this.navigatePageSetting(); }
+
+                viewListChooseCusProgess.IsVisible = false;
+                if (addressSetting != null)
+                {
+                    addressSetting.IsSelected = false;
+                } 
+            };
+
+            confirmPopupCusProgessButton.Clicked += (sender, e) => {
+                var viewModel = BindingContext as CustomerProgessPageVM;
+                if (viewModel.Items.Count > 0)
+                {
+                    for (int i = 0; i < viewModel.Items.Count; i++)
+                    {
+                        AddressSettingModel vm = viewModel.Items[i];
+                        if (vm.IsSelected)
+                        {
+                            if (isAccomodation)
+                            {
+                                AddressSiteLabelNavigatePage.Text = vm.TitleAddress;
+                            }
+                            if (isJobSite)
+                            {
+                                JobSiteLabelNavigatePage.Text = vm.TitleAddress;
+                            } 
+                        }
+                    }
+
+                    for (int i = 0; i < viewModel.Items.Count; i++)
+                    {
+                        if (viewModel.Items[i].IsSelected)
+                        {
+                            viewModel.Items[i].IsSelected = false;
+                        }
+                    }
+
+                    viewListChooseCusProgess.IsVisible = false;
+                    if (addressSetting != null)
+                    {
+                        addressSetting.IsSelected = false;
+                    }
+
+                }
+                else
+                {
+                    _ = Navigation.PushAsync(new SettingPageUI());
+                    viewListChooseCusProgess.IsVisible = false;
+                }
             };
         }
 
-        private int IDThongTinKhachHangGD = 0;
-        private DateTime dateLastIndex = new DateTime();
-
-        private DateTime dateTuNgay = DateTime.Now;
-        private DateTime dateDenNgay = DateTime.Now;
-
-        string CMND_ = LoginPageUI.SOCMND;
-        private string jobSiteLabelNavigatePage = KeyCustomerViewEnumeration.CustomerProcessPlaceholder_JobSite;
-        private string addressSiteLabelNavigatePage = KeyCustomerViewEnumeration.CustomerProcessPlaceholder_Current;
-
-        IFirebaseConfig config = new FireSharp.Config.FirebaseConfig
+        private void arrange(ValueIsAddress addressSetting)
         {
-            AuthSecret = "mJh3ttHegM5JEw4I8KKbreCWxcmVjIrcM5I9fhjx",
-            BasePath = "https://nhatro-271ce.firebaseio.com/"
-
-        };
-
-        ObservableCollection<listquatrinh> employees = new ObservableCollection<listquatrinh>();
-        public ObservableCollection<listquatrinh> Employees { get { return employees; } }
-        IFirebaseClient client;
-
-        private async void navigatePageSetting()
-        {
-            bool dialog = await DisplayAlert("Thông báo", "Bạn chưa có địa chỉ mặc định. Vào thiết lập thông tin ngay! ", "OK", "Không");
-            if (dialog)
+            switch (addressSetting)
             {
-                _ = Navigation.PushAsync(new SettingPageUI());
+                case ValueIsAddress.isAccomodation:
+                    this.isAccomodation = true;
+                    this.isJobSite = false; 
+                    break;
+                case ValueIsAddress.isJobSite: 
+                    this.isAccomodation = false;
+                    this.isJobSite = true;
+                    break; 
             }
         }
+
+
+        private void showList(ValueIsAddress valueIsAddress)
+        {
+            this.arrange(valueIsAddress);
+            viewListChooseCusProgess.IsVisible = true;
+            var viewModel = BindingContext as CustomerProgessPageVM;
+            if (viewModel.Items.Count <= 0)
+            {
+                listDataProgress.IsVisible = false;
+                titleNoDataCusprogress.IsVisible = true;
+            }
+            else
+            {
+                listDataProgress.IsVisible = true;
+                titleNoDataCusprogress.IsVisible = false;
+            }
+        }  
 
         private void Lst_ItemSelected1(object sender, SelectedItemChangedEventArgs e)
         {
@@ -103,11 +189,12 @@ namespace NhaTroKH.viewUI
             if (action1 == "Chỉnh Sửa")
             {
                 editThongTin(CMND_, foo);
-                getquatrinh(LoginPageUI.SOCMND);
+                getquatrinh(UserData.shared.IDCard);
+                flagEdit = true;
             }
             if (action1 == "Huỷ")
             {
-                getquatrinh(LoginPageUI.SOCMND);
+                getquatrinh(UserData.shared.IDCard);
             }
         }
 
@@ -125,6 +212,7 @@ namespace NhaTroKH.viewUI
                     IDThongTinKhachHangGD = GD.ID;
                     NGHENGHIEP_.Text = GD.NGHENGHIEP;
                     AddressSiteLabelNavigatePage.Text = GD.CHO_O;
+                    JobSiteLabelNavigatePage.Text = GD.NOILAMVIEC;
                     TUNGAY_.Date = GD.TUTHANGNAM.Value;
                     DENNGAY_.Date = GD.DENTHANGNAM.Value;
                 }
@@ -138,6 +226,12 @@ namespace NhaTroKH.viewUI
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            var vm = BindingContext as CustomerProgessPageVM;
+            if (vm.Items.Count <= 0)
+            {
+                BindingContext = new CustomerProgessPageVM(Navigation);
+            }
+
             try
             {
                 if (Application.Current.Properties.ContainsKey(KeyCustomerViewEnumeration.CustomerProcessUserCurrentSite))
@@ -186,7 +280,7 @@ namespace NhaTroKH.viewUI
 
         protected override void OnDisappearing()
         {
-            base.OnDisappearing();
+            base.OnDisappearing(); 
             RemoveKey(
                 new List<string>
                 {
@@ -232,7 +326,7 @@ namespace NhaTroKH.viewUI
                     {
                         //Tiến hành lấy vị trí cuối
                         var mangvitricuoi = new List<listquatrinh>();
-                        client = new FireSharp.FirebaseClient(config);
+                        //client = new FireSharp.FirebaseClient(config);
                         int i = 0;
                         bool check = true;
                         while (check)
@@ -293,7 +387,7 @@ namespace NhaTroKH.viewUI
                 }
                 else
                 {
-                    getquatrinh(LoginPageUI.SOCMND);
+                    getquatrinh(UserData.shared.IDCard);
                 }
             }
             catch (Exception e) { }
@@ -323,7 +417,7 @@ namespace NhaTroKH.viewUI
 
         public async Task sendquatrinhAsync()
         {
-            IFirebaseClient client = new FireSharp.FirebaseClient(config);
+            //IFirebaseClient client = new FireSharp.FirebaseClient(config);
             int dem = 0;
             int i = 1;
             bool co = true;
@@ -364,13 +458,15 @@ namespace NhaTroKH.viewUI
                     KHACH_THUE_QUA_TRINH data1 = response.ResultAs<KHACH_THUE_QUA_TRINH>();
 
                     getquatrinh(CMND_);
-                    if (IDThongTinKhachHangGD == 0)
+                    if (!flagEdit)
                     {
-                        _ = DisplayAlert("Thông báo", "Thêm thành công", "OK");
+                        _ = DisplayAlert("Thông báo", "Thêm thành công", "OK"); 
                     }
                     else
                     {
                         _ = DisplayAlert("Thông báo", "Chỉnh sửa thông tin thành công", "OK");
+                        IDThongTinKhachHangGD = 0;
+                        flagEdit = false;
                     }
                 }
             }
@@ -437,11 +533,12 @@ namespace NhaTroKH.viewUI
                 // get Date Last Index
                 if (employees.Count > 0)
                 {
-                    this.dateLastIndex = (DateTime)employees[employees.Count - 1].denngay;
-                    var getAddress = employees[employees.Count - 1].choo;
+                    var item = employees[employees.Count - 1]; 
+                    this.dateLastIndex = (DateTime)item.denngay; 
                     this.TUNGAY_.Date = this.dateLastIndex;
                     this.DENNGAY_.Date = dateLastIndex.Date.AddDays(6);
-                    this.AddressSiteLabelNavigatePage.Text = getAddress;
+                    this.AddressSiteLabelNavigatePage.Text = item.choo;
+                    this.JobSiteLabelNavigatePage.Text = item.noilamviec;
                 }
                 else
                 {
@@ -478,7 +575,16 @@ namespace NhaTroKH.viewUI
             NGHENGHIEP_.Text = string.Empty;
             TUNGAY_.Date = DateTime.Now;
             DENNGAY_.Date = DateTime.Now;
-            Application.Current.Properties.Clear();
+            //Application.Current.Properties.Clear();
+            RemoveKey(
+               new List<string>
+               {
+                    KeyCustomerViewEnumeration.CustomerProcessUserCurrentSite,
+                    KeyCustomerViewEnumeration.CustomerProcessUserJobSite,
+                    KeyCustomerViewEnumeration.CustomerProcessDBJob,
+                    KeyCustomerViewEnumeration.CustomerProcessDBDateTuNgay,
+                    KeyCustomerViewEnumeration.CustomerProcessDBDateDenNgay,
+               });
         }
 
         private void Themmoi_Clicked_1(object sender, EventArgs e)
@@ -487,7 +593,7 @@ namespace NhaTroKH.viewUI
             {
                 _ = sendquatrinhAsync();
                 //  lênh này dùng để clear hết toàn bộ key đã lưu -> giảm dung lượng app
-                Application.Current.Properties.Clear();
+                //Application.Current.Properties.Clear();
             }
             else
             {
@@ -520,10 +626,11 @@ namespace NhaTroKH.viewUI
             });
         }
 
-        void HomeProcess_Clicked(System.Object sender, System.EventArgs e)
-        {
-            Navigation.PopToRootAsync();
-        }
+        //void HomeProcess_Clicked(System.Object sender, System.EventArgs e)
+        //{
+        //    //Navigation.PopToRootAsync();
+        //    Navigation.PopAsync();
+        //}
 
         public void SaveKey()
         {
@@ -531,6 +638,16 @@ namespace NhaTroKH.viewUI
             Application.Current.Properties[KeyCustomerViewEnumeration.CustomerProcessDBDateTuNgay] = dateTuNgay;
             Application.Current.Properties[KeyCustomerViewEnumeration.CustomerProcessDBDateDenNgay] = dateDenNgay;
             Application.Current.SavePropertiesAsync();
+        }
+
+        void CheckBox_CheckedChanged(System.Object sender, Xamarin.Forms.CheckedChangedEventArgs e)
+        {
+            if (addressSetting != null)
+            {
+                addressSetting.IsSelected = false;
+            }
+            AddressSettingModel currentModel = ((CheckBox)sender).BindingContext as AddressSettingModel;
+            addressSetting = currentModel; 
         }
     }
 }

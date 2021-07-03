@@ -2,17 +2,30 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.XamarinForms.Primitives"
              x:Class="NhaTroKH.viewUI.CustomerProcessPageUI">
+
+    <!-- Toolbar page -->
     <ContentPage.ToolbarItems>
         <ToolbarItem
             x:Name="btnlammoi"
             Clicked="btnlammoi_Clicked"
             Order="Default"
             Priority="0"
-            Text="làm mới" />
+            Text="Làm mới" />
     </ContentPage.ToolbarItems>
+
+    <!-- Setting style -->
+    <ContentPage.Resources>
+        <Style TargetType="Button" x:Key="NoDefaultCapButton">
+            <Setter Property="TextTransform" Value="None"/>
+        </Style>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
-            <StackLayout
+        <AbsoluteLayout> 
+            <StackLayout Orientation="Vertical"
+                         AbsoluteLayout.LayoutBounds="0,0,1,1"
+                         AbsoluteLayout.LayoutFlags="All">
+                <StackLayout
                 HorizontalOptions="Center"
                 Spacing="0"
                 VerticalOptions="Center">
@@ -33,184 +46,208 @@
                     Text="Tóm tắt về bản thân (Từ đủ 14 tuổi trở lên đến nay ở đâu, làm gì)"
                     TextColor="Red" />
             </StackLayout>
-
-            <telerikPrimitives:RadTabView x:Name="tabView">
-                <telerikPrimitives:RadTabView.Items>
-                    <telerikPrimitives:TabViewItem HeaderText="Nhập thông bản thân">
-                        <telerikPrimitives:TabViewItem.Content>
-                            <StackLayout Orientation="Vertical">
-                                <ScrollView>
-                                    <StackLayout x:Name="layout_1"
-                                                 Margin="20">
-                                        <ActivityIndicator
-                                        x:Name="_LOADlayoutCHOO"
-                                        HeightRequest="20"
-                                        HorizontalOptions="Center"
-                                        VerticalOptions="Center"
-                                        WidthRequest="20"
-                                        Color="Black" />
-
-                                        <!--tu ngay-->
-                                        <StackLayout
-                                        HorizontalOptions="FillAndExpand"
-                                        Orientation="Horizontal"
-                                        Spacing="0"
-                                        VerticalOptions="Center">
-                                            <Label
-                                            Text="Từ ngày"
-                                            TextColor="Black"
-                                            VerticalOptions="Center"
-                                            WidthRequest="80" />
-                                            <DatePicker
-                                            x:Name="TUNGAY_"
-                                            FontSize="Small"
+                <telerikPrimitives:RadTabView x:Name="tabView"
+                                              VerticalOptions="FillAndExpand">
+                    <telerikPrimitives:RadTabView.Items>
+                        <telerikPrimitives:TabViewItem HeaderText="Nhập thông bản thân">
+                            <telerikPrimitives:TabViewItem.Content>
+                                <StackLayout Orientation="Vertical" 
+                                             VerticalOptions="FillAndExpand">
+                                    <ScrollView>
+                                        <StackLayout x:Name="layout_1"
+                                                     Margin="10"> 
+                                            <!--tu ngay-->
+                                            <StackLayout
                                                 HorizontalOptions="FillAndExpand"
-                                            VerticalOptions="Center" 
-                                            WidthRequest="250" />
-                                        </StackLayout>
-
-                                        <!--den ngay-->
-                                        <StackLayout
-                                        HorizontalOptions="FillAndExpand"
-                                        Orientation="Horizontal"
-                                        Spacing="0"
-                                        VerticalOptions="Center">
-                                            <Label
-                                            Text="Đến ngày"
-                                            TextColor="Black"
-                                            VerticalOptions="Center"
-                                            WidthRequest="80" />
-                                            <DatePicker
-                                            x:Name="DENNGAY_"
-                                            FontSize="Small"
-                                                HorizontalOptions="FillAndExpand" 
-                                            VerticalOptions="Center"
-                                            WidthRequest="250" />
-                                        </StackLayout>
-
-                                        <!--cho o-->
-                                        <StackLayout 
-                                        Orientation="Horizontal"
-                                        Spacing="0"
-                                            HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="Center">
-                                            <Label
-                                            Text="Chỗ ở hiện nay; "
-                                            TextColor="Black"
-                                            VerticalOptions="Center"
-                                            WidthRequest="80" />
-                                            <Frame Margin="1"
-                                                        CornerRadius="2"
-                                                         BorderColor="AliceBlue"
-                                                        HorizontalOptions="FillAndExpand">
-                                                      <Label 
+                                                Orientation="Horizontal"
+                                                Spacing="0"
+                                                VerticalOptions="Center" >
+                                                <Label
+                                                    Text="Từ ngày: "
                                                     TextColor="Black"
-                                                    FontAttributes="Bold"
-                                                    FontSize="13"
-                                                    HorizontalOptions="FillAndExpand" 
-                                                    x:Name="AddressSiteLabelNavigatePage">
-                                                <Label.GestureRecognizers>
-                                                    <TapGestureRecognizer x:Name="AddressSite"
-                                                                          Tapped="AddressSite_Tapped"/>
-                                                </Label.GestureRecognizers>
-                                            </Label>
-                                            </Frame>
-                                            <Button Text="Chọn"
-                                                    HeightRequest="20"
-                                                    FontSize="11"
-                                                    BorderColor="Green"
-                                                    BackgroundColor="White"
-                                                    FontAttributes="Bold"
-                                                    TextColor="Green"
-                                                    CornerRadius="10"
-                                                    BorderWidth="2"
-                                                    WidthRequest="50"
-                                                    TextTransform="None"
-                                                    x:Name="SiteCurentProcessButton"/>
-                                        </StackLayout>
+                                                    VerticalOptions="Center"
+                                                    WidthRequest="80" />
+                                                <DatePicker
+                                                    x:Name="TUNGAY_"
+                                                    FontSize="Small"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    VerticalOptions="Center" 
+                                                    WidthRequest="250" />
+                                            </StackLayout>
 
-                                        <!--nghe nghiep-->
-                                        <StackLayout
-                                        HorizontalOptions="FillAndExpand"
-                                        Orientation="Horizontal"
-                                        Spacing="0"
-                                        VerticalOptions="Center">
-                                            <Label
-                                            Text="Nghề Nghiệp"
-                                            TextColor="Black"
-                                            VerticalOptions="Center"
-                                            WidthRequest="80" />
-                                            <Entry
-                                                x:Name="NGHENGHIEP_"
+                                            <!--den ngay-->
+                                            <StackLayout
                                                 HorizontalOptions="FillAndExpand"
+                                                Orientation="Horizontal"
+                                                Spacing="0"
+                                                VerticalOptions="Center">
+                                                <Label
+                                                    Text="Đến ngày: "
+                                                    TextColor="Black"
+                                                    VerticalOptions="Center"
+                                                    HorizontalOptions="Start"/>
+                                                <DatePicker
+                                                    x:Name="DENNGAY_"
+                                                    FontSize="Small"
+                                                    HorizontalOptions="FillAndExpand" 
+                                                    VerticalOptions="Center"
+                                                    WidthRequest="250" />
+                                            </StackLayout>
+
+                                            <!--cho o-->
+                                            <StackLayout 
+                                                Orientation="Horizontal"
+                                                Spacing="5"
+                                                Margin="5,0"
+                                                HorizontalOptions="FillAndExpand"
+                                                VerticalOptions="Center">
+                                                <Label
+                                                    Text="Chỗ ở: "
+                                                    TextColor="Black"
+                                                    VerticalOptions="Center" 
+                                                    HorizontalOptions="Start"/>
+                                                <Frame Margin="1"
+                                                       HasShadow="False"
+                                                        CornerRadius="2"
+                                                       BorderColor="AliceBlue"
+                                                        HorizontalOptions="FillAndExpand">
+                                                    <Label 
+                                                        TextColor="Black"
+                                                        FontAttributes="Bold"
+                                                        FontSize="13"
+                                                        HorizontalOptions="FillAndExpand" 
+                                                        x:Name="AddressSiteLabelNavigatePage">
+                                                        <Label.GestureRecognizers>
+                                                            <TapGestureRecognizer x:Name="AddressSite"
+                                                                              Tapped="AddressSite_Tapped"/>
+                                                        </Label.GestureRecognizers>
+                                                    </Label>
+                                                </Frame>
+                                                <Button Text="Chọn"
+                                                        HeightRequest="35"
+                                                        FontSize="11"
+                                                        BorderColor="Green"
+                                                        BackgroundColor="White"
+                                                        FontAttributes="Bold"
+                                                        TextColor="Green"
+                                                        CornerRadius="10"
+                                                        BorderWidth="0.5"
+                                                        WidthRequest="50"
+                                                        Style="{x:StaticResource NoDefaultCapButton}"
+                                                        VerticalOptions="Center"
+                                                            HorizontalOptions="Center"
+                                                        x:Name="SiteCurentProcessButton"/>
+                                            </StackLayout>
+
+                                            <!--nghe nghiep-->
+                                            <StackLayout
+                                            HorizontalOptions="FillAndExpand"
+                                            Orientation="Horizontal"
+                                            Spacing="0"
+                                            VerticalOptions="Center">
+                                                <Label
+                                                Text="Nghề Nghiệp"
+                                                TextColor="Black"
                                                 VerticalOptions="Center"
-                                                ReturnType="Done"
-                                                WidthRequest="250" />
-                                        </StackLayout>
-
-                                        <!--noi lam viec-->
-                                        <StackLayout
-                                        Orientation="Horizontal"
-                                        Spacing="0"
-                                            HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="Center">
-                                            <Label
-                                            Text="Nơi làm việc"
-                                            TextColor="Black"
-                                            VerticalOptions="Center"
-                                            WidthRequest="80" />
-                                             <Frame Margin="1"
-                                                        CornerRadius="2"
-                                                         BorderColor="AliceBlue"
-                                                        HorizontalOptions="FillAndExpand">
-                                                     <Label
-                                                    TextColor="Black"
-                                                    FontAttributes="Bold"
+                                                WidthRequest="80" />
+                                                <Entry
+                                                    x:Name="NGHENGHIEP_"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    VerticalOptions="Center"
+                                                    ReturnType="Done"
+                                                    WidthRequest="250"
                                                     FontSize="13"
-                                                    HorizontalOptions="FillAndExpand" 
-                                                    x:Name="JobSiteLabelNavigatePage">
-                                                <Label.GestureRecognizers>
-                                                    <TapGestureRecognizer x:Name="JobSite"
-                                                                          Tapped="JobSite_Tapped"/>
-                                                </Label.GestureRecognizers>
-                                            </Label>
-                                            </Frame> 
+                                                    Placeholder="Nhập nghề nghiệp"/>
+                                            </StackLayout>
+
+                                            <!--noi lam viec-->
+                                            <StackLayout
+                                            Orientation="Horizontal"
+                                            Spacing="2"
+                                                 Margin="5,0"
+                                                HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="Center">
+                                                <Label
+                                                Text="Nơi làm việc"
+                                                TextColor="Black"
+                                                VerticalOptions="Center"
+                                                WidthRequest="80" />
+                                                <Frame Margin="1"
+                                                       HasShadow="False"
+                                                            CornerRadius="2"
+                                                             BorderColor="AliceBlue"
+                                                            HorizontalOptions="FillAndExpand">
+                                                    <Label
+                                                        TextColor="Black"
+                                                        FontAttributes="Bold"
+                                                        FontSize="13"
+                                                        HorizontalOptions="FillAndExpand" 
+                                                        x:Name="JobSiteLabelNavigatePage">
+                                                        <Label.GestureRecognizers>
+                                                            <TapGestureRecognizer x:Name="JobSite"
+                                                                              Tapped="JobSite_Tapped"/>
+                                                        </Label.GestureRecognizers>
+                                                    </Label>
+                                                </Frame>
+                                                <Button Text="Chọn"
+                                                        HeightRequest="35"
+                                                        FontSize="11"
+                                                        BorderColor="Green"
+                                                        BackgroundColor="White"
+                                                        FontAttributes="Bold"
+                                                        TextColor="Green"
+                                                        CornerRadius="10"
+                                                        BorderWidth="0.5"
+                                                        WidthRequest="50"
+                                                        Style="{x:StaticResource NoDefaultCapButton}"
+                                                        VerticalOptions="Center"
+                                                        HorizontalOptions="Center"
+                                                        x:Name="AddressJobProcessButton"/>
+                                            </StackLayout> 
                                         </StackLayout>
+                                    </ScrollView>
+                                    <StackLayout Orientation="Vertical"
+                                                 HorizontalOptions="FillAndExpand"
+                                                 VerticalOptions="End"
+                                                 BackgroundColor="White">
+                                    
+                                        <StackLayout Orientation="Horizontal" 
+                                                 Margin="5,0"
+                                                 HeightRequest="40"
+                                                 Spacing="5">
+                                            <Button 
+                                                BackgroundColor="Red" 
+                                                CornerRadius="10"
+                                                FontAttributes="Bold"
+                                                FontSize="13" 
+                                                Text="Trang chủ"
+                                                Padding="5"
+                                                TextColor="White"
+                                                x:Name="HomeProcess" 
+                                                HorizontalOptions="Start" 
+                                                Style="{x:StaticResource NoDefaultCapButton}"
+                                                Command="{Binding backButton}"
+                                                VerticalOptions="FillAndExpand"/>
+                                            <Button
+                                                x:Name="Themmoi"  
+                                                BackgroundColor="Orange"
+                                                Clicked="Themmoi_Clicked_1"
+                                                CornerRadius="10"
+                                                FontAttributes="Bold"
+                                                FontSize="13" 
+                                                Text="Thêm"
+                                                TextColor="White"
+                                                Style="{x:StaticResource NoDefaultCapButton}"
+                                                HorizontalOptions="FillAndExpand"
+                                                VerticalOptions="FillAndExpand"/>
+                                        </StackLayout>
+                                    </StackLayout> 
+                                </StackLayout>
 
-                                    </StackLayout>
-                                </ScrollView>
-                                <StackLayout Orientation="Horizontal" 
-                                             Margin="25,0"
-                                             Spacing="5">
-                                    <Button 
-                                        BackgroundColor="Red" 
-                                        CornerRadius="20"
-                                        FontAttributes="Bold"
-                                        FontSize="13"
-                                        HeightRequest="45"
-                                        Text="Trang chủ"
-                                        TextColor="White"
-                                        x:Name="HomeProcess"
-                                        Clicked="HomeProcess_Clicked"
-                                        HorizontalOptions="Fill"/>
-                                    <Button
-                                        x:Name="Themmoi"  
-                                        BackgroundColor="Orange"
-                                        Clicked="Themmoi_Clicked_1"
-                                        CornerRadius="20"
-                                        FontAttributes="Bold"
-                                        FontSize="13"
-                                        HeightRequest="45"
-                                        Text="Thêm"
-                                        TextColor="White"
-                                        HorizontalOptions="FillAndExpand"/> 
-                                </StackLayout> 
-                            </StackLayout>
-
-                        </telerikPrimitives:TabViewItem.Content>
-                    </telerikPrimitives:TabViewItem>
-                    <telerikPrimitives:TabViewItem HeaderText="Thông tin đã lưu">
-                        <telerikPrimitives:TabViewItem.Content>
+                            </telerikPrimitives:TabViewItem.Content>
+                        </telerikPrimitives:TabViewItem>
+                        <telerikPrimitives:TabViewItem HeaderText="Thông tin đã lưu">
+                            <telerikPrimitives:TabViewItem.Content>
                             <StackLayout>
                                 <Label
                                     Margin="0,5,0,0"
@@ -221,7 +258,7 @@
                                     TextColor="Red" />
                                 <ListView
                                     x:Name="lst"
-                                    BackgroundColor="WhiteSmoke"
+                                    BackgroundColor="White"
                                     HasUnevenRows="true">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
@@ -277,8 +314,7 @@
                                                                 Text="Chỗ ở:"
                                                                 VerticalOptions="Center" />
                                                             <Label Text="{Binding choo}" VerticalOptions="Center" />
-                                                        </StackLayout>
-
+                                                        </StackLayout> 
                                                     </StackLayout>
                                                 </ViewCell.View>
                                             </ViewCell>
@@ -288,9 +324,101 @@
                             </StackLayout>
                         </telerikPrimitives:TabViewItem.Content>
                     </telerikPrimitives:TabViewItem>
-                </telerikPrimitives:RadTabView.Items>
-            </telerikPrimitives:RadTabView>
+                    </telerikPrimitives:RadTabView.Items>
+                </telerikPrimitives:RadTabView>
 
-        </StackLayout>
+            </StackLayout> 
+            <ContentView  BackgroundColor="#C0808080"
+                         AbsoluteLayout.LayoutBounds="0,0,1,1"
+                         AbsoluteLayout.LayoutFlags="All"
+                          x:Name="viewListChooseCusProgess"
+                          VerticalOptions="Fill"
+                          IsVisible="false">
+                <StackLayout
+                    HeightRequest="350" 
+                    Margin="10,50"
+                    Padding="10,0"
+                    Spacing="0"
+                    Orientation="Vertical"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+                    <Label Text="Danh sách địa chỉ"
+                           BackgroundColor="White"
+                           HorizontalTextAlignment="Center"
+                           FontSize="Title"
+                           Padding="10"/>
+                    <StackLayout HeightRequest="0.5"
+                                 BackgroundColor="Gray"
+                                 HorizontalOptions="FillAndExpand"/>
+                    <Label Text="Không có dữ liệu, Hãy thiết lập ở phần thông tin."
+                           BackgroundColor="White"
+                           TextColor="Orange"
+                           HorizontalTextAlignment="Center"
+                           FontSize="Small"
+                           Padding="5"
+                           x:Name="titleNoDataCusprogress"
+                           IsVisible="false"/>
+                    <ListView ItemsSource="{Binding Items}"  
+                          BackgroundColor="White" 
+                          VerticalOptions="Center" 
+                          HorizontalOptions="Center"
+                              HasUnevenRows="True"
+                              SelectionMode="None"
+                              SeparatorColor="White"
+                               x:Name="listDataProgress">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame Padding="2"
+                                       CornerRadius="10" 
+                                       BackgroundColor="White"
+                                       HasShadow="True"
+                                       Margin="20,5">
+                                        <StackLayout Orientation="Horizontal"
+                                             HorizontalOptions="FillAndExpand"
+                                             VerticalOptions="CenterAndExpand" >
+                                            <CheckBox HorizontalOptions="Start"
+                                              IsChecked="{Binding IsSelected}"
+                                              CheckedChanged="CheckBox_CheckedChanged"/>
+                                            <Label Text="{Binding TitleAddress}"
+                                           TextColor="Black"
+                                                   HorizontalTextAlignment="Center" 
+                                               HorizontalOptions="FillAndExpand"
+                                               VerticalOptions="Center"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <StackLayout HeightRequest="0.5"
+                                 BackgroundColor="Gray"
+                                 HorizontalOptions="FillAndExpand"/>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand"
+                                 BackgroundColor="White"
+                                 Padding="10,10">
+                        <Button Text="Huỷ"
+                                 x:Name="cancelPopupCusProgessButton"
+                                FontAttributes="Bold"
+                                TextColor="White"
+                                FontSize="13"
+                                HeightRequest="40" 
+                                BackgroundColor="#C0808080"
+                                CornerRadius="20"
+                                 HorizontalOptions="FillAndExpand"/>
+                        <Button Text="Xác nhận"
+                                x:Name="confirmPopupCusProgessButton"
+                                FontAttributes="Bold"
+                                TextColor="White"
+                                FontSize="13"
+                                HeightRequest="40" 
+                                BackgroundColor="Orange"
+                                CornerRadius="20"
+                                HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
+        </AbsoluteLayout> 
     </ContentPage.Content>
 </ContentPage>

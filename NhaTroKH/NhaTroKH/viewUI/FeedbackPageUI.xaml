@@ -1,100 +1,160 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NhaTroKH.viewUI.FeedbackPageUI">
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             x:Class="NhaTroKH.viewUI.FeedbackPageUI" 
+             xmlns:viewModel="clr-namespace:NhaTroKH.viewmodel"  
+             mc:Ignorable="d" >
+
+    <ContentPage.BindingContext>
+        <viewModel:FeedbackPageVM/>
+    </ContentPage.BindingContext>
+
     <NavigationPage.TitleView>
         <Label
             Text="THÔNG TIN PHẢN HỒI!"
             FontAttributes="Bold"
-            FontSize="Large"
-            TextColor="Black"
-            HorizontalTextAlignment="Center"/>
+            FontSize="Medium"
+            TextColor="White"
+            Margin="0,0,50,0"
+            HorizontalTextAlignment="Center"
+            VerticalTextAlignment="Center"/>
     </NavigationPage.TitleView>
+
+    <ContentPage.Resources>
+        <Style TargetType="Label" x:Key="fontSizeLabel">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style TargetType="Entry" x:Key="fontSizeEntry">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style TargetType="Editor" x:Key="fontSizeEditor">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="styleButton">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
-            <ScrollView>
-                <StackLayout Spacing="5"
-                             Margin="10,0">
-                    <ActivityIndicator x:Name="activityIndicator" 
-                                       Margin="0,0" 
-                                       VerticalOptions="Center" 
-                                       HorizontalOptions="Center" 
-                                       Color="Black" 
-                                       WidthRequest="20" 
-                                       HeightRequest="20" />
-                    <StackLayout Orientation="Horizontal"
+        <AbsoluteLayout HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical"
+                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                         AbsoluteLayout.LayoutFlags="All"
+                          HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand" 
+                         IsVisible="{Binding LayerBaseIsHidden, Mode=TwoWay}">
+                <ScrollView>
+                    <StackLayout Spacing="5"
+                             Margin="10,0"> 
+                        <StackLayout Orientation="Horizontal"
                                 HorizontalOptions="FillAndExpand"
                                  HeightRequest="50">
-                        <Label Text="Phòng: "
-                               FontAttributes="Italic"
-                               FontSize="14"
+                            <Label Text="Phòng: "
+                               FontAttributes="Italic" 
+                               Style="{x:StaticResource fontSizeLabel}"
                                HorizontalOptions="Start"
                                VerticalOptions="Center"
                                WidthRequest="80"/>
-                        <Frame x:Name="toastFrame" 
-                               CornerRadius="8" 
+                            <Frame x:Name="toastFrame" 
+                               CornerRadius="8"
+                               HasShadow="False"
                                HorizontalOptions="FillAndExpand"
                                Padding="0,2,0,0"
                                WidthRequest="220"
                                BackgroundColor="White">
-                            <Entry Keyboard="Numeric"
+                                <Entry Keyboard="Numeric"
                                    HorizontalOptions="FillAndExpand"
                                    WidthRequest="210"
                                    VerticalOptions="Center"
-                                   FontSize="14"
-                                    x:Name="phongfeedback"
+                                   Style="{x:StaticResource fontSizeEntry}"
+                                   Text="{Binding NoRoomEntry}"
                                    Placeholder="Nhập số phòng..."/>
-                        </Frame>
+                            </Frame>
 
-                    </StackLayout>
-                    <StackLayout Orientation="Vertical"
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical"
                                 HorizontalOptions="FillAndExpand">
-                        <Label Text="Ý kiến phản hồi: "
+                            <Label Text="Ý kiến phản hồi: "
                                VerticalOptions="Center"
                                HorizontalOptions="Start"
                                WidthRequest="150"
-                               FontSize="14"
+                               Style="{x:StaticResource fontSizeLabel }"
                                FontAttributes="Italic"/>
-                        <Frame  
+                            <Frame  
                                CornerRadius="8" 
                                HorizontalOptions="FillAndExpand"
                                Padding="5"
+                            BorderColor="Orange"
+                            HasShadow="False"
                                WidthRequest="300" 
                                BackgroundColor="White">
-                            <Editor HorizontalOptions="FillAndExpand" 
-                                    FontSize="14" 
+                                <Editor HorizontalOptions="FillAndExpand" 
+                                    Style="{x:StaticResource fontSizeEditor}"
                                     WidthRequest="300" 
                                     HeightRequest="200"
-                                    VerticalOptions="Center"
-                                    x:Name="thongtinphanhoi"
+                                    VerticalOptions="Center" 
+                                    Text="{Binding ContentFeedback}"
                                     Placeholder="Nhập ý kiến ở tại đây..."/>
-                        </Frame>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
+                            </Frame>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
                                 HorizontalOptions="FillAndExpand"
                                  HeightRequest="40"
                                  Margin="0,5,0,0">
-                        <Button Text="Trở về"
-                                CornerRadius="10"
-                                BackgroundColor="Red"
-                                TextColor="White"
-                                x:Name="back"
-                                FontSize="12"
-                                FontAttributes="Bold"
-                                Clicked="back_Clicked"/>
-                        <Button Text="Thêm"
-                                CornerRadius="10"
-                                BackgroundColor="Orange"
-                                TextColor="White"
-                                FontSize="12"
-                                x:Name="btnfeedback"
-                                FontAttributes="Bold"  
-                                Clicked="btnfeedback_Clicked"
-                                HorizontalOptions="FillAndExpand"/> 
+                            <Button Text="Trở về" 
+                                BackgroundColor="Red" 
+                                Padding="5"
+                                Style="{x:StaticResource styleButton}"
+                                Command="{ Binding BackButton}"/>
+                            <Button Text="Thêm" 
+                                BackgroundColor="Orange" 
+                                HorizontalOptions="FillAndExpand"
+                                Style="{x:StaticResource styleButton}"
+                                Command="{ Binding AddFeedback}"/>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView> 
+            </StackLayout>
+            <ContentView AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                         AbsoluteLayout.LayoutFlags="All"
+                         BackgroundColor="#C0808080"
+                         Padding="10, 0"
+                         x:Name="layerLoadLogin"
+                         IsVisible="{Binding LayerLoadIsHidden, Mode=TwoWay}">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout Orientation="Vertical"
+                                 HeightRequest="150"
+                                 WidthRequest="250"
+                                 BackgroundColor="White" >
+                        <ActivityIndicator 
+                            x:Name="activityIndicatorLoadingPage"
+                            HeightRequest="25"
+                             HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"
+                            WidthRequest="25"
+                            Margin="0,20"
+                            Color="GreenYellow"
+                           IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                            IsVisible="True"/>
+                        <Label Margin="20,0,20,0"
+                                Text="Hãy chờ tí..."
+                               TextColor="Black"
+                               FontAttributes="Italic"
+                               HorizontalTextAlignment="Center"
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"/>
                     </StackLayout>
                 </StackLayout>
-            </ScrollView>
-            
-        </StackLayout>
+            </ContentView>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -511,29 +511,14 @@ namespace NhaTroKH.Models
     public class FEEDBACK
     {
         private string _CMND;
-        private System.Nullable<System.DateTime> _Ngay = DateTime.Now;
+        private string _Ngay;
         private string _Phong;
         private string _STT;
         private string _TrangThai;
         private string _PhanHoi;
 
         public string CMND { get => _CMND; set => _CMND = value; }
-        public System.Nullable<System.DateTime> Ngay
-        {
-            get
-            {
-                return this._Ngay;
-            }
-            set
-            {
-                if ((this._Ngay != value))
-                {
-
-                    this._Ngay = value;
-
-                }
-            }
-        }
+        public string Ngay { get => _Ngay; set => _Ngay = value; }
         public string Phong { get => _Phong; set => _Phong = value; }
         public string STT { get => _STT; set => _STT = value; }
         public string TrangThai { get => _TrangThai; set => _TrangThai = value; }

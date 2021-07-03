@@ -41,5 +41,17 @@ namespace NhaTroKH.@interface
             EProcessUser,
             EDefaultAddress, // Phần Setting Địa chỉ nhà trọ 
         }
+
+
+        /// <summary>
+        ///  enum position isAddress
+        /// </summary>
+        public enum ValueIsAddress
+        {
+            isResident,
+            isAccomodation,
+            isCurrentSite ,
+            isJobSite
+        }
     }
 }

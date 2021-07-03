@@ -6,65 +6,48 @@ using System.Threading.Tasks;
 using FireSharp.Interfaces;
 using FireSharp.Response;
 using NhaTroKH.DB;
+using NhaTroKH.model;
 using NhaTroKH.Model;
 using NhaTroKH.Models;
+using NhaTroKH.Service;
+using NhaTroKH.viewmodel;
 using Xamarin.Forms;
 using static NhaTroKH.@interface.Enum;
 
 namespace NhaTroKH.viewUI
 {
     public partial class CustomerFamilyPageUI : ContentPage
-    {
-        public CustomerFamilyPageUI()
-        {
-            InitializeComponent();
-            client = new FireSharp.FirebaseClient(config);
-            getgiadinh(CMND_);
-            getAddressResident();
-            lst.ItemSelected += Lst_ItemSelected;
-            BIRTDATE_.DateSelected += (senderr, er) => {
-                dateNgaySinh = BIRTDATE_.Date;
-            };
-
-            CLICKNAVIGATEPAGEADDADDRESS.Text = KeyCustomerViewEnumeration.CustomerFamilyPlaceholder_Current;
-
-            SiteCurentFamilyButton.Clicked += async (sender, e) =>
-            {
-
-                if (Application.Current.Properties.ContainsKey(KeyCustomerViewEnumeration.DefaultAddress))
-                {
-                    string address = Application.Current.Properties[KeyCustomerViewEnumeration.DefaultAddress].ToString();
-                    bool dialog = await DisplayAlert("Thông báo", "Bạn sẽ chọn địa chỉ: " + address, "OK", "Không");
-                    if (dialog)
-                    {
-                        CLICKNAVIGATEPAGEADDADDRESS.Text = Application.Current.Properties[KeyCustomerViewEnumeration.DefaultAddress].ToString();
-                    }
-                }
-                else { this.navigatePageSetting(); }
-            };
-        }
-
-
-        static IFirebaseConfig config = new FireSharp.Config.FirebaseConfig
-        {
-            AuthSecret = "mJh3ttHegM5JEw4I8KKbreCWxcmVjIrcM5I9fhjx",
-            BasePath = "https://nhatro-271ce.firebaseio.com/"
-
-        };
-        private DateTime dateNgaySinh = DateTime.Now;
-
-        private int IDThongTinKhachHangGD = 0;
+    { 
+        Iconfig iconfig = new Iconfig(); 
         IFirebaseClient client;
+
         ObservableCollection<listgiadinh> employees = new ObservableCollection<listgiadinh>();
         public ObservableCollection<listgiadinh> Employees { get { return employees; } }
-        string CMND_ = LoginPageUI.SOCMND;
 
+        string CMND_ = UserData.shared.IDCard;
+        private int IDThongTinKhachHangGD = 0;
+        private DateTime dateNgaySinh = DateTime.Now;
+        public static bool flagEdit = false;
         public string gioitinh = "";
         public string tinh = "";
         public string huyen = "";
         public string xa = "";
         public string quanhe;
+         
+        AddressSettingModel addressSetting;
 
+        public CustomerFamilyPageUI()
+        {
+            InitializeComponent();
+            BindingContext = new CustomerFamilyPageVM(Navigation);
+            client = new FireSharp.FirebaseClient(iconfig.config); 
+            getgiadinh(CMND_);
+            getAddressResident(); 
+
+            CLICKNAVIGATEPAGEADDADDRESS.Text = KeyCustomerViewEnumeration.CustomerFamilyPlaceholder_Current;
+
+            this.handelAction(); 
+        }  
 
         #region DELETELISTVIEW
         //[0]   LIST1
@@ -86,6 +69,86 @@ namespace NhaTroKH.viewUI
             {
                 _ = Navigation.PushAsync(new SettingPageUI());
             }
+        }
+         
+        private void showList()
+        {
+            viewListChooseCusFamily.IsVisible = true;
+            var viewModel = BindingContext as CustomerFamilyPageVM;
+            if (viewModel.Items.Count <= 0)
+            {
+                listDataFam.IsVisible = false;
+                titleNoDataCusFam.IsVisible = true;
+            }
+            else
+            {
+                listDataFam.IsVisible = true;
+                titleNoDataCusFam.IsVisible = false;
+            }
+        }
+
+        private void handelAction()
+        {
+            lst.ItemSelected += Lst_ItemSelected;
+            BIRTDATE_.DateSelected += (senderr, er) => {
+                dateNgaySinh = BIRTDATE_.Date;
+            };
+
+            SiteCurentFamilyButton.Clicked += (sender, e) =>
+            { 
+                this.showList();
+            };
+
+            cancelPopupCusFamButton.Clicked += (sender, e) =>
+            {
+                var viewModel = BindingContext as CustomerFamilyPageVM;
+                for (int i = 0; i < viewModel.Items.Count; i++)
+                {
+                    if (viewModel.Items[i].IsSelected)
+                    {
+                        viewModel.Items[i].IsSelected = false;
+                    }
+                }
+
+                viewListChooseCusFamily.IsVisible = false;
+                if (addressSetting != null)
+                {
+                    addressSetting.IsSelected = false;
+                }
+            };
+
+            confirmPopupCusFamButton.Clicked += (sender, e) => {
+                var viewModel = BindingContext as CustomerFamilyPageVM;
+                if (viewModel.Items.Count > 0)
+                {
+                    for (int i = 0; i < viewModel.Items.Count; i++)
+                    {
+                        AddressSettingModel vm = viewModel.Items[i];
+                        if (vm.IsSelected)
+                        {
+                            CLICKNAVIGATEPAGEADDADDRESS.Text = vm.TitleAddress;
+                        }
+                    }
+                    for (int i = 0; i < viewModel.Items.Count; i++)
+                    {
+                        if (viewModel.Items[i].IsSelected)
+                        {
+                            viewModel.Items[i].IsSelected = false;
+                        }
+                    }
+
+                    viewListChooseCusFamily.IsVisible = false;
+                    if (addressSetting != null)
+                    {
+                        addressSetting.IsSelected = false;
+                    }
+                }
+                else
+                {
+                    _ = Navigation.PushAsync(new SettingPageUI());
+                    viewListChooseCusFamily.IsVisible = false;
+                }
+            };
         }
 
         private void Lst_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -111,6 +174,7 @@ namespace NhaTroKH.viewUI
             {
                 editThongTin(CMND_, foo);
                 getgiadinh(CMND_);
+                flagEdit = true;
             }
             if (action1 == "Huỷ")
             {
@@ -333,6 +397,8 @@ namespace NhaTroKH.viewUI
                 else
                 {
                     _ = DisplayAlert("Thông báo", "Chỉnh sửa thông tin thành công", "OK");
+                    IDThongTinKhachHangGD = 0;
+                    flagEdit = false;
                 }
 
             }
@@ -375,6 +441,14 @@ namespace NhaTroKH.viewUI
             NAME_.Text = string.Empty;
             NGHENGHIEP_.Text = string.Empty;
             BIRTDATE_.Date = DateTime.Now;
+            RemoveKey(
+               new List<string> {
+                    KeyCustomerViewEnumeration.CustomerFamilyDBgioitinh,
+                    KeyCustomerViewEnumeration.CustomerFamilyDBNAME_,
+                    KeyCustomerViewEnumeration.CustomerFamilyDBDateNgaySinh,
+                    KeyCustomerViewEnumeration.CustomerFamilyDBquanhe,
+                    KeyCustomerViewEnumeration.CustomerFamilyCustomerFamily
+               });
         }
         private void QUANHE__SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -392,7 +466,7 @@ namespace NhaTroKH.viewUI
         {
             _ = addkhachgiadinhAsync();
             // clear data save when add
-            Application.Current.Properties.Clear();
+            //Application.Current.Properties.Clear();
 
         }
 
@@ -408,18 +482,7 @@ namespace NhaTroKH.viewUI
 
         }
 
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-            RemoveKey(
-                new List<string> {
-                    KeyCustomerViewEnumeration.CustomerFamilyDBgioitinh,
-                    KeyCustomerViewEnumeration.CustomerFamilyDBNAME_,
-                    KeyCustomerViewEnumeration.CustomerFamilyDBDateNgaySinh,
-                    KeyCustomerViewEnumeration.CustomerFamilyDBquanhe,
-                    KeyCustomerViewEnumeration.CustomerFamilyCustomerFamily
-                });
-        }
+        
 
         public void SaveKey()
         {
@@ -450,6 +513,11 @@ namespace NhaTroKH.viewUI
         {
             base.OnAppearing();
             ///
+            var vm = BindingContext as CustomerFamilyPageVM;
+            if (vm.Items.Count <= 0)
+            {
+                BindingContext = new CustomerFamilyPageVM(Navigation);
+            }
             try
             {
                 if (Application.Current.Properties.ContainsKey(KeyCustomerViewEnumeration.CustomerFamilyDBgioitinh))
@@ -516,9 +584,18 @@ namespace NhaTroKH.viewUI
             catch { }
         }
 
-        void HomeFamily_Clicked(System.Object sender, System.EventArgs e)
-        {
-        }
+        protected override void OnDisappearing()
+                {
+                    base.OnDisappearing();
+                    RemoveKey(
+                        new List<string> {
+                            KeyCustomerViewEnumeration.CustomerFamilyDBgioitinh,
+                            KeyCustomerViewEnumeration.CustomerFamilyDBNAME_,
+                            KeyCustomerViewEnumeration.CustomerFamilyDBDateNgaySinh,
+                            KeyCustomerViewEnumeration.CustomerFamilyDBquanhe,
+                            KeyCustomerViewEnumeration.CustomerFamilyCustomerFamily
+                        });
+                }
 
         private async void getAddressResident()
         {
@@ -535,22 +612,15 @@ namespace NhaTroKH.viewUI
                 _ = Application.Current.SavePropertiesAsync();
             }
         }
+
+        void CheckBox_CheckedChanged(System.Object sender, Xamarin.Forms.CheckedChangedEventArgs e)
+        {
+            if (addressSetting != null)
+            {
+                addressSetting.IsSelected = false;
+            }
+            AddressSettingModel currentModel = ((CheckBox)sender).BindingContext as AddressSettingModel;
+            addressSetting = currentModel; 
+        }
     }
-}
-
-class DataAddress
-{
-    public string Provincial;
-    public string District;
-    public string Ward;
-    public string Strees;
-
-    public DataAddress(string Provincial, string District, string Ward, string Strees)
-    {
-        this.Provincial = Provincial;
-        this.District = District;
-        this.Ward = Ward;
-        this.Strees = Strees;
-    }
-
-}
+} 

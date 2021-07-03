@@ -2,24 +2,50 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NhaTroKH.viewUI.SettingPageUI">
+
     <NavigationPage.TitleView>
-        <Label
-            FontAttributes="Bold"
-            FontSize="Large"
-            HorizontalTextAlignment="Center"
-            Text="THÔNG TIN ĐỊA CHỈ"
-            TextColor="Black" />
+             <Label
+                 FontAttributes="Bold"
+                 FontSize="Medium"
+                 HorizontalTextAlignment="Center"
+                 Text="THÔNG TIN ĐỊA CHỈ"
+                 TextColor="White"
+                 Margin="0,0,50,0"
+                 VerticalTextAlignment="Center"
+                 HorizontalOptions="FillAndExpand"/> 
     </NavigationPage.TitleView>
+
+     <!-- Setting style -->
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout" x:Key="BackgroudStackLayout">
+            <Setter Property="BackgroundColor" Value="White"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="KeyColorLable">
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+
+        <Style TargetType="Frame" x:Key="KeyBackgroudFrame">
+            <Setter Property="BackgroundColor" Value="White"/>
+        </Style> 
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout Orientation="Vertical"
                      Spacing="5">
-            <Frame 
+            <Frame
+                HasShadow="False"
+                BorderColor="Wheat"
+                Style="{x:StaticResource KeyBackgroudFrame}"
                    Margin="5">
-                <StackLayout Orientation="Vertical">
-                    <Label Text="Thiết lập địa chỉ nhà trọ:"/>
+                <StackLayout Orientation="Vertical"
+                             Style="{x:StaticResource BackgroudStackLayout}">
+                    <Label Text="Thiết lập địa chỉ nhà trọ:"
+                           Style="{x:StaticResource KeyColorLable}"/>
                     <Label Text="Nhấn bên dưới thay đổi địa chỉ."
                            FontAttributes="Italic"
                            TextColor="Orange"
+                           FontSize="Micro"
                            HorizontalOptions="CenterAndExpand"/>
                     <Button
                         x:Name="buttonSetAddress"
@@ -27,19 +53,25 @@
                         BorderColor="WhiteSmoke"
                         BorderWidth="1" 
                         CornerRadius="10"
-                        FontAttributes="Bold"
-                        FontSize="12"
+                        FontSize="Small"
+                        FontAttributes="Bold" 
                         Command="{ Binding DefaultAddressButton}"/>
                 </StackLayout>
             </Frame>
 
-            <Frame 
+            <Frame
+                HasShadow="False"
+                BorderColor="Wheat"
+                Style="{x:StaticResource KeyBackgroudFrame}"
                    Margin="5">
-                <StackLayout Orientation="Vertical">
-                    <Label Text="Thông tin Quê quán"/>
+                <StackLayout Orientation="Vertical"
+                             Style="{x:StaticResource BackgroudStackLayout}">
+                    <Label Text="Thông tin Quê quán:"
+                           Style="{x:StaticResource KeyColorLable}"/>
                     <Label Text="Nhấn bên dưới thay đổi địa chỉ."
                            FontAttributes="Italic"
                            TextColor="Orange"
+                           FontSize="Micro"
                            HorizontalOptions="CenterAndExpand"/>
                     <Button
                         x:Name="HometownButton"
@@ -48,18 +80,23 @@
                         BorderWidth="1" 
                         CornerRadius="10" 
                         FontAttributes="Bold"
-                        FontSize="12"
+                        FontSize="Small"
                         Command="{ Binding HometownButton}"/>
                 </StackLayout>
             </Frame>
 
-            <Frame 
-                   Margin="5">
+            <Frame
+                HasShadow="False"
+                BorderColor="Wheat"
+                   Margin="5"
+                Style="{StaticResource KeyBackgroudFrame}">
                 <StackLayout Orientation="Vertical">
-                    <Label Text="Thông tin Thường trú"/>
+                    <Label Text="Thông tin Thường trú:"
+                          Style="{StaticResource KeyColorLable}"/>
                     <Label Text="Nhấn bên dưới thay đổi địa chỉ."
                            FontAttributes="Italic"
                            TextColor="Orange"
+                           FontSize="Micro"
                            HorizontalOptions="CenterAndExpand"/>
                     <Button
                         x:Name="ResidentButton"
@@ -68,7 +105,7 @@
                         BorderWidth="1" 
                         CornerRadius="10" 
                         FontAttributes="Bold"
-                        FontSize="12"
+                        FontSize="Small"
                        Command="{ Binding ResidentButton}"/>
                 </StackLayout>
             </Frame>
