@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behavors="clr-namespace:NhaTroKH.extension"
              x:Class="NhaTroKH.viewUI.CreateAccountPageUI">
     <NavigationPage.TitleView>
         <Label
@@ -12,22 +12,21 @@
             Text="TẠO TÀI KHOẢN"
             TextColor="White" />
     </NavigationPage.TitleView>
+
     <ContentPage.Content>
-        <StackLayout
-            Padding="10,20,10,0"
-             HorizontalOptions="FillAndExpand"
-            Orientation="Vertical"
-            VerticalOptions="Start">
-            <ActivityIndicator
-                x:Name="activityIndicator"
-                HeightRequest="20"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                WidthRequest="20"
-                Color="Black" />
-            <StackLayout Orientation="Vertical" Spacing="20">
-                <StackLayout Orientation="Horizontal" Spacing="15">
-                    <Label
+        <AbsoluteLayout HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                AbsoluteLayout.LayoutFlags="All"
+                Padding="10,20,10,0"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Vertical" 
+                VerticalOptions="FillAndExpand" 
+                IsVisible="{Binding LayerBaseIsHidden, Mode=TwoWay}"> 
+                <StackLayout Orientation="Vertical" Spacing="20">
+                    <StackLayout Orientation="Horizontal" Spacing="15">
+                        <Label
                         FontAttributes="Italic"
                         FontSize="13"
                         HorizontalOptions="Start"
@@ -35,28 +34,25 @@
                         Text="CMND :"
                         TextColor="Black"
                         VerticalOptions="Center" />
-                    <!--<Frame
-                        x:Name="toastFrame"
-                        Padding="5"
-                        BackgroundColor="White"
-                        CornerRadius="8"
-                        HeightRequest="40"
-                        HorizontalOptions="FillAndExpand">
-                        
-                    </Frame>-->
-                    <Entry
-                            x:Name="CMND"
-                            FontAttributes="Italic"
-                            FontSize="14"
-                            HorizontalOptions="FillAndExpand"
-                            Keyboard="Numeric"
-                            Placeholder="Nhập CMND..."
-                            TextChanged="CMND_TextChanged" />
-                </StackLayout>
+                        <Entry
+                        x:Name="CMND"
+                        FontAttributes="Italic"
+                        FontSize="14"
+                        HorizontalOptions="FillAndExpand"
+                        Keyboard="Numeric"
+                        Placeholder="Nhập CMND..." 
+                        Text="{Binding IDCard}">
+                            <Entry.Behaviors>
+                                <behavors:EventToCommandBehavior
+                                EventName="TextChanged"
+                                Command="{Binding IDCardTextChangedCommand}"/>
+                            </Entry.Behaviors>
+                        </Entry>
+                    </StackLayout>
 
 
-                <StackLayout Orientation="Horizontal" Spacing="2">
-                    <Label
+                    <StackLayout Orientation="Horizontal" Spacing="2">
+                        <Label
                         FontAttributes="Italic"
                         FontSize="13"
                         HorizontalOptions="Start"
@@ -64,48 +60,71 @@
                         Text="Mật khẩu:"
                         TextColor="Black"
                         VerticalOptions="Center" />
-                    <!--<Frame
-                        Padding="5"
-                        BackgroundColor="White"
-                        CornerRadius="8"
-                        HeightRequest="40"
-                        HorizontalOptions="FillAndExpand">
-                        
-                    </Frame>-->
-                    <Entry
+                        <Entry
                             x:Name="MATKHAU"
                             FontAttributes="Italic"
                             FontSize="14"
                             HorizontalOptions="FillAndExpand"
                             IsPassword="True"
-                            Placeholder="Nhập mật khẩu..." />
+                            Placeholder="Nhập mật khẩu..."
+                        Text="{Binding PasswordUser}"/>
 
-                </StackLayout>
-                <StackLayout Margin="0,10" Orientation="Horizontal">
-                    <Button
-                        x:Name="btnCreateTK"
-                        BackgroundColor="Orange"
-                        Clicked="btnCreateTK_Clicked"
+                    </StackLayout>
+                    <StackLayout Margin="0,10" Orientation="Horizontal">
+                        <Button 
+                        BackgroundColor="Orange" 
                         CornerRadius="20"
                         FontAttributes="Bold"
                         FontSize="12"
                         HeightRequest="40"
                         HorizontalOptions="FillAndExpand"
                         Text="Tạo tài khoản"
-                        TextColor="White" />
-                    <Button
-                        x:Name="btnback"
-                        BackgroundColor="Orange"
-                        Clicked="btnback_Clicked"
+                        TextColor="White"
+                        Command="{Binding CreateUser}"/>
+                        <Button
+                        BackgroundColor="Orange" 
                         CornerRadius="20"
                         FontAttributes="Bold"
                         FontSize="12"
                         HeightRequest="40"
                         HorizontalOptions="FillAndExpand"
                         Text="Trở về"
-                        TextColor="White" />
+                        TextColor="White"
+                        Command="{Binding BackButton}"/>
+                    </StackLayout>
                 </StackLayout>
             </StackLayout>
-        </StackLayout>
+
+            <ContentView AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                         AbsoluteLayout.LayoutFlags="All"
+                         BackgroundColor="#C0808080"
+                         Padding="10, 0" 
+                         IsVisible="{Binding LayerLoadIsHidden, Mode=TwoWay}">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout Orientation="Vertical"
+                                 HeightRequest="150"
+                                 WidthRequest="250"
+                                 BackgroundColor="White" >
+                        <ActivityIndicator 
+                            x:Name="activityIndicatorLoadingPage"
+                            HeightRequest="25"
+                             HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"
+                            WidthRequest="25"
+                            Margin="0,20"
+                            Color="GreenYellow"
+                           IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                            IsVisible="True"/>
+                        <Label Margin="20,0,20,0"
+                                Text="Hãy chờ tí..."
+                               TextColor="Black"
+                               FontAttributes="Italic"
+                               HorizontalTextAlignment="Center"
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"/>
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

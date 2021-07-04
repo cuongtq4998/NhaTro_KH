@@ -106,6 +106,7 @@
                         CornerRadius="10" 
                         FontAttributes="Bold"
                         FontSize="Small"
+                        TextColor="Gray"
                        Command="{ Binding ResidentButton}"/>
                 </StackLayout>
             </Frame>

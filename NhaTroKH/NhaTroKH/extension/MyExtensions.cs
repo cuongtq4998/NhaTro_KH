@@ -20,8 +20,8 @@ namespace NhaTroKH.extension
         }
 
         public static bool isNullOrEmpty(this string value)
-        {
-            if(value != "" & value != null)
+        { 
+            if(value.Trim() == "" || value == null)
             {
                 return true;
             }

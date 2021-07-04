@@ -47,6 +47,20 @@ namespace NhaTroKH.service
             }); 
         }
 
+        public async Task<bool> createUser(string idCard,string password)
+        {
+            var data = new LOGIN
+            {
+                MATKHAU_TK = password
+            };
+            response = await client.SetAsync("taikhoan/" + idCard, data); 
+            if(response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return true;
+            }
+            return false;
+        }
+
         // insert water
         public async Task<bool> InsertWaterInfor(
             string pagramElectric,

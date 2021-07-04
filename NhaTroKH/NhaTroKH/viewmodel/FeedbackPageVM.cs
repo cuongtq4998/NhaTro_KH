@@ -135,8 +135,8 @@ namespace NhaTroKH.viewmodel
         private bool isValidateOption()
         {  
             if (this.NoRoomEntry != 0 &&
-                this.NoRoomEntry.ToString().isNullOrEmpty() &&
-                this.ContentFeedback.isNullOrEmpty())
+                !this.NoRoomEntry.ToString().isNullOrEmpty() &&
+                !this.ContentFeedback.isNullOrEmpty())
             {
                 return true;
             }

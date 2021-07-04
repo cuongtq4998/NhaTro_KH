@@ -6,21 +6,25 @@
         <Label
             Text="THÔNG TIN ĐỊA CHỈ"
             FontAttributes="Bold"
-            FontSize="Large"
-            TextColor="Black"
+            FontSize="Medium"
+            TextColor="White"
+            VerticalTextAlignment="Center"
             HorizontalTextAlignment="Center"/>
     </NavigationPage.TitleView>
 
     <ContentPage.Content>
         <StackLayout Orientation="Vertical"> 
-            <StackLayout Orientation="Horizontal"
-                         HorizontalOptions="Center">
+            <StackLayout Orientation="Horizontal" 
+                         HorizontalOptions="FillAndExpand"
+                         Margin="10">
                 <CheckBox x:Name="CheckTypeInput"
-                          Color="Black"
+                          Color="Blue"
                       CheckedChanged="CheckTypeInput_CheckedChanged"
-                          VerticalOptions="Center"/>
-                <Label Text="Tôi không tìm thấy địa chỉ ?. Tôi muốn nhập."
-                       VerticalOptions="Center"
+                          VerticalOptions="CenterAndExpand"
+                          HorizontalOptions="End"/>
+                <Label Text="Không tìm thấy địa chỉ. Tôi muốn nhập."
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="Start"    
                        TextColor="Black"/>
             </StackLayout>
             

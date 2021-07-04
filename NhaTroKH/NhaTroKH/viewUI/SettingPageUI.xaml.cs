@@ -24,7 +24,7 @@ namespace NhaTroKH.viewUI
             else
             {
                 buttonSetAddress.Text = "Chưa được thiết lập. Bạn có muốn thiết lập?";
-                buttonSetAddress.TextColor = Color.Black;
+                buttonSetAddress.TextColor = Color.Gray;
             }
 
 
@@ -36,7 +36,7 @@ namespace NhaTroKH.viewUI
             else
             {
                 ResidentButton.Text = "Chưa được thiết lập. Bạn có muốn thiết lập?";
-                ResidentButton.TextColor = Color.Black;
+                ResidentButton.TextColor = Color.Gray;
             }
 
             if (Application.Current.Properties.ContainsKey(KeyCustomerViewEnumeration.HometownSiteSetting))
@@ -47,7 +47,7 @@ namespace NhaTroKH.viewUI
             else
             {
                 HometownButton.Text = "Chưa được thiết lập. Bạn có muốn thiết lập?";
-                HometownButton.TextColor = Color.Black;
+                HometownButton.TextColor = Color.Gray;
             }
         }
     } 

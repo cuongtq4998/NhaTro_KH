@@ -6,10 +6,11 @@
     <NavigationPage.TitleView>
         <Label
             FontAttributes="Bold"
-            FontSize="Large"
+            FontSize="Medium"
             HorizontalTextAlignment="Center"
             Text="NHÀ TRỌ"
-            TextColor="Black" />
+            VerticalTextAlignment="Center"
+            TextColor="White" />
     </NavigationPage.TitleView>
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" 
@@ -18,7 +19,7 @@
             <Label Text="Đang tải dữ liệu, Hãy chờ trong giấy lát..."
                    HorizontalOptions="CenterAndExpand"
                    HorizontalTextAlignment="Center"
-                   FontSize="Large"/>
+                   FontSize="Medium"/>
             <ActivityIndicator
                 x:Name="activityIndicatorLoadingPage"
                 HorizontalOptions="CenterAndExpand"
