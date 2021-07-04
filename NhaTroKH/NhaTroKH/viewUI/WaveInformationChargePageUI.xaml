@@ -41,8 +41,7 @@
                         <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="FillAndExpand">
                             <Label Text="Năm"
-                                   FontSize="15"
-                                   FontAttributes="Italic"
+                                   FontSize="15" 
                                    VerticalOptions="Center"/>
                             <Frame CornerRadius="8" 
                                    HorizontalOptions="FillAndExpand"

@@ -1,7 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NhaTroKH.viewUI.RoomInformationChartPageUI" >
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             x:Class="NhaTroKH.viewUI.RoomInformationChartPageUI"
+             xmlns:viewModel="clr-namespace:NhaTroKH.viewmodel"
+             mc:Ignorable="d">
+
+    <ContentPage.BindingContext>
+        <viewModel:RoomInformationChartPageVM/>
+    </ContentPage.BindingContext>
 
     <NavigationPage.TitleView>
         <Label Text="THÔNG TIN TIỀN PHÒNG"
@@ -14,199 +22,208 @@
     </NavigationPage.TitleView>
 
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" Spacing="0">
-            <ActivityIndicator x:Name="activityIndicator"   
-                               HeightRequest="20"
-                               WidthRequest="20"
-                               Color="Black"    
-                               />
-            <ScrollView>
-                <StackLayout Orientation="Vertical"
-                     HorizontalOptions="CenterAndExpand"
-                         Padding="14,0">
-                    <StackLayout Orientation="Horizontal"
-                                 HorizontalOptions="Center">
-                        <Label 
-                            Text="Năm:"
-                            FontAttributes="Italic"
-                            FontSize="14"
-                            HorizontalOptions="Start"
-                            WidthRequest="100"/>
-                        <Label    
-                            IsEnabled="False"
-                            FontSize="18"
-                            TextColor="Red"
-                            x:Name="NAM_" 
-                            WidthRequest="230"/>
-                    </StackLayout>
-                    <StackLayout 
-                        Orientation="Horizontal"
-                                 HorizontalOptions="Center">
-                        <Label Text="Tháng:"
-                               FontAttributes="Italic"
-                            FontSize="14"
-                               WidthRequest="100"
-                               HorizontalOptions="Start"/>
-                        <Label WidthRequest="230"
-                           IsEnabled="False"
-                           x:Name="THANG_"
-                           FontSize="18"
-                           TextColor="Red"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                 HorizontalOptions="Center"
-                                 HeightRequest="50">
-                        <Label Text="Phòng:"
-                               FontAttributes="Italic"
-                                FontSize="14"
-                               VerticalOptions="Center"
-                               WidthRequest="100"
-                               HorizontalOptions="Start"/>
-                        <Frame x:Name="toastFrame" 
+        <AbsoluteLayout HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical"
+                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                         AbsoluteLayout.LayoutFlags="All"
+                          HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand" 
+                         IsVisible="{Binding LayerBaseIsHidden, Mode=TwoWay}">
+                <ScrollView>
+                    <StackLayout Orientation="Vertical"
+                             HorizontalOptions="FillAndExpand"
+                            Margin="20"
+                             Spacing="20">
+                        <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="10">
+                            <Label Text="Phòng: " 
+                                FontSize="Medium"
+                               VerticalOptions="Center" 
+                               HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="Start"/>
+                            <Frame x:Name="toastFrame" 
                                CornerRadius="8"
                                HasShadow="False"
                                HorizontalOptions="FillAndExpand"
-                               Padding="5"
-                               WidthRequest="220"
+                               Padding="5" 
                                BackgroundColor="White">
-                            <Entry Placeholder="Nhập số phòng..."
-                                    WidthRequest="230"
-                                    Keyboard="Numeric"
-                                    x:Name="PHONG_"
-                                   FontSize="14"/>
-                        </Frame>
+                                <Entry Placeholder="Nhập số phòng..." 
+                                    Keyboard="Numeric" 
+                                   FontSize="Medium"
+                                   HorizontalOptions="End"
+                                   Text="{Binding RoomEntryValue}"/>
+                            </Frame>
 
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                 HorizontalOptions="Center">
-                        <Label Text="Tiền phòng:"
-                               FontAttributes="Italic"
-                            FontSize="14"
-                               WidthRequest="100"
-                               VerticalOptions="Center"/>
-                        <Label WidthRequest="230"
-                               IsEnabled="False"
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand"
+                                 Spacing="10">
+                            <Label 
+                            Text="Năm: " 
+                            FontSize="Medium"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Start"/>
+                            <Label    
+                            IsEnabled="False"
+                            FontSize="Medium"
+                            TextColor="Red"
+                            Text="{Binding YearsValue}" 
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="End"/>
+                        </StackLayout>
+                        <StackLayout 
+                        Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand"
+                        Spacing="10">
+                            <Label Text="Tháng: " 
+                            FontSize="Medium" 
+                               HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="Start"/>
+                            <Label IsEnabled="False"
+                               FontSize="Medium"
+                               Text="{Binding MonthValue}"
+                               HorizontalTextAlignment="End"
+                               HorizontalOptions="FillAndExpand"
+                               TextColor="Red"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand">
+                            <Label Text="Tiền phòng: " 
+                            FontSize="Medium" 
+                               VerticalOptions="Center"
+                               HorizontalTextAlignment="Start"
+                               HorizontalOptions="FillAndExpand"/>
+                            <Label IsEnabled="False"
                                x:Name="TIENPHONG_"
-                               FontSize="18"
+                               FontSize="Medium"
+                               Text="{Binding AmountRoom}"
+                               HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="End"
                                TextColor="Red"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                 HorizontalOptions="Center">
-                        <Label Text="Tiền nước:"
-                               FontAttributes="Italic"
-                            FontSize="14"
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand">
+                            <Label Text="Tiền nước: " 
+                                FontSize="Medium"
                                VerticalOptions="Center"
-                               WidthRequest="100"/>
-                        <Label WidthRequest="230"
-                           IsEnabled="False"
-                           x:Name="TIENNUOC_"
-                           FontSize="18"
-                           TextColor="Red"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                 HorizontalOptions="Center">
-                        <Label Text="Tiền điện:"
-                               FontAttributes="Italic"
-                               FontSize="14"
-                               VerticalOptions="Center"
-                               WidthRequest="100"/>
-                        <Label WidthRequest="230"
-                               IsEnabled="False"
-                               x:Name="TIENDIEN_"
-                               FontSize="18"
+                               HorizontalTextAlignment="Start"
+                               HorizontalOptions="FillAndExpand"/>
+                            <Label IsEnabled="False"
+                               FontSize="Medium"
+                               Text="{Binding AmountWater}"
+                               HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="End"
                                TextColor="Red"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                 HorizontalOptions="Center">
-                        <Label Text="Tiền xe số: "
-                               FontAttributes="Italic"
-                               FontSize="14"
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand">
+                            <Label Text="Tiền điện: "
+                               FontSize="Medium"
                                VerticalOptions="Center"
-                               WidthRequest="100"/>
-                        <Label x:Name="xeSo"
-                               WidthRequest="230"
-                               IsEnabled="False"
-                               FontSize="18"
-                               TextColor="Red"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                 HorizontalOptions="Center">
-                        <Label Text="Tiền xe tay ga: "
-                               FontAttributes="Italic"
-                               FontSize="14"
+                               HorizontalTextAlignment="Start"
+                               HorizontalOptions="FillAndExpand"/>
+                            <Label IsEnabled="False"
+                               FontSize="Medium"
+                               TextColor="Red"
+                               Text="{Binding AmountElectic}"
+                               HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="End"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand">
+                            <Label Text="Tiền xe số: "
+                               FontSize="Medium"
                                VerticalOptions="Center"
-                               WidthRequest="100"/>
-                        <Label x:Name="xeTayGa"
-                               WidthRequest="230"
-                               IsEnabled="False"
-                               FontSize="18"
-                               TextColor="Red"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                 HorizontalOptions="Center">
-                        <Label Text="Tiền dịch vụ:"
-                               FontAttributes="Italic"
-                            FontSize="13"
-                               WidthRequest="100"
+                               HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="Start"/>
+                            <Label IsEnabled="False"
+                               FontSize="Medium"
+                               TextColor="Red"
+                               Text="{Binding NumMotoBikeValue}"
+                               HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="End"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand">
+                            <Label Text="Tiền xe tay ga: "
+                               FontSize="Medium"
+                               VerticalOptions="Center"
+                               HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="Start"/>
+                            <Label IsEnabled="False"
+                               FontSize="Medium"
+                               TextColor="Red"
+                               Text="{Binding NumBikeValue}"
+                               HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="End"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand">
+                            <Label Text="Tiền dịch vụ: "
+                               FontSize="Medium"
+                               HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="Start"
                                VerticalOptions="Center"/>
-                        <Label WidthRequest="230"
-                           IsEnabled="False"
-                           x:Name="TIENDICHVU_"
-                           FontSize="18"
-                           TextColor="Red"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                 HorizontalOptions="Start">
-                        <Label Text="Chi tiết dịch vụ:"
-                               WidthRequest="100"
-                               FontAttributes="Italic"
-                               FontSize="10"
-                             HorizontalOptions="Fill"
-                               VerticalOptions="Center"/>
-                        <StackLayout  
-                            HeightRequest="50"
-                            WidthRequest="180"
-                            HorizontalOptions="End"
-                            Orientation="Vertical">
-                            <ListView x:Name="lstCTDV" 
-                                    VerticalOptions="End"  
-                                    BackgroundColor="White" 
-                                    HasUnevenRows = "true">
+                            <Label IsEnabled="False"
+                               x:Name="TIENDICHVU_"
+                               FontSize="Medium"
+                               TextColor="Red"
+                               Text="{Binding AmountService}"
+                               HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="End"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand">
+                            <Label Text="Chi tiết dịch vụ: "
+                               FontSize="Micro"
+                                HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="Start"
+                               VerticalOptions="Start"/>
+                            <ListView BackgroundColor="White"
+                                  VerticalOptions="Start"
+                                  HorizontalOptions="FillAndExpand"
+                                  IsVisible="{Binding IsVisibleList}"  
+                                  RowHeight="30"
+                                  SeparatorVisibility="None"
+                                  CachingStrategy="RecycleElement"
+                                  ItemsSource="{Binding ItemSourceList}">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
-                                            <ViewCell.View>
-                                                <Label Text="{Binding chitietdichvu}"
+                                            <StackLayout Orientation="Vertical"
+                                                          VerticalOptions="FillAndExpand"
+                                                          Spacing="0">
+                                                <Label Text="{Binding detaiItem}"
                                                        TextColor="Red"
-                                                       FontSize="10"
-                                                       FontAttributes="Italic"/>
-                                            </ViewCell.View>
+                                                       FontSize="Medium" />
+                                            </StackLayout>
                                         </ViewCell>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
                         </StackLayout>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                 HorizontalOptions="Center">
-                        <Label Text="Tổng tiền:"
-                               FontAttributes="Italic"
-                            FontSize="14"
-                               WidthRequest="100"
-                               VerticalOptions="Center"/>
-                        <Label WidthRequest="230"
-                           IsEnabled="False"
-                           HorizontalOptions="End"
-                           x:Name="TONGTIEN_"
-                           FontSize="18"
-                           TextColor="Red"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
+                        <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="FillAndExpand">
+                            <Label Text="Tổng tiền: " 
+                                FontSize="Medium" 
+                               VerticalOptions="Center"
+                               HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="Start"/>
+                            <Label IsEnabled="False"
+                               HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="End"
+                               Text="{Binding TotalAmount}"
+                               FontSize="Medium"
+                               TextColor="Red"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
                                  HorizontalOptions="FillAndExpand"
                                  HeightRequest="40"
                                  Spacing="10"
                                  Margin="0,10">
-                        <Button Text="Trở về"
+                            <Button Text="TRỞ VỀ"
                                 FontSize="12"
                                 x:Name="BACK_"
                                 Padding="5"
@@ -215,21 +232,52 @@
                                 TextColor="White"
                                 HorizontalOptions="FillAndExpand"
                                 CornerRadius="10"
-                                Clicked="BACK__Clicked"/>
-                        <Button Text="Xem"
-                                x:Name="btnXem"
+                                Command="{Binding BackButton}"/>
+                            <Button Text="XEM" 
                                 FontSize="12"
                                 FontAttributes="Bold"
                                 BackgroundColor="Orange"
                                 TextColor="White"
                                 CornerRadius="10"
                                 HorizontalOptions="FillAndExpand"
-                                Clicked="btnXem_Clicked"/>
-                        
+                                Command="{Binding SeeInformationButton}"/>
+
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+
+            <ContentView AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                         AbsoluteLayout.LayoutFlags="All"
+                         BackgroundColor="#C0808080"
+                         Padding="10, 0"
+                         x:Name="layerLoadLogin"
+                         IsVisible="{Binding LayerLoadIsHidden, Mode=TwoWay}">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout Orientation="Vertical"
+                                 HeightRequest="150"
+                                 WidthRequest="250"
+                                 BackgroundColor="White" >
+                        <ActivityIndicator 
+                            x:Name="activityIndicatorLoadingPage"
+                            HeightRequest="25"
+                             HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"
+                            WidthRequest="25"
+                            Margin="0,20"
+                            Color="GreenYellow"
+                           IsRunning="{Binding IsBusy, Mode=TwoWay}"
+                            IsVisible="True"/>
+                        <Label Margin="20,0,20,0"
+                                Text="Hãy chờ tí..."
+                               TextColor="Black"
+                               FontAttributes="Italic"
+                               HorizontalTextAlignment="Center"
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"/>
                     </StackLayout>
                 </StackLayout>
-            </ScrollView>
-
-        </StackLayout>
+            </ContentView>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

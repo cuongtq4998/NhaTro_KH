@@ -29,6 +29,20 @@ namespace NhaTroKH.extension
 
         }
 
+        // convert to Amount VN
+        public static string toAmountVN(this string value, string formart = "{0:0,0} VNĐ")
+        {
+            if (value != null)
+            {
+                if (!value.isNullOrEmpty())
+                {
+                    return string.Format(formart, int.Parse(value));
+                }
+                return "0";
+            }
+            return "0";
+        }
+
         /// <summary>
         /// ******* CONVERT FROM DATE
         /// </summary>

@@ -1,7 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behavors="clr-namespace:NhaTroKH.extension"
-             x:Class="NhaTroKH.viewUI.CreateAccountPageUI">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:behavors="clr-namespace:NhaTroKH.extension"
+             xmlns:renderers="clr-namespace:NhaTroKH.Renderers"
+             x:Class="NhaTroKH.viewUI.CreateAccountPageUI"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False">
     <NavigationPage.TitleView>
         <Label
             Margin="0,0,50,0"
@@ -19,80 +24,136 @@
             <StackLayout
                 AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
                 AbsoluteLayout.LayoutFlags="All"
-                Padding="10,20,10,0"
+                Padding="5,5,5,0"
+                BackgroundColor="#791AE5"
                 HorizontalOptions="FillAndExpand"
-                Orientation="Vertical" 
                 VerticalOptions="FillAndExpand" 
-                IsVisible="{Binding LayerBaseIsHidden, Mode=TwoWay}"> 
-                <StackLayout Orientation="Vertical" Spacing="20">
-                    <StackLayout Orientation="Horizontal" Spacing="15">
-                        <Label
-                        FontAttributes="Italic"
-                        FontSize="13"
-                        HorizontalOptions="Start"
-                        HorizontalTextAlignment="Start"
-                        Text="CMND :"
-                        TextColor="Black"
-                        VerticalOptions="Center" />
-                        <Entry
-                        x:Name="CMND"
-                        FontAttributes="Italic"
-                        FontSize="14"
-                        HorizontalOptions="FillAndExpand"
-                        Keyboard="Numeric"
-                        Placeholder="Nhập CMND..." 
-                        Text="{Binding IDCard}">
-                            <Entry.Behaviors>
-                                <behavors:EventToCommandBehavior
-                                EventName="TextChanged"
-                                Command="{Binding IDCardTextChangedCommand}"/>
-                            </Entry.Behaviors>
-                        </Entry>
+                Orientation="Vertical"  
+                IsVisible="{Binding LayerBaseIsHidden, Mode=TwoWay}">
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout Margin="5,10,5,0"
+                                 Spacing="20" 
+                                HorizontalOptions="FillAndExpand">
+                        <Label FontAttributes="Bold"
+                               FontSize="Micro"
+                              HorizontalOptions="CenterAndExpand"
+                              TextColor="Orange"
+                              VerticalOptions="EndAndExpand"
+                               Text="TẠO TÀI KHOẢN"/>
                     </StackLayout>
-
-
-                    <StackLayout Orientation="Horizontal" Spacing="2">
-                        <Label
-                        FontAttributes="Italic"
-                        FontSize="13"
-                        HorizontalOptions="Start"
-                        HorizontalTextAlignment="Start"
-                        Text="Mật khẩu:"
-                        TextColor="Black"
-                        VerticalOptions="Center" />
-                        <Entry
-                            x:Name="MATKHAU"
-                            FontAttributes="Italic"
-                            FontSize="14"
-                            HorizontalOptions="FillAndExpand"
-                            IsPassword="True"
-                            Placeholder="Nhập mật khẩu..."
-                        Text="{Binding PasswordUser}"/>
-
-                    </StackLayout>
-                    <StackLayout Margin="0,10" Orientation="Horizontal">
-                        <Button 
-                        BackgroundColor="Orange" 
-                        CornerRadius="20"
-                        FontAttributes="Bold"
-                        FontSize="12"
-                        HeightRequest="40"
-                        HorizontalOptions="FillAndExpand"
-                        Text="Tạo tài khoản"
-                        TextColor="White"
-                        Command="{Binding CreateUser}"/>
-                        <Button
-                        BackgroundColor="Orange" 
-                        CornerRadius="20"
-                        FontAttributes="Bold"
-                        FontSize="12"
-                        HeightRequest="40"
-                        HorizontalOptions="FillAndExpand"
-                        Text="Trở về"
-                        TextColor="White"
-                        Command="{Binding BackButton}"/>
-                    </StackLayout>
+                    <Image Source="bgImage"
+                         WidthRequest="200" />
                 </StackLayout>
+
+                 <yummy:PancakeView 
+                    Margin="0,0,0,0"
+                    Padding="20,10,20,10"
+                    BackgroundColor="White"
+                    CornerRadius="40,40,0,0" 
+                    VerticalOptions="FillAndExpand">
+                    <StackLayout Spacing="5">
+                        <StackLayout Spacing="5">
+                            <Label Margin="5,0,0,0" 
+                                FontSize="13"
+                                Text="CMND :"
+                                TextColor="#99A1B3" />
+                            <yummy:PancakeView
+                                Padding="10,0,0,0"
+                                BackgroundColor="White"
+                                BorderThickness="1"
+                                CornerRadius="15"
+                                Elevation="2"
+                                HeightRequest="45">
+                                <renderers:BorderlessEntry FontAttributes="Italic"
+                                                           HorizontalOptions="FillAndExpand"
+                                                            Keyboard="Numeric" 
+                                                            Placeholder="Nhập CMND..." 
+                                                            FontSize="13" 
+                                                            ClearButtonVisibility="WhileEditing" 
+                                                            TextColor="#484848"
+                                                            Text="{Binding IDCard}">
+                                    <Entry.Behaviors>
+                                        <behavors:EventToCommandBehavior
+                                        EventName="TextChanged"
+                                        Command="{Binding IDCardTextChangedCommand}"/>
+                                    </Entry.Behaviors>
+                                </renderers:BorderlessEntry>
+                            </yummy:PancakeView>
+                        </StackLayout>
+                        <StackLayout Spacing="5">
+                            <Label
+                                Margin="5,0,0,0"
+                                FontSize="13"
+                                Text="Mật khẩu:"
+                                TextColor="#99A1B3" />
+                            <yummy:PancakeView
+                                Padding="10,0,0,0"
+                                BackgroundColor="White"
+                                BorderThickness="1"
+                                CornerRadius="15"
+                                Elevation="3"
+                                HeightRequest="45">
+                                <renderers:BorderlessEntry FontAttributes="Italic"
+                                                           HorizontalOptions="FillAndExpand" 
+                                                            Placeholder="Nhập mật khẩu..." 
+                                                            FontSize="13"
+                                                            ClearButtonVisibility="WhileEditing"
+                                                            IsPassword="True"
+                                                            TextColor="#484848"
+                                                            Text="{Binding PasswordUser}"/>
+                            </yummy:PancakeView>
+                        </StackLayout>  
+                        <StackLayout Orientation="Horizontal"
+                                HorizontalOptions="FillAndExpand"
+                                Spacing="5"
+                                 Margin="5"
+                                HeightRequest="40">
+                            <yummy:PancakeView
+                                BackgroundColor="#791AE5"
+                                BorderThickness="1"
+                                CornerRadius="20"
+                                Elevation="3"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="CenterAndExpand"
+                                HeightRequest="40"
+                                WidthRequest="150">
+                                <Label 
+                                    FontAttributes="Italic"
+                                    FontSize="15"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Text="Tạo tài khoản"
+                                    TextColor="White"
+                                    VerticalOptions="CenterAndExpand">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="CreateAccount" Command="{Binding CreateUser}" ></TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </yummy:PancakeView>
+
+                            <yummy:PancakeView
+                                BackgroundColor="#791AE5"
+                                BorderThickness="1"
+                                CornerRadius="20" 
+                                Elevation="3"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="CenterAndExpand"
+                                WidthRequest="150"
+                                HeightRequest="40">
+                                <Label
+                                    FontAttributes="Italic"
+                                    FontSize="15"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Text="Trở về"
+                                    TextColor="White"
+                                    VerticalOptions="CenterAndExpand">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="ExitApp" Command="{Binding BackButton}" ></TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </yummy:PancakeView>
+                        </StackLayout>
+                    </StackLayout>
+                </yummy:PancakeView>
             </StackLayout>
 
             <ContentView AbsoluteLayout.LayoutBounds="0, 0, 1, 1"

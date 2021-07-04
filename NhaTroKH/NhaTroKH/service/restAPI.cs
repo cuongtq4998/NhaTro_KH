@@ -136,5 +136,14 @@ namespace NhaTroKH.service
             return false;
         }
 
+        public async Task<THONGTINTIENPHONG> getInforRoom(string years, string month, string idCard, string numRoom)
+        {
+            return await Task.Run(async () => {
+                response = await client.GetAsync("ThongTinTienPhong/" + years + "/" + month + "/" + idCard + "/" + numRoom + "/");
+                THONGTINTIENPHONG inforRoom = response.ResultAs<THONGTINTIENPHONG>();
+                return inforRoom;
+            });
+        }
+
     }
 }

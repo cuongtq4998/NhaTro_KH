@@ -1,25 +1,36 @@
 ﻿<Properties StartupConfiguration="{2D9C54AA-7560-4D69-ACA4-1EC0B906F85C}|Default">
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="NhaTroKH/viewmodel/RoomInformationChartPageVM.cs">
+    <Files>
+      <File FileName="NhaTroKH/viewmodel/RoomInformationChartPageVM.cs" Line="317" Column="34" />
+      <File FileName="NhaTroKH/viewUI/RoomInformationChartPageUI.xaml" Line="198" Column="84" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="NhaTroKH" expanded="True">
-            <Node name="NhaTroKH" expanded="True" />
+            <Node name="NhaTroKH" expanded="True">
+              <Node name="extension" expanded="True" />
+              <Node name="model" expanded="True" />
+              <Node name="service" expanded="True" />
+              <Node name="viewmodel" expanded="True">
+                <Node name="RoomInformationChartPageVM.cs" selected="True" />
+              </Node>
+              <Node name="viewUI" expanded="True">
+                <Node name="RoomInformationChartPageUI.xaml" expanded="True" />
+              </Node>
+            </Node>
+            <Node name="NhaTroKH.iOS" expanded="True" />
           </Node>
         </State>
       </Pad>
       <Pad Id="MonoDevelop.Debugger.WatchPad">
         <State>
-          <Value>setResponse</Value>
-          <Value>listSort</Value>
-          <Value>itemLast</Value>
-          <Value>numIndexLast</Value>
-          <Value>response</Value>
+          <Value>inforRoom</Value>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.NhaTroKH.iOS Xamarin.HotReload.DebuggerTimeoutException.NhaTroKH.iOS.HideInfoBar="True" TriggeredFromHotReload="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.102D3C72-FDA4-4B4C-854F-C3CB2138751E" />
+  <MonoDevelop.Ide.ItemProperties.NhaTroKH.iOS Xamarin.HotReload.DebuggerTimeoutException.NhaTroKH.iOS.HideInfoBar="True" TriggeredFromHotReload="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.13F1447F-65D0-4C87-8678-299000A97E64" />
   <MonoDevelop.Ide.ItemProperties.NhaTroKH.Android PreferredExecutionTarget="Android.pixel_2_pie_9_0_-_api_28" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
@@ -29,7 +40,8 @@
   </Debugger.DebugSourceFolders>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/macbookpro/Documents/SourceTree/NhaTro_KH/NhaTroKH/NhaTroKH/service/restAPI.cs" relfile="NhaTroKH/service/restAPI.cs" line="34" column="1" />
+      <Breakpoint file="/Users/macbookpro/Documents/SourceTree/NhaTro_v2/NhaTroKH/NhaTroKH/service/restAPI.cs" relfile="NhaTroKH/service/restAPI.cs" line="34" column="1" />
+      <Breakpoint file="/Users/macbookpro/Documents/SourceTree/NhaTro_v2/NhaTroKH/NhaTroKH/extension/MyExtensions.cs" relfile="NhaTroKH/extension/MyExtensions.cs" line="41" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

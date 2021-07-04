@@ -11,8 +11,7 @@ namespace NhaTroKH.viewUI
     {
         public LoginPageUI()
         {
-            InitializeComponent();
-            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+            InitializeComponent(); 
             this.BindingContext = new LoginPageVM(Navigation);
         }  
 
